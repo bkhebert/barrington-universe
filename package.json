@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A site that will be deployed that acts as my resume to display my skills as well as my other interests in life, like youtube content and musical creations",
   "main": "index.js",
-"scripts": {
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --watch",
     "server": "nodemon ./src/server/index.js",
@@ -21,6 +21,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
     "express": "^4.21.2",
     "leva": "^0.10.0",
     "lucide-react": "^0.487.0",
@@ -52,4 +53,3 @@
     "webpack-dev-server": "^5.2.1"
   }
 }
-

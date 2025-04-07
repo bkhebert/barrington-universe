@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 // import Scene from './Scene';
+import Home from './Home';
 
 const App = () => {
 
 
     return ( 
         <div>
-        <div className="p-10 bg-red-500 text-white text-2xl">
-        If this text is red, Tailwind is working... frfrfr
-      </div>
+      <Home/>
       {/* <div style={{ width: '100vw', height: '100vw' }}>
  
       </div> */}
