@@ -8,7 +8,7 @@ import Ripple from './Ripple';
 import { useControls } from 'leva';
 
 
-const Scene = ({animation}) => {
+const Scene = ({animation, finishAnimation}) => {
   const [ camPosX, setCamPosX] = useState(-3.9);
   const [ camPosY, setCamPosY] = useState(16.7);
   const [ camPosZ, setCamPosZ] = useState(33.1);
@@ -61,36 +61,36 @@ const Scene = ({animation}) => {
 
 
 
-  const {posX, posY, posZ, rotX, rotY, rotZ, fov} = useControls("PerspectiveCamera", {
-     posX: {
-      value: -3.9,
-      step: 0.1,
-     },
-     posY: {
-      value: 16.7,
-      step: 0.1,
-     },
-     posZ: {
-      value: 33.1,
-      step: 0.1,
-     },
-     rotX: {
-      value: -0.7,
-      step: 0.1,
-     },
-     rotY: {
-      value: 0.1,
-      step: 0.1,
-     },
-     rotZ: {
-      value: 0.0,
-      step: 0.1,
-     },
-     fov: {
-      value: 74,
-      step: 0.1,
-     }
-  });
+  // const {posX, posY, posZ, rotX, rotY, rotZ, fov} = useControls("PerspectiveCamera", {
+  //    posX: {
+  //     value: -3.9,
+  //     step: 0.1,
+  //    },
+  //    posY: {
+  //     value: 16.7,
+  //     step: 0.1,
+  //    },
+  //    posZ: {
+  //     value: 33.1,
+  //     step: 0.1,
+  //    },
+  //    rotX: {
+  //     value: -0.7,
+  //     step: 0.1,
+  //    },
+  //    rotY: {
+  //     value: 0.1,
+  //     step: 0.1,
+  //    },
+  //    rotZ: {
+  //     value: 0.0,
+  //     step: 0.1,
+  //    },
+  //    fov: {
+  //     value: 74,
+  //     step: 0.1,
+  //    }
+  // });
     return ( 
       <Suspense fallback={<div>Loading</div>}> 
       <Canvas className="mx-auto">
@@ -101,7 +101,7 @@ const Scene = ({animation}) => {
         rotation={[ camRotX, camRotY, camRotZ]}
   />
         <Perf />
-      <Ripple animation={animation}></Ripple>
+      <Ripple animation={animation} finishAnimation={finishAnimation}></Ripple>
      {/*  <ThreeJSTest></ThreeJSTest>*/}
       </Canvas> 
       {/* <SolarSystemApp></SolarSystemApp> */}

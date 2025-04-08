@@ -4,17 +4,18 @@ import React, { useMemo, useCallback, useRef, useEffect, useState } from "react"
 import { useLoader, useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 
-function Ripple({animation}){
+function Ripple({animation, finishAnimation}){
 
-  const { fogColor, fogNear, fogFar } = useControls("Fog Color", {
-    fogColor:"purple",
-    fogNear: -30,
-    fogFar: 60,
-  })
+  // const { fogColor, fogNear, fogFar } = useControls("Fog Color", {
+  //   fogColor:"purple",
+  //   fogNear: -30,
+  //   fogFar: 60,
+  // })
+  
   const pointsRef = useRef(); // Hook to rotate the whole ripple
   const bufferRef = useRef(); // Hook to move individual points
   const imgTex= useLoader(THREE.TextureLoader, transparentstar); // Load image with THREEJS
-
+  
   const [color, setColor] = useState(new THREE.Color(0xFF0000)); // Start with Three.js Color object
 
   // Color rotation effect
@@ -73,6 +74,7 @@ function Ripple({animation}){
     useEffect(() => {
       if(frequency <= 0) {
         console.log('aye')
+        finishAnimation(true);
       }
     }, [frequency])
   /* ===== THE MAGIC WAVE FORMULA ===== */

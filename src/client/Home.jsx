@@ -7,7 +7,7 @@ const Home = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [glow, setGlow] = useState("");
   const [ animation, setAnimation ] = useState(false);
-
+  const [finished, setFinished] = useState(false);
   const showProfile = () => {
     setIsHovered(!isHovered);
     if(!isHovered){
@@ -21,11 +21,18 @@ const Home = () => {
     setAnimation(true);
   }
 
+  const finishAnimation = (bool) => {
+    if(bool){
+      console.log('animation is completed')
+      setFinished(true);
+    }
+  }
+
   return (
     <div className="relative min-h-screen">
 
       <div className="fixed inset-0 w-screen h-screen -z-10">
-      <Scene animation={animation}></Scene>
+      <Scene animation={animation} finishAnimation={finishAnimation}></Scene>
       </div>
     {
       !animation && 
@@ -58,6 +65,18 @@ const Home = () => {
     </>
   
   }
+  { animation && !finished && (
+     <div className="fixed inset-0 flex flex-col items-center justify-center mb-40">
+            <button 
+            className={`w-16 h-8 bg-gray-200/5 border-4 border-double rounded-xl text-white/30 font-bold animate-[moveToBottom_1s_ease-in-out_forwards] hover:text-white`}
+            onPointerEnter={showProfile}
+            onPointerLeave={showProfile}
+            onClick={finishAnimation}
+            >
+              Skip
+            </button>
+            </div>
+  )}
     </div>
     
   )
