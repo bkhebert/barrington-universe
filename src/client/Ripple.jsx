@@ -4,7 +4,7 @@ import React, { useMemo, useCallback, useRef, useEffect, useState } from "react"
 import { useLoader, useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 
-function Ripple(){
+function Ripple({animation}){
 
   const { fogColor, fogNear, fogFar } = useControls("Fog Color", {
     fogColor:"purple",
@@ -20,21 +20,61 @@ function Ripple(){
   // Color rotation effect
   useEffect(() => {
     let hue = 0;
-    const interval = setInterval(() => {
+    const colorInterval = setInterval(() => {
       hue = (hue + 1) % 360;
       setColor(new THREE.Color().setHSL(hue / 360, 0.8, 0.5)); // Smooth HSL rotation
     }, 50);
-    return () => clearInterval(interval);
+    return () => clearInterval(colorInterval);
   }, []);
 
   /* ===== WAVE SETTINGS ===== */
   // Used for equation to make a ripple
   // Think of these like dials you can turn to change the wave:
   const phaseShift = useRef(0); // Makes the waves move outward (like dropping a pebble in water)
-  let frequency = 0.028; // Higher = more ripples (like tiny waves vs big ocean waves)
-  let amplitude = 1; // Higher = taller waves
-  const rotationSpeed = 0.01; // How fast the whole thing spins
+  const [frequency, setFrequency] = useState(0.0314); // Higher = more ripples (like tiny waves vs big ocean waves)
+  const [amplitude, setAmplitude] = useState(1); // Higher = taller waves
+  const [rotationSpeed, setRotationSpeed] = useState(0.01); // How fast the whole thing spins
+  const [sep, setSep] = useState(0.3); // distance to each point
 
+  let s = 0.3
+  let freq = 0.0314;
+  let amp = 1;
+  let rot = 0.01
+  const animationInterval = (bool) => {
+    let startanimate = setInterval(() => {
+      
+      freq >= 0 ? ( setSep(s <= 1 ? s += 0.01 : s <= 5 ? s += 0.007 : s += 0.004 ), setFrequency(freq -= 0.00005), setAmplitude(amp >= 20 ? amp -= 0.008 : amp += 0.08), setRotationSpeed(rot -= 0.0001) ) : null;
+      
+      if(freq <= 0 && !(rot <= 0)){
+        setRotationSpeed(0)
+      }  
+
+      if(rot <= 0){
+        setRotationSpeed(0)
+      }
+
+      
+
+    }, 25);
+
+    if(!bool){
+    clearInterval(startanimate)
+    }
+  }
+  useEffect(() => {
+    if(animation){
+        animationInterval(true)
+      }
+      return () => {
+        animationInterval(false)
+      }
+    }, [animation])
+
+    useEffect(() => {
+      if(frequency <= 0) {
+        console.log('aye')
+      }
+    }, [frequency])
   /* ===== THE MAGIC WAVE FORMULA ===== */
   // This math creates the ripple pattern:
   const graph = useCallback((x, z) => {
@@ -59,8 +99,8 @@ function Ripple(){
     // so we need two constants, a count and separation
 
     /* ===== CREATE ALL THE POINTS ===== */
-    const count = 150; // # of points
-    const sep = 1.2; // distance to each point
+    const count = 300; // # of points
+    
 
   // This creates all the starting positions:
   let positions = useMemo(() => {
@@ -108,6 +148,8 @@ function Ripple(){
     if (pointsRef.current) {
       pointsRef.current.rotation.y = time * rotationSpeed; // Spin around Y axis
     }
+
+
   })
 
   return(
