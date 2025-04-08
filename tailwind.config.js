@@ -5,10 +5,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // colors: {
-      //   red: {
-      //     primary: "#B22234",
-      //   },
+      colors: {
+          raccoon: {
+            primary: "#800080",
+          },
+
       //   blue: {
       //     primary: "#0047AB",
       //   },
@@ -22,7 +23,7 @@ module.exports = {
       //   gray: {
       //     secondary: "#888888",
       //   },
-      // },
+       },
       // fontFamily: {
       //   sans: ["Inter", "system-ui", "sans-serif"],
       // },
