@@ -127,33 +127,33 @@ export default function SolarSystemApp() {
       <ambientLight color={"white"}intensity={1} />
       <pointLight position={[0, 0, 0]} intensity={1} />
       <Sun />
-      <Planet size={0.7} xp={1/27} distance={10} speed={0.001} color="skyblue" image={skewedjs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={2/27} distance={10} speed={0.001} color="tomato" image={angular} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={3/27} distance={10} speed={0.001} color="steelblue" image={css} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={4/27} distance={10} speed={0.001} color="firebrick" image={digitalocean} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={5/27} distance={10} speed={0.001} color="firebrick" image={expressjs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={6/27} distance={10} speed={0.001} color="firebrick" image={github} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={7/27} distance={10} speed={0.001} color="firebrick" image={googlecloud} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={8/27} distance={10} speed={0.001} color="firebrick" image={HTML5} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={9/27} distance={10} speed={0.001} color="firebrick" image={linux} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={10/27} distance={10} speed={0.001} color="firebrick" image={magicui} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={11/27} distance={10} speed={0.001} color="firebrick" image={materialui} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={12/27} distance={10} speed={0.001} color="firebrick" image={mongodb} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={13/27} distance={10} speed={0.001} color="firebrick" image={mysql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>      
-      <Planet size={0.7}  xp={14/27} distance={10} speed={0.001} color="firebrick" image={nginx} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={15/27} distance={10} speed={0.001} color="firebrick" image={node} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={16/27} distance={10} speed={0.001} color="firebrick" image={npm} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={17/27} distance={10} speed={0.001} color="firebrick" image={pixi} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={18/27} distance={10} speed={0.001} color="firebrick" image={postgresql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={19/27} distance={10} speed={0.001} color="firebrick" image={prettier} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={20/27} distance={10} speed={0.001} color="firebrick" image={react} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={21/27} distance={10} speed={0.001} color="firebrick" image={shadcn} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={22/27} distance={10} speed={0.001} color="firebrick" image={sql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={23/27} distance={10} speed={0.001} color="firebrick" image={sqlite} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={24/27} distance={10} speed={0.001} color="firebrick" image={tailwind} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={25/27} distance={10} speed={0.001} color="firebrick" image={threejs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={26/27} distance={10} speed={0.001} color="firebrick" image={typescript} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={0.7}  xp={27/27} distance={10} speed={0.001} color="firebrick" image={webpack} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>  */}
+      <Planet size={0.7} xp={1/27} distance={20} speed={0.001} color="skyblue" image={skewedjs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={2/27} distance={20} speed={0.001} color="tomato" image={angular} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={3/27} distance={20} speed={0.001} color="steelblue" image={css} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={4/27} distance={20} speed={0.001} color="firebrick" image={digitalocean} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={5/27} distance={20} speed={0.001} color="firebrick" image={expressjs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={6/27} distance={20} speed={0.001} color="firebrick" image={github} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={7/27} distance={20} speed={0.001} color="firebrick" image={googlecloud} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={8/27} distance={20} speed={0.001} color="firebrick" image={HTML5} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={9/27} distance={20} speed={0.001} color="firebrick" image={linux} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={10/27} distance={20} speed={0.001} color="firebrick" image={magicui} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={11/27} distance={20} speed={0.001} color="firebrick" image={materialui} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={12/27} distance={20} speed={0.001} color="firebrick" image={mongodb} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={13/27} distance={20} speed={0.001} color="firebrick" image={mysql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>      
+      <Planet size={0.7}  xp={14/27} distance={20} speed={0.001} color="firebrick" image={nginx} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={15/27} distance={20} speed={0.001} color="firebrick" image={node} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={16/27} distance={20} speed={0.001} color="firebrick" image={npm} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={17/27} distance={20} speed={0.001} color="firebrick" image={pixi} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={18/27} distance={20} speed={0.001} color="firebrick" image={postgresql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={19/27} distance={20} speed={0.001} color="firebrick" image={prettier} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={20/27} distance={20} speed={0.001} color="firebrick" image={react} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={21/27} distance={20} speed={0.001} color="firebrick" image={shadcn} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={22/27} distance={20} speed={0.001} color="firebrick" image={sql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={23/27} distance={20} speed={0.001} color="firebrick" image={sqlite} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={24/27} distance={20} speed={0.001} color="firebrick" image={tailwind} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={25/27} distance={20} speed={0.001} color="firebrick" image={threejs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={26/27} distance={20} speed={0.001} color="firebrick" image={typescript} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={0.7}  xp={27/27} distance={20} speed={0.001} color="firebrick" image={webpack} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>  */}
     </>
   );
 }

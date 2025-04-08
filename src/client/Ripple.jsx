@@ -106,7 +106,7 @@ function Ripple({animation, finishAnimation}){
     // so we need two constants, a count and separation
 
     /* ===== CREATE ALL THE POINTS ===== */
-    const count = 300; // # of points
+    const count = 420; // # of points
     
 
   // This creates all the starting positions:

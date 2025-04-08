@@ -60,37 +60,42 @@ const Scene = ({animation, finishAnimation, finished}) => {
       }, [animation])
 
 
-
-  const {posX, posY, posZ, rotX, rotY, rotZ, fov} = useControls("PerspectiveCamera", {
-     posX: {
-      value: -3.9,
-      step: 0.1,
-     },
-     posY: {
-      value: 16.7,
-      step: 0.1,
-     },
-     posZ: {
-      value: 33.1,
-      step: 0.1,
-     },
-     rotX: {
-      value: -0.7,
-      step: 0.1,
-     },
-     rotY: {
-      value: 0.1,
-      step: 0.1,
-     },
-     rotZ: {
-      value: 0.0,
-      step: 0.1,
-     },
-     fov: {
-      value: 74,
-      step: 0.1,
-     }
-  });
+      useEffect(() => {
+        if(finished){
+          console.log('fin')
+           setCamFOV(45)
+          }
+        }, [finished])
+  // const {posX, posY, posZ, rotX, rotY, rotZ, fov} = useControls("PerspectiveCamera", {
+  //    posX: {
+  //     value: -3.9,
+  //     step: 0.1,
+  //    },
+  //    posY: {
+  //     value: 16.7,
+  //     step: 0.1,
+  //    },
+  //    posZ: {
+  //     value: 33.1,
+  //     step: 0.1,
+  //    },
+  //    rotX: {
+  //     value: -0.7,
+  //     step: 0.1,
+  //    },
+  //    rotY: {
+  //     value: 0.1,
+  //     step: 0.1,
+  //    },
+  //    rotZ: {
+  //     value: 0.0,
+  //     step: 0.1,
+  //    },
+  //    fov: {
+  //     value: 74,
+  //     step: 0.1,
+  //    }
+  // });
 
     return ( 
       <Suspense fallback={<div>Loading</div>}> 
@@ -99,15 +104,15 @@ const Scene = ({animation, finishAnimation, finished}) => {
         { finished && (<SolarSystemApp></SolarSystemApp>)}
       <PerspectiveCamera
         makeDefault
-        // fov={camFOV} // Real Cam
-        // position={[ camPosX, camPosY, camPosZ]} 
-        // rotation={[ camRotX, camRotY, camRotZ]}
+        fov={camFOV} // Real Cam
+        position={[ camPosX, camPosY, camPosZ]} 
+        rotation={[ camRotX, camRotY, camRotZ]}
         // position={[ posX, posY, posZ]} //  Leva Control
         // rotation={[ rotX, rotY, rotZ]} //
         // fov={fov} //
-        fov={75} // Orbit controls
-        position={[10, 0, 50]}
-        rotation={[0, 0, 0]}
+        // fov={75} // Orbit controls
+        // position={[10, 0, 50]}
+        // rotation={[0, 0, 0]}
         /> 
         <Perf />
       {/* <SolarSystemApp></SolarSystemApp> */}
