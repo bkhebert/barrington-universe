@@ -3,7 +3,7 @@ import React, { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Perf } from 'r3f-perf'
 // import SolarSystemApp from './SolarSystem';
-import { PerspectiveCamera } from '@react-three/drei';
+import { PerspectiveCamera, OrbitControls } from '@react-three/drei';
 import Ripple from './Ripple';
 import { useControls } from 'leva';
 import SolarSystemApp from './SolarSystem';
@@ -99,17 +99,23 @@ const Scene = ({animation, finishAnimation, finished}) => {
         { finished && (<SolarSystemApp></SolarSystemApp>)}
       <PerspectiveCamera
         makeDefault
-        fov={camFOV} // Real Cam
-        position={[ camPosX, camPosY, camPosZ]} 
-        rotation={[ camRotX, camRotY, camRotZ]}
+        // fov={camFOV} // Real Cam
+        // position={[ camPosX, camPosY, camPosZ]} 
+        // rotation={[ camRotX, camRotY, camRotZ]}
         // position={[ posX, posY, posZ]} //  Leva Control
         // rotation={[ rotX, rotY, rotZ]} //
         // fov={fov} //
+        fov={75} // Orbit controls
+        position={[10, 0, 50]}
+        rotation={[0, 0, 0]}
         /> 
         <Perf />
       {/* <SolarSystemApp></SolarSystemApp> */}
      {!finished && <Ripple animation={animation} finishAnimation={finishAnimation} finished={finished}></Ripple> }
      {/*  <ThreeJSTest></ThreeJSTest>*/}
+     <OrbitControls enableZoom={true} enablePan={true}
+          enableRotate={true}
+           />
       </Canvas> 
       </Suspense>
     )

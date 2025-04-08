@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <div className="relative min-h-screen">
 
-      <div className="fixed inset-0 w-screen h-screen -z-10">
+      <div className="inset-0 w-screen h-screen -z-10">
       <Scene animation={animation} finishAnimation={finishAnimation} finished={finished}></Scene>
       </div>
     {
