@@ -8,9 +8,6 @@ const App = () => {
     return ( 
         <div>
       <Home/>
-      {/* <div style={{ width: '100vw', height: '100vw' }}>
- 
-      </div> */}
       </div>
 
     )
