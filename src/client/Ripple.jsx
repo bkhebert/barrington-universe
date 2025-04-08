@@ -1,18 +1,36 @@
 import * as THREE from "three";
 import transparentstar from "../assets/transparentstar.png";
-import React, { useMemo, useCallback, useRef } from "react";
+import React, { useMemo, useCallback, useRef, useEffect, useState } from "react";
 import { useLoader, useFrame } from "@react-three/fiber";
+import { useControls } from "leva";
 
 function Ripple(){
 
+  const { fogColor, fogNear, fogFar } = useControls("Fog Color", {
+    fogColor:"purple",
+    fogNear: -30,
+    fogFar: 60,
+  })
   const pointsRef = useRef(); // Hook to rotate the whole ripple
   const bufferRef = useRef(); // Hook to move individual points
   const imgTex= useLoader(THREE.TextureLoader, transparentstar); // Load image with THREEJS
 
+  const [color, setColor] = useState(new THREE.Color(0xFF0000)); // Start with Three.js Color object
+
+  // Color rotation effect
+  useEffect(() => {
+    let hue = 0;
+    const interval = setInterval(() => {
+      hue = (hue + 1) % 360;
+      setColor(new THREE.Color().setHSL(hue / 360, 0.8, 0.5)); // Smooth HSL rotation
+    }, 50);
+    return () => clearInterval(interval);
+  }, []);
+
   /* ===== WAVE SETTINGS ===== */
   // Used for equation to make a ripple
   // Think of these like dials you can turn to change the wave:
-  let phaseShift = 0; // Makes the waves move outward (like dropping a pebble in water)
+  const phaseShift = useRef(0); // Makes the waves move outward (like dropping a pebble in water)
   let frequency = 0.028; // Higher = more ripples (like tiny waves vs big ocean waves)
   let amplitude = 1; // Higher = taller waves
   const rotationSpeed = 0.01; // How fast the whole thing spins
@@ -30,8 +48,8 @@ function Ripple(){
     // 3. Multiply by frequency to control ripple spacing
     // 4. Take the sine of that to get wave pattern
     // 5. Multiply by amplitude to make waves bigger/smaller
-    return Math.sin( frequency * (x ** 2 + z ** 2 + phaseShift )) * amplitude;
-  }, [frequency, amplitude, phaseShift]);
+    return Math.sin( frequency * (x ** 2 + z ** 2 + phaseShift.current )) * amplitude;
+  }, [frequency, amplitude, phaseShift.current]);
 
 
 
@@ -41,8 +59,8 @@ function Ripple(){
     // so we need two constants, a count and separation
 
     /* ===== CREATE ALL THE POINTS ===== */
-    const count = 100; // # of points
-    const sep = 1.3; // distance to each point
+    const count = 150; // # of points
+    const sep = 1.2; // distance to each point
 
   // This creates all the starting positions:
   let positions = useMemo(() => {
@@ -68,7 +86,7 @@ function Ripple(){
   /* ===== ANIMATION LOOP ===== */
   
   useFrame((state) => {
-    phaseShift += 1; // Makes waves move outward
+    phaseShift.current += 1; // Makes waves move outward
 
     // Get current positions of all points:
     const positions = bufferRef.current.array;
@@ -93,6 +111,8 @@ function Ripple(){
   })
 
   return(
+    <>
+    <fog attach="fog" args={[color, fogNear, fogFar]}/>
     <points ref={pointsRef}>
       <bufferGeometry attach="geometry">
         <bufferAttribute
@@ -117,6 +137,7 @@ function Ripple(){
 
       </pointsMaterial>
     </points>
+    </>
   )
 }
 
