@@ -11,23 +11,14 @@ function Ripple({animation, finishAnimation}){
   //   fogNear: -30,
   //   fogFar: 60,
   // })
-  
+
   const pointsRef = useRef(); // Hook to rotate the whole ripple
   const bufferRef = useRef(); // Hook to move individual points
   const imgTex= useLoader(THREE.TextureLoader, transparentstar); // Load image with THREEJS
   
   const [color, setColor] = useState(new THREE.Color(0xFF0000)); // Start with Three.js Color object
 
-  // Color rotation effect
-  useEffect(() => {
-    let hue = 0;
-    const colorInterval = setInterval(() => {
-      hue = (hue + 1) % 360;
-      setColor(new THREE.Color().setHSL(hue / 360, 0.8, 0.5)); // Smooth HSL rotation
-    }, 50);
-    return () => clearInterval(colorInterval);
-  }, []);
-
+  
   /* ===== WAVE SETTINGS ===== */
   // Used for equation to make a ripple
   // Think of these like dials you can turn to change the wave:
@@ -36,47 +27,61 @@ function Ripple({animation, finishAnimation}){
   const [amplitude, setAmplitude] = useState(1); // Higher = taller waves
   const [rotationSpeed, setRotationSpeed] = useState(0.01); // How fast the whole thing spins
   const [sep, setSep] = useState(0.3); // distance to each point
-
+  
   let s = 0.3
   let freq = 0.0314;
   let amp = 1;
-  let rot = 0.01
-  const animationInterval = (bool) => {
-    let startanimate = setInterval(() => {
+  let rot = 0.01;
+  let saturation = 0.8;
+  let lightness = 0.5;
+  
+  // Color rotation effect
+  useEffect(() => {
+    let hue = 0;
+    const colorInterval = setInterval(() => {
+      console.log('color animation running')
+      hue = (hue + 1) % 360 
+    
+      setColor(new THREE.Color().setHSL(hue / 360, saturation, lightness)); // Smooth HSL rotation
+      if(saturation <= 0 && lightness <= 0){
+       finishAnimation(true);
+      }
+    }, 50);
+
+    const startanimate = animation ? setInterval(() => {
+      console.log('animation running')
       
-      freq >= 0 ? ( setSep(s <= 1 ? s += 0.01 : s <= 5 ? s += 0.007 : s += 0.004 ), setFrequency(freq -= 0.00005), setAmplitude(amp >= 20 ? amp -= 0.008 : amp += 0.08), setRotationSpeed(rot -= 0.0001) ) : null;
-      
-      if(freq <= 0 && !(rot <= 0)){
+      freq >= 0 ? ( 
+        setSep(s <= 1 ? s += 0.01 : s <= 5 ? s += 0.007 : s += 0.004 ), 
+        setFrequency(freq -= 0.00005), 
+        setAmplitude(amp >= 20 ? amp -= 0.008 : amp += 0.08), 
+        setRotationSpeed(rot -= 0.0001) 
+      ) : (  saturation -= 0.01 , lightness -= 0.01  );
+
+      if(freq <= 0 && !(rot <= 0)){  
         setRotationSpeed(0)
-      }  
+      } 
 
       if(rot <= 0){
         setRotationSpeed(0)
       }
 
-      
+    }, 25) : null;
 
-    }, 25);
-
-    if(!bool){
-    clearInterval(startanimate)
+    return () => {
+      clearInterval(startanimate);
+      clearInterval(colorInterval);
     }
-  }
-  useEffect(() => {
-    if(animation){
-        animationInterval(true)
-      }
-      return () => {
-        animationInterval(false)
-      }
-    }, [animation])
+  }, [animation]);
+  
+
 
     useEffect(() => {
       if(frequency <= 0) {
-        console.log('aye')
-        finishAnimation(true);
+
       }
     }, [frequency])
+
   /* ===== THE MAGIC WAVE FORMULA ===== */
   // This math creates the ripple pattern:
   const graph = useCallback((x, z) => {
@@ -156,7 +161,7 @@ function Ripple({animation, finishAnimation}){
 
   return(
     <>
-    <fog attach="fog" args={[color, fogNear, fogFar]}/>
+    <fog attach="fog" args={[color, -30, 60]}/>
     <points ref={pointsRef}>
       <bufferGeometry attach="geometry">
         <bufferAttribute
