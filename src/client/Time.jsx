@@ -30,9 +30,9 @@ const Time = () => {
 
   return (
     <>
-     <h1 className="text-white text-6xl">{time}</h1>
-     <h1 className="text-white text-6xl">{day}</h1>
-     <h1 className="text-white text-6xl">{date}</h1>
+     <h1 className="text-white text-8xl font-bold">{time}</h1>
+     <h1 className="text-white text-7xl font-light">{day}</h1>
+     <h1 className="text-white text-7xl font-light">{date}</h1>
     </>
   )
 }

@@ -24,6 +24,15 @@ module.exports = {
       //     secondary: "#888888",
       //   },
        },
+       animation: {
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
+          '100%': { opacity: '0.9', transform: 'translateY(0)' },
+        },
+      },
       // fontFamily: {
       //   sans: ["Inter", "system-ui", "sans-serif"],
       // },
