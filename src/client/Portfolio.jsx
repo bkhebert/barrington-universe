@@ -8,7 +8,7 @@ import Projects from "./Projects";
 
 const Portfolio = () => {
 
-  return null;
+  return ()
 }
 
 export default Portfolio;
