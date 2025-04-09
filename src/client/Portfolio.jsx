@@ -2,7 +2,7 @@ import React from "react";
 
 const Portfolio = () => {
 
-  return (
-    
-  )
+  return null;
 }
+
+export default Portfolio;
