@@ -101,8 +101,7 @@ const Scene = ({animation, finishAnimation, finished}) => {
       <Suspense fallback={<div>Loading</div>}> 
       
       <Canvas className="mx-auto">
-        { finished && (<SolarSystemApp></SolarSystemApp>)}
-      <PerspectiveCamera
+        <PerspectiveCamera
         makeDefault
         fov={camFOV} // Real Cam
         position={[ camPosX, camPosY, camPosZ]} 
@@ -114,13 +113,14 @@ const Scene = ({animation, finishAnimation, finished}) => {
         // position={[10, 0, 50]}
         // rotation={[0, 0, 0]}
         /> 
-        <Perf />
-      {/* <SolarSystemApp></SolarSystemApp> */}
-     {!finished && <Ripple animation={animation} finishAnimation={finishAnimation} finished={finished}></Ripple> }
-     {/*  <ThreeJSTest></ThreeJSTest>*/}
      <OrbitControls enableZoom={true} enablePan={true}
           enableRotate={true}
            />
+        { finished && (<SolarSystemApp></SolarSystemApp>)}
+        <Perf />
+      {/* <SolarSystemApp></SolarSystemApp> */}
+      {!finished &&  <Ripple animation={animation} finishAnimation={finishAnimation} finished={finished}></Ripple> }
+     {/*  <ThreeJSTest></ThreeJSTest>*/}
       </Canvas> 
       </Suspense>
     )

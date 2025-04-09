@@ -38,6 +38,18 @@ module.exports = {
                 }
             },
             {
+                test: /\.(hdr|exr)$/,
+                use: [
+                  {
+                    loader: 'url-loader',
+                    options: {
+                      limit: 8192,
+                      name: '[name].[ext]'
+                    }
+                  }
+                ]
+              },
+            {
                 test: /\.(png|jpg|gif|mp3|aac|ogg|ico)$/,
                 type: 'asset/resource',
                 generator: {

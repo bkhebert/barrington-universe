@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame,  useThree } from '@react-three/fiber';
-import { OrbitControls, Html, PerspectiveCamera, useTexture, useCubeTexture } from '@react-three/drei';
+import { OrbitControls, Html, useTexture, useCubeTexture, CubeCamera, useEnvironment, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import js from "../assets/javascript.png";
 import { useControls } from 'leva';
@@ -36,68 +36,37 @@ import threejs from "../assets/skewedlogos/threejs.png"
 import typescript from "../assets/skewedlogos/typescript.png"
 import webpack from "../assets/skewedlogos/webpack.png"
 import skewedjsdisp from "../assets/skewedjsdisp.png";
-import spaceCubenx from "../assets/milkyway/nx.png";
-import spaceCubeny from "../assets/milkyway/ny.png";
-import spaceCubenz from "../assets/milkyway/nz.png";
-import spaceCubepx from "../assets/milkyway/px.png";
-import spaceCubepy from "../assets/milkyway/py.png";
-import spaceCubepz from "../assets/milkyway/pz.png";
+import qwantani_moonrise_4k from "../assets/qwantani_dawn_4k.hdr";
 
-
-function Planet({ size, distance, speed, color, image, emissive, shininess, specular, textDIFF, textDISP, imageDisp, textARM, textNOR, xp}) {
+function Planet({ size, distance, speed, color, image, xp}) {
 
   const ref = useRef();
   const angle = useRef(xp * Math.PI * 2);
-  
+  const texture = useMemo(() => new THREE.TextureLoader().load(image), [image]);
+
   useFrame(() => {
     angle.current += speed;
-    const x = Math.cos(angle.current) * distance;
-    const z = Math.sin(angle.current) * distance;
-   // const y = Math.cos(angle.current);
-    ref.current.position.set(x, 0, z);
+    ref.current.position.set(
+      Math.cos(angle.current) * distance,
+      0,
+      Math.sin(angle.current) * distance
+    );
   });
-
-
-  const SpaceCubeTexture = useCubeTexture([
-    spaceCubepx,
-    spaceCubenx,
-    spaceCubepy,
-    spaceCubeny,
-    spaceCubepz,
-    spaceCubenz,
-  ], {path: ""});
-
-  // const textures = useTexture({
-  //   map: textDIFF,
-  //   displacementMap: textDISP,
-  //   aoMap: textARM,        // Ambient occlusion
-  //   roughnessMap: textARM,  // Surface roughness
-  //   metalnessMap: textARM,  // Metallic reflection
-  //   normalMap: textNOR,      // Surface bumps
-  // })
 
   const overlayTextures = useTexture({
     map: image,
-    // displacementMap: image,
-    // aoMap: textARM,        // Ambient occlusion
-    // roughnessMap: textARM,  // Surface roughness
-    // metalnessMap: textARM,  // Metallic reflection
-    // normalMap: textNOR      // Surface bumps
   })
   return (
     <group ref={ref}>
       {/* Base Sphere */}
       <mesh>
-        <sphereGeometry args={[size, 64, 64]} />
-        <meshPhongMaterial  envMap={SpaceCubeTexture}
-         color={color} 
-         specular={specular} // color of shine
-         emissive={emissive} 
-         shininess={shininess} // how sharp the shine is
+        <sphereGeometry args={[size, 256, 256]} />
+        <meshStandardMaterial  
+        color={color}
+        roughness={0}
+        metalness={1} 
         />
-        
       </mesh>
-      
       {/* Overlay Sphere (slightly larger) */}
       <mesh>
         <sphereGeometry args={[size * 1.005, 128, 128]} />
@@ -106,7 +75,6 @@ function Planet({ size, distance, speed, color, image, emissive, shininess, spec
           transparent
           metalness={0.3}
           roughness={0}
-          envMap={SpaceCubeTexture}
         />
       </mesh>
     </group>
@@ -116,27 +84,15 @@ function Planet({ size, distance, speed, color, image, emissive, shininess, spec
 
 function Sun() {
 
-  const SpaceCubeTexture = useCubeTexture([
-    spaceCubepx,
-    spaceCubenx,
-    spaceCubepy,
-    spaceCubeny,
-    spaceCubepz,
-    spaceCubenz,
-  ], {path: ""});
-
   return (
     <mesh>
       <sphereGeometry args={[20, 64, 64]} />
-        <meshPhysicalMaterial  envMap={SpaceCubeTexture}
+        <meshPhysicalMaterial  
          color={"white"} 
          transmission={1}
          roughness={0}
          metalness={0}
          ior={2.33}
-        //  specular={specular} // color of shine
-        //  emissive={emissive} 
-        //  shininess={shininess} // how sharp the shine is
         />
     </mesh>
   );
@@ -144,62 +100,34 @@ function Sun() {
 
 export default function SolarSystemApp() {
 
+  const envMap = useEnvironment({ files: qwantani_moonrise_4k });
+
   const { 
-    emissive, 
-    shininess, 
-    specular, 
     color,
   } = useControls({
-    shininess: 30,
-    specular: "#111111",
-    emissive: "skyblue",
     color: "white"
   })
-  
-  const SpaceCubeTexture = useCubeTexture([
-    spaceCubepx,
-    spaceCubenx,
-    spaceCubepy,
-    spaceCubeny,
-    spaceCubepz,
-    spaceCubenz,
-  ], {path: ""});
-
-  const {scene} = useThree()
-
-  useMemo(() => {
-    scene.background = SpaceCubeTexture;
-  }, [scene, SpaceCubeTexture]);
-
 
   return (
     <>
-         {/* <PerspectiveCamera
-            makeDefault
-            fov={50} // Real Cam
-            position={[ 0, 50, 100]} 
-            rotation={[ 0, 0, 0]}
-            // position={[ posX, posY, posZ]} //  Leva Control
-            // rotation={[ rotX, rotY, rotZ]} //
-            // fov={fov} //
-            /> */}
-            <directionalLight 
+      <ambientLight color={"white"}intensity={2} />
+      <directionalLight 
         position={[10, 10, 10]} 
         intensity={1}
-        
         color={"white"}
         />
-        {/* <directionalLight 
-        position={[-10, -10, -10]} 
-        intensity={1}
-        
-        color={"white"}
-        /> */}
-      {/* <ambientLight color={"white"}intensity={1} />
-      <ambientLight color={"white"}intensity={1} /> */}
-      <ambientLight color={"white"}intensity={2} />
       <pointLight position={[0, 0, 0]} intensity={1} />
-      <Sun />
+      <Environment map={envMap} background></Environment>
+
+      <CubeCamera>
+        {(texture) => 
+          <>
+            <Sun />
+            <Environment map={texture} />
+          </>
+        }
+      </CubeCamera>
+
       <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={1/27} distance={30} speed={0.002} color="skyblue" image={skewedjs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
       <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={2/27} distance={30} speed={0.002} color="tomato" image={angular} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
       <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={3/27} distance={30} speed={0.002} color="steelblue" image={css} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
@@ -227,29 +155,7 @@ export default function SolarSystemApp() {
       <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={25/27} distance={30} speed={0.002} color={color} image={threejs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
       <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={26/27} distance={30} speed={0.002} color={color} image={typescript} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
       <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={27/27} distance={30} speed={0.002} color={color} image={webpack} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/> 
-     
+      
     </>
   );
 }
-
-//
-// Math.random() * 0.01
-// export default function SolarSystemApp() {
-//   return (
-//     <div style={{ height: '100vh', width: '100vw' }}>
-//       <Canvas camera={{ position: [0, 50, 100], fov: 60 }}>
-//         <SolarSystemScene />
-//       </Canvas>
-//       <div style={{
-//         position: 'absolute',
-//         top: 10,
-//         left: 10,
-//         color: 'white',
-//         fontFamily: 'sans-serif',
-//         zIndex: 10
-//       }}>
-//         Solar System Simulation
-//       </div>
-//     </div>
-//   );
-// }
