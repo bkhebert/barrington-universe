@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
 import Resume from "./Resume";
@@ -13,8 +13,19 @@ const Portfolio = () => {
     setExpanded(componentName === expanded ? null : componentName);
   };
 
+  const [isVisible, setIsVisible] = useState(false); // for fade-in
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 100); // delay ensures transition is detected
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
-    <div>
+    <div className={`transition-opacity duration-[3000ms] ease-in ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}>
     <div className="min-w-full h-[70rem] flex flex-col">
     <div className="flex-grow">
       {expanded}
