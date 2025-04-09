@@ -15,7 +15,7 @@ const Portfolio = () => {
 
   return (
     <div>
-    <div className="bg-red-500/10 min-w-full h-[70rem] flex flex-col">
+    <div className="min-w-full h-[70rem] flex flex-col">
     <div className="flex-grow">
       {expanded}
     { expanded === "Resume" && <Resume></Resume>}
@@ -23,22 +23,22 @@ const Portfolio = () => {
     { expanded === "Projects" && <Projects></Projects>}
     { expanded === "AboutMe" && <AboutMe></AboutMe>}
     </div>
-   <div className="grid grid-cols-4">
-    <div className="bg-red-500 h-[26rem] p-4 mb-6"
+   <div className="grid grid-cols-4 gap-2">
+    <div className="bg-yellow-400/40 h-[26rem] p-4 mb-6 rounded-xl"
     onClick={(() => {
       handleClick("Resume")
     })}>01 Resume</div>
-    <div className="bg-red-500 h-[26rem] p-4 mb-6"
+    <div className="bg-red-600/40 h-[26rem] p-4 mb-6 rounded-xl"
     onClick={(() => {
       handleClick("Skills")
     })}
     >02 Skills</div>
-    <div className="bg-red-500 h-[26rem] p-4 mb-6"
+    <div className="bg-cyan-400/40 h-[26rem] p-4 mb-6 rounded-xl"
     onClick={(() => {
       handleClick("Projects")
     })}
     >03 Projects</div>
-    <div className="bg-red-500 h-[26rem] p-4 mb-6"
+    <div className="bg-green-600/40 h-[26rem] p-4 mb-6 rounded-xl"
     onClick={(() => {
       handleClick("AboutMe")
     })}
