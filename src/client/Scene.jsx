@@ -8,7 +8,7 @@ import Ripple from './Ripple';
 import { useControls } from 'leva';
 import SolarSystemApp from './SolarSystem';
 
-const Scene = ({animation, finishAnimation, finished}) => {
+const Scene = ({animation, finishAnimation, finished, skipped}) => {
 
   const [ camPosX, setCamPosX] = useState(-3.9);
   const [ camPosY, setCamPosY] = useState(16.7);
@@ -33,7 +33,7 @@ const Scene = ({animation, finishAnimation, finished}) => {
   });
 
   useEffect(() => {
-    if (animation && !finished) {
+    if (animation && !finished && !skipped) {
       // Start interval
       introIntervalRef.current = setInterval(() => {
         const c = camRef.current;
@@ -62,7 +62,7 @@ const Scene = ({animation, finishAnimation, finished}) => {
       }
     }
 
-    if(finished){
+    if(finished && !skipped){
       console.log('finished animation')
       solarSystemIntervalRef.current = setInterval(() => {
         const c = camRef.current;
@@ -89,6 +89,17 @@ const Scene = ({animation, finishAnimation, finished}) => {
         clearInterval(solarSystemIntervalRef.current);
         solarSystemIntervalRef.current = null;
       }
+    }
+
+    if(skipped){
+
+      setCamPosX(16.5);
+      setCamPosY(0);
+      setCamPosZ(-0.3);
+      setCamRotX(0);
+      setCamRotY(-4.7);
+      setCamRotZ(0);
+      setCamFOV(50.2);
     }
     // Cleanup on unmount or animation change
     return () => {
