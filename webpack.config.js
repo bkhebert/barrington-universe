@@ -37,20 +37,9 @@ module.exports = {
                   fullySpecified: false,
                 }
             },
+            
             {
-                test: /\.(hdr|exr)$/,
-                use: [
-                  {
-                    loader: 'url-loader',
-                    options: {
-                      limit: 8192,
-                      name: '[name].[ext]'
-                    }
-                  }
-                ]
-              },
-            {
-                test: /\.(png|jpg|gif|mp3|aac|ogg|ico)$/,
+                test: /\.(png|jpg|gif|mp3|aac|ogg|ico|hdr)$/,
                 type: 'asset/resource',
                 generator: {
                   filename: 'assets/[name][ext]'
