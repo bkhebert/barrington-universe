@@ -10,10 +10,10 @@ const Portfolio = () => {
 
   return (
    <div className="grid grid-cols-4 gap-2">
-    <div className="bg-red-500">01</div>
-    <div className="bg-red-500">02</div>
-    <div className="bg-red-500">03</div>
-    <div className="bg-red-500">04</div>
+    <div className="bg-red-500 h-32">01</div>
+    <div className="bg-red-500 h-32">02</div>
+    <div className="bg-red-500 h-32">03</div>
+    <div className="bg-red-500 h-32">04</div>
   </div>
   )
 }

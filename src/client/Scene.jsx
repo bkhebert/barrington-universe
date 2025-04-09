@@ -37,7 +37,7 @@ const Scene = ({animation, finishAnimation, finished, skipped, showPortfolio}) =
       // Start interval
       introIntervalRef.current = setInterval(() => {
         const c = camRef.current;
-        console.log('hello world')
+        console.log('hello world intro')
         if (c.posX <= 0) c.posX += 0.05;
         if (c.posY <= 50) c.posY += 0.3;
         if (c.posZ >= 0) c.posZ -= 0.15;
@@ -66,7 +66,7 @@ const Scene = ({animation, finishAnimation, finished, skipped, showPortfolio}) =
       console.log('finished animation')
       solarSystemIntervalRef.current = setInterval(() => {
         const c = camRef.current;
-        console.log('hello world')
+        console.log('hello world sikar')
         if (c.posX <= 16.5) c.posX += 0.03;
         if (c.posY >= 0) c.posY -= 0.5;
         if (c.posZ >= -0.3) c.posZ -= 0.001;
@@ -82,13 +82,26 @@ const Scene = ({animation, finishAnimation, finished, skipped, showPortfolio}) =
         setCamRotY(c.rotY);
         setCamRotZ(c.rotZ);
         setCamFOV(c.fov);
+
+        if(
+          !(c.posX <= 16.5 ) &&
+          !(c.posY >= 0 ) &&
+          !(c.posZ >= -0.3 ) &&
+          !(c.rotX <= 0 ) &&
+          !(c.rotY >= -4.7 ) &&
+          !(c.rotZ >= 0 ) &&
+          !(c.fov >= 50.2 ) ){
+          console.log('STOP')
+          clearInterval(solarSystemIntervalRef.current);
+          showPortfolio(true);
+        }
       }, 20)
     } else {
       // Clear interval
       if (solarSystemIntervalRef.current) {
         clearInterval(solarSystemIntervalRef.current);
         solarSystemIntervalRef.current = null;
-        showPortfolio(true);
+       
       }
     }
 
@@ -114,7 +127,7 @@ const Scene = ({animation, finishAnimation, finished, skipped, showPortfolio}) =
         solarSystemIntervalRef.current = null;
       }
     };
-  }, [animation, finished]);
+  }, [animation, finished, skipped]);
 
   // const {posX, posY, posZ, rotX, rotY, rotZ, fov} = useControls("PerspectiveCamera", {
   //    posX: {
