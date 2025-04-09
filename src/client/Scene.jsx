@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect, useRef } from 'react';
 // import ThreeJSTest from './ThreeJSTest'
 import { Canvas } from '@react-three/fiber';
 import { Perf } from 'r3f-perf'
@@ -9,6 +9,7 @@ import { useControls } from 'leva';
 import SolarSystemApp from './SolarSystem';
 
 const Scene = ({animation, finishAnimation, finished}) => {
+
   const [ camPosX, setCamPosX] = useState(-3.9);
   const [ camPosY, setCamPosY] = useState(16.7);
   const [ camPosZ, setCamPosZ] = useState(33.1);
@@ -17,55 +18,62 @@ const Scene = ({animation, finishAnimation, finished}) => {
   const [ camRotZ, setCamRotZ] = useState(0.0);
   const [ camFOV, setCamFOV ] = useState(40.0);
 
-    let cpx = -3.9;
-    let cpy = 16.7;
-    let cpz = 33.1;
-    let crx = -0.7;
-    let cry = 0.1;
-    let crz = 0.0;
-    let cfv = 40.0;
-  
-    const animationInterval = (bool) => {
-      let startanimate = setInterval(() => {
-        // freq = freq + 0.001;
-        cpx <= 0 ?   cpx += 0.05 : null;
-        cpy <= 50 ?  cpy += 0.3   : null;  
-        cpz >= 0 ?    cpz -= 0.15  : null;  
-        crx >= -1.6 ? crx -= 0.005 : null;
-        cry >= 0  ?  cry -= 0.003 : null;
-        crz >= 0  ?  crz -= 0.001 : null;
-        cfv <= 90 ?  cfv += 0.333   : null;
-        // setFrequency(freq)
-        setCamPosX(cpx)
-        setCamPosY(cpy)
-        setCamPosZ(cpz)
-        setCamRotX(crx)
-        setCamRotY(cry)
-        setCamRotZ(crz)
-        setCamFOV(cfv)
+  const intervalRef = useRef(null);
+
+  // Ref values for mutable camera state during animation
+  const camRef = useRef({
+    posX: -3.9,
+    posY: 16.7,
+    posZ: 33.1,
+    rotX: -0.7,
+    rotY: 0.1,
+    rotZ: 0.0,
+    fov: 40.0
+  });
+
+  useEffect(() => {
+    if (animation && !finished) {
+      // Start interval
+      intervalRef.current = setInterval(() => {
+        const c = camRef.current;
+        console.log('hello world')
+        if (c.posX <= 0) c.posX += 0.05;
+        if (c.posY <= 50) c.posY += 0.3;
+        if (c.posZ >= 0) c.posZ -= 0.15;
+        if (c.rotX >= -1.6) c.rotX -= 0.005;
+        if (c.rotY >= 0) c.rotY -= 0.003;
+        if (c.rotZ >= 0) c.rotZ -= 0.001;
+        if (c.fov <= 90) c.fov += 0.333;
+
+        setCamPosX(c.posX);
+        setCamPosY(c.posY);
+        setCamPosZ(c.posZ);
+        setCamRotX(c.rotX);
+        setCamRotY(c.rotY);
+        setCamRotZ(c.rotZ);
+        setCamFOV(c.fov);
       }, 25);
-  
-      if(!bool){
-      clearInterval(startanimate)
+    } else {
+      // Clear interval
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
       }
     }
 
-    useEffect(() => {
-      if(animation){
-          animationInterval(true)
-        }
-        return () => {
-          animationInterval(false)
-        }
-      }, [animation])
+    if(finished){
+      console.log('finished animation')
+      setCamFOV(45)
+    }
+    // Cleanup on unmount or animation change
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [animation, finished]);
 
-
-      useEffect(() => {
-        if(finished){
-          console.log('fin')
-           setCamFOV(45)
-          }
-        }, [finished])
   // const {posX, posY, posZ, rotX, rotY, rotZ, fov} = useControls("PerspectiveCamera", {
   //    posX: {
   //     value: -3.9,

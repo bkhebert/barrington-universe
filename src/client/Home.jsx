@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Time from "./Time";
 import Scene from "./Scene";
 import selfie from "../assets/selfie.jpg"
@@ -16,6 +16,10 @@ const Home = () => {
       setGlow("")
     }
   }
+
+  useEffect(() => {
+    console.log('finished set')
+  }, [finished])
 
   const startAnimation = () => {
     setAnimation(true);
