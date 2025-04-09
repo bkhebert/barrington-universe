@@ -49,7 +49,7 @@ const Home = () => {
   return (
     <div className="relative min-h-screen">
 
-      <div className="inset-0 w-screen h-screen -z-10">
+      <div className="fixed inset-0 w-screen h-screen -z-10">
       <Scene skipped={skipped} animation={animation} showPortfolio={showPortfolio} finishAnimation={finishAnimation} finished={finished}></Scene>
       </div>
   
@@ -99,8 +99,11 @@ const Home = () => {
   )}
     {
       portfolioVisibility && 
-      <div className="fixed inset-0">
+      <div>
+      <div className="relative inset-0">
       <Portfolio></Portfolio>
+      </div>
+      <div className="bg-blue-500 h-[26rem] p-4 mb-6">05 Contact</div>
       </div>
     }
     </div>

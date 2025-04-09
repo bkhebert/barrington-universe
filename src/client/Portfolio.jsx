@@ -9,11 +9,16 @@ import Projects from "./Projects";
 const Portfolio = () => {
 
   return (
-   <div className="grid grid-cols-4 gap-2">
-    <div className="bg-red-500 h-32">01</div>
-    <div className="bg-red-500 h-32">02</div>
-    <div className="bg-red-500 h-32">03</div>
-    <div className="bg-red-500 h-32">04</div>
+    <div>
+    <div className="bg-red-500/10 min-w-full h-[90rem] flex flex-col">
+    <div className="flex-grow">nothing</div>
+   <div className="grid grid-cols-4">
+    <div className="bg-red-500 h-[26rem] p-4 mb-6">01 Resume</div>
+    <div className="bg-red-500 h-[26rem] p-4 mb-6">02 Skills</div>
+    <div className="bg-red-500 h-[26rem] p-4 mb-6">03 Projects</div>
+    <div className="bg-red-500 h-[26rem] p-4 mb-6">04 About Me</div>
+  </div>
+  </div>
   </div>
   )
 }
