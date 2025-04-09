@@ -38,7 +38,7 @@ import webpack from "../assets/skewedlogos/webpack.png"
 import skewedjsdisp from "../assets/skewedjsdisp.png";
 import qwantani_moonrise_4k from "../assets/qwantani_dawn_4k.hdr";
 
-function Planet({ size, distance, speed, color, image, xp}) {
+function Planet({ size, distance, speed, color, image, xp, solid}) {
 
   const ref = useRef();
   const angle = useRef(xp * Math.PI * 2);
@@ -60,11 +60,11 @@ function Planet({ size, distance, speed, color, image, xp}) {
     <group ref={ref}>
       {/* Base Sphere */}
       <mesh>
-        <sphereGeometry args={[size, 256, 256]} />
+        <sphereGeometry args={solid ? [size, 32, 32]: [size, 256, 256]} />
         <meshStandardMaterial  
         color={color}
-        roughness={0}
-        metalness={1} 
+        roughness={ solid ? 1 : 0}
+        metalness={ solid ? 0 : 1} 
         />
       </mesh>
       {/* Overlay Sphere (slightly larger) */}
@@ -104,6 +104,7 @@ export default function SolarSystemApp() {
 
   const { 
     color,
+    
   } = useControls({
     color: "white"
   })
@@ -128,33 +129,33 @@ export default function SolarSystemApp() {
         }
       </CubeCamera>
 
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={1/27} distance={30} speed={0.002} color="skyblue" image={skewedjs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={2/27} distance={30} speed={0.002} color="tomato" image={angular} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={3/27} distance={30} speed={0.002} color="steelblue" image={css} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={4/27} distance={30} speed={0.002} color={color} image={digitalocean} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={5/27} distance={30} speed={0.002} color={color} image={expressjs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={6/27} distance={30} speed={0.002} color={color} image={github} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={7/27} distance={30} speed={0.002} color={color} image={googlecloud} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={8/27} distance={30} speed={0.002} color={color} image={HTML5} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={9/27} distance={30} speed={0.002} color={color} image={linux} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={10/27} distance={30} speed={0.002} color={color} image={magicui} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={11/27} distance={30} speed={0.002} color={color} image={materialui} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={12/27} distance={30} speed={0.002} color={color} image={mongodb} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={13/27} distance={30} speed={0.002} color={color} image={mysql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>      
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={14/27} distance={30} speed={0.002} color={color} image={nginx} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={15/27} distance={30} speed={0.002} color={color} image={node} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={16/27} distance={30} speed={0.002} color={color} image={npm} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={17/27} distance={30} speed={0.002} color={color} image={pixi} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={18/27} distance={30} speed={0.002} color={color} image={postgresql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={19/27} distance={30} speed={0.002} color={color} image={prettier} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={20/27} distance={30} speed={0.002} color={color} image={react} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={21/27} distance={30} speed={0.002} color={color} image={shadcn} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={22/27} distance={30} speed={0.002} color={color} image={sql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={23/27} distance={30} speed={0.002} color={color} image={sqlite} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={24/27} distance={30} speed={0.002} color={color} image={tailwind} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={25/27} distance={30} speed={0.002} color={color} image={threejs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={26/27} distance={30} speed={0.002} color={color} image={typescript} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={27/27} distance={30} speed={0.002} color={color} image={webpack} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/> 
+      <Planet size={2} xp={1/27} distance={30} speed={0.002} color="#f4ec0f" image={skewedjs}/>
+      <Planet size={2} xp={2/27} distance={30} speed={0.002} color="#eda100" image={angular}/>
+      <Planet size={2} xp={3/27} distance={30} speed={0.002} color="#0fd6f4" image={css}/>
+      <Planet size={2} xp={4/27} distance={30} speed={0.002} color={"#005fff"} image={digitalocean}/>
+      <Planet size={2} xp={5/27} distance={30} speed={0.002} color={"#25f900"} image={expressjs}/>
+      <Planet size={2} xp={6/27} distance={30} speed={0.002} color={"#ffffff"} image={github}/>
+      <Planet size={2} xp={7/27} distance={30} speed={0.002} color={"#000000"} image={googlecloud}/>
+      <Planet size={2} xp={8/27} distance={30} speed={0.002} color={"#f4810f"} image={HTML5}/>
+      <Planet size={2} xp={9/27} distance={30} speed={0.002} color={"#504e42"} image={linux}/>
+      <Planet size={2} xp={10/27} distance={30} speed={0.002} color={"#6800ff"} image={magicui}/>
+      <Planet size={2} xp={11/27} distance={30} speed={0.002} color={"#ffffff"} image={materialui}/>
+      <Planet size={2} xp={12/27} distance={30} speed={0.002} color={"#60ef61"} image={mongodb}/>
+      <Planet size={2} xp={13/27} distance={30} speed={0.002} color={"#97e7ff"} image={mysql}/>      
+      <Planet size={2} xp={14/27} distance={30} speed={0.002} color={"#005e19"} image={nginx}/>
+      <Planet size={2} xp={15/27} distance={30} speed={0.002} color={"#ffffff"} image={node}/>
+      <Planet size={2} xp={16/27} distance={30} speed={0.002} color={"#c20000"} image={npm}/>
+      <Planet size={2} xp={17/27} distance={30} speed={0.002} color={"#ff7edf"} image={pixi}/>
+      <Planet size={2} xp={18/27} distance={30} speed={0.002} color={"#ffffff"} image={postgresql}/>
+      <Planet size={2} xp={19/27} distance={30} speed={0.002} color={"#a2a2a2"} image={prettier}/>
+      <Planet size={2} xp={20/27} distance={30} speed={0.002} color={"#ffffff"} image={react} solid={true}/>
+      <Planet size={2} xp={21/27} distance={30} speed={0.002} color={"#00ff23"} image={shadcn}/>
+      <Planet size={2} xp={22/27} distance={30} speed={0.002} color={"#7adcee"} image={sql}/>
+      <Planet size={2} xp={23/27} distance={30} speed={0.002} color={"#7aa8ee"} image={sqlite}/>
+      <Planet size={2} xp={24/27} distance={30} speed={0.002} color={"#ffffff"} image={tailwind}/>
+      <Planet size={2} xp={25/27} distance={30} speed={0.002} color={"#7a5dd1"} image={threejs}/>
+      <Planet size={2} xp={26/27} distance={30} speed={0.002} color={"#0061c0"} image={typescript}/>
+      <Planet size={2} xp={27/27} distance={30} speed={0.002} color={"#ffffff"} image={webpack} solid={true}/> 
       
     </>
   );
