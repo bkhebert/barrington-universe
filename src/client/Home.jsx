@@ -8,6 +8,8 @@ const Home = () => {
   const [glow, setGlow] = useState("");
   const [ animation, setAnimation ] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [skipped, setSkipped] = useState(false);
+
   const showProfile = () => {
     setIsHovered(!isHovered);
     if(!isHovered){
@@ -32,11 +34,16 @@ const Home = () => {
     }
   }
 
+  const skippedAnimation = () => {
+    setFinished(true);
+    setSkipped(true);
+  }
+
   return (
     <div className="relative min-h-screen">
 
       <div className="inset-0 w-screen h-screen -z-10">
-      <Scene animation={animation} finishAnimation={finishAnimation} finished={finished}></Scene>
+      <Scene skipped={skipped} animation={animation} finishAnimation={finishAnimation} finished={finished}></Scene>
       </div>
     {
       !animation && 
@@ -75,7 +82,7 @@ const Home = () => {
             className={`w-16 h-8 bg-gray-200/5 border-4 border-double rounded-xl text-white/30 font-bold animate-[moveToBottom_1s_ease-in-out_forwards] hover:text-white`}
             onPointerEnter={showProfile}
             onPointerLeave={showProfile}
-            onClick={finishAnimation}
+            onClick={skippedAnimation}
             >
               Skip
             </button>
