@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
 import Resume from "./Resume";
@@ -16,11 +16,13 @@ const Portfolio = () => {
   return (
     <div>
     <div className="bg-red-500/10 min-w-full h-[70rem] flex flex-col">
-    <div className="flex-grow">nothing</div>
+    <div className="flex-grow">
+      {expanded}
     { expanded === "Resume" && <Resume></Resume>}
     { expanded === "Skills" && <Skills></Skills>}
     { expanded === "Projects" && <Projects></Projects>}
     { expanded === "AboutMe" && <AboutMe></AboutMe>}
+    </div>
    <div className="grid grid-cols-4">
     <div className="bg-red-500 h-[26rem] p-4 mb-6"
     onClick={(() => {
