@@ -20,7 +20,7 @@ const Scene = ({animation, finishAnimation, finished}) => {
 
   const introIntervalRef = useRef(null);
   const solarSystemIntervalRef = useRef(null);
-  
+
   // Ref values for mutable camera state during animation
   const camRef = useRef({
     posX: -3.9,
@@ -64,7 +64,31 @@ const Scene = ({animation, finishAnimation, finished}) => {
 
     if(finished){
       console.log('finished animation')
-      setCamFOV(45)
+      solarSystemIntervalRef.current = setInterval(() => {
+        const c = camRef.current;
+        console.log('hello world')
+        if (c.posX <= 16.5) c.posX += 0.03;
+        if (c.posY >= 0) c.posY -= 0.5;
+        if (c.posZ >= -0.3) c.posZ -= 0.001;
+        if (c.rotX <= 0) c.rotX += 0.005;
+        if (c.rotY >= -4.7) c.rotY -= 0.008;
+        if (c.rotZ >= 0) c.rotZ -= 0.001;
+        if (c.fov >= 50.2) c.fov -= 0.2;
+
+        setCamPosX(c.posX);
+        setCamPosY(c.posY);
+        setCamPosZ(c.posZ);
+        setCamRotX(c.rotX);
+        setCamRotY(c.rotY);
+        setCamRotZ(c.rotZ);
+        setCamFOV(c.fov);
+      }, 20)
+    } else {
+      // Clear interval
+      if (solarSystemIntervalRef.current) {
+        clearInterval(solarSystemIntervalRef.current);
+        solarSystemIntervalRef.current = null;
+      }
     }
     // Cleanup on unmount or animation change
     return () => {
@@ -72,39 +96,43 @@ const Scene = ({animation, finishAnimation, finished}) => {
         clearInterval(introIntervalRef.current);
         introIntervalRef.current = null;
       }
+      if (solarSystemIntervalRef.current) {
+        clearInterval(solarSystemIntervalRef.current);
+        solarSystemIntervalRef.current = null;
+      }
     };
   }, [animation, finished]);
 
-  const {posX, posY, posZ, rotX, rotY, rotZ, fov} = useControls("PerspectiveCamera", {
-     posX: {
-      value: -3.9,
-      step: 0.1,
-     },
-     posY: {
-      value: 16.7,
-      step: 0.1,
-     },
-     posZ: {
-      value: 33.1,
-      step: 0.1,
-     },
-     rotX: {
-      value: -0.7,
-      step: 0.1,
-     },
-     rotY: {
-      value: 0.1,
-      step: 0.1,
-     },
-     rotZ: {
-      value: 0.0,
-      step: 0.1,
-     },
-     fov: {
-      value: 74,
-      step: 0.1,
-     }
-  });
+  // const {posX, posY, posZ, rotX, rotY, rotZ, fov} = useControls("PerspectiveCamera", {
+  //    posX: {
+  //     value: -3.9,
+  //     step: 0.1,
+  //    },
+  //    posY: {
+  //     value: 16.7,
+  //     step: 0.1,
+  //    },
+  //    posZ: {
+  //     value: 33.1,
+  //     step: 0.1,
+  //    },
+  //    rotX: {
+  //     value: -0.7,
+  //     step: 0.1,
+  //    },
+  //    rotY: {
+  //     value: 0.1,
+  //     step: 0.1,
+  //    },
+  //    rotZ: {
+  //     value: 0.0,
+  //     step: 0.1,
+  //    },
+  //    fov: {
+  //     value: 74,
+  //     step: 0.1,
+  //    }
+  // });
 
 
 
@@ -114,12 +142,12 @@ const Scene = ({animation, finishAnimation, finished}) => {
       <Canvas className="mx-auto">
         <PerspectiveCamera
         makeDefault
-        // fov={camFOV} // Real Cam
-        // position={[ camPosX, camPosY, camPosZ]} 
-        // rotation={[ camRotX, camRotY, camRotZ]}
-        position={[ posX, posY, posZ]} //  Leva Control
-        rotation={[ rotX, rotY, rotZ]} //
-        fov={fov} //
+        fov={camFOV} // Real Cam
+        position={[ camPosX, camPosY, camPosZ]} 
+        rotation={[ camRotX, camRotY, camRotZ]}
+        // position={[ posX, posY, posZ]} //  Leva Control
+        // rotation={[ rotX, rotY, rotZ]} //
+        // fov={fov} //
         // fov={75} // Orbit controls
         // position={[10, 0, 50]}
         // rotation={[0, 0, 0]}
