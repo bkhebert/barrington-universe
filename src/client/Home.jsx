@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Time from "./Time";
 import Scene from "./Scene";
 import selfie from "../assets/selfie.jpg"
+import Portfolio from "./Portfolio";
+
 const Home = () => {
 
   const [isHovered, setIsHovered] = useState(false);
@@ -9,6 +11,11 @@ const Home = () => {
   const [ animation, setAnimation ] = useState(false);
   const [finished, setFinished] = useState(false);
   const [skipped, setSkipped] = useState(false);
+  const [portfolioVisibility, setPortfolioVisibility] = useState(false);
+
+  const showPortfolio = (bool) => {
+    setPortfolioVisibility(bool);
+  }
 
   const showProfile = () => {
     setIsHovered(!isHovered);
@@ -43,8 +50,9 @@ const Home = () => {
     <div className="relative min-h-screen">
 
       <div className="inset-0 w-screen h-screen -z-10">
-      <Scene skipped={skipped} animation={animation} finishAnimation={finishAnimation} finished={finished}></Scene>
+      <Scene skipped={skipped} animation={animation} showPortfolio={showPortfolio} finishAnimation={finishAnimation} finished={finished}></Scene>
       </div>
+  
     {
       !animation && 
     <>
@@ -73,6 +81,7 @@ const Home = () => {
       <div className="absolute bottom-0 left-0 ">
       <Time></Time>
       </div>
+
     </>
   
   }
@@ -88,6 +97,12 @@ const Home = () => {
             </button>
             </div>
   )}
+    {
+      portfolioVisibility && 
+      <div className="fixed inset-0">
+      <Portfolio></Portfolio>
+      </div>
+    }
     </div>
     
   )
