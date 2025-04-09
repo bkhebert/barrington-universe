@@ -78,7 +78,7 @@ function Planet({ size, distance, speed, color, image, emissive, shininess, spec
 
   const overlayTextures = useTexture({
     map: image,
-    // displacementMap: textDISP,
+    // displacementMap: image,
     // aoMap: textARM,        // Ambient occlusion
     // roughnessMap: textARM,  // Surface roughness
     // metalnessMap: textARM,  // Metallic reflection
@@ -88,7 +88,7 @@ function Planet({ size, distance, speed, color, image, emissive, shininess, spec
     <group ref={ref}>
       {/* Base Sphere */}
       <mesh>
-        <sphereGeometry args={[size, 256, 256]} />
+        <sphereGeometry args={[size, 64, 64]} />
         <meshPhongMaterial  envMap={SpaceCubeTexture}
          color={color} 
          specular={specular} // color of shine
@@ -100,14 +100,13 @@ function Planet({ size, distance, speed, color, image, emissive, shininess, spec
       
       {/* Overlay Sphere (slightly larger) */}
       <mesh>
-        <sphereGeometry args={[size * 1.008, 32, 32]} />
-        <meshStandardMaterial 
+        <sphereGeometry args={[size * 1.005, 128, 128]} />
+        <meshPhysicalMaterial 
           {...overlayTextures} 
           transparent
-         
-          // displacementScale={0.007}
           metalness={0.3}
           roughness={0}
+          envMap={SpaceCubeTexture}
         />
       </mesh>
     </group>
@@ -116,10 +115,29 @@ function Planet({ size, distance, speed, color, image, emissive, shininess, spec
 
 
 function Sun() {
+
+  const SpaceCubeTexture = useCubeTexture([
+    spaceCubepx,
+    spaceCubenx,
+    spaceCubepy,
+    spaceCubeny,
+    spaceCubepz,
+    spaceCubenz,
+  ], {path: ""});
+
   return (
     <mesh>
-      <sphereGeometry args={[6, 64, 64]} />
-      <meshBasicMaterial color="yellow" />
+      <sphereGeometry args={[20, 64, 64]} />
+        <meshPhysicalMaterial  envMap={SpaceCubeTexture}
+         color={"white"} 
+         transmission={1}
+         roughness={0}
+         metalness={0}
+         ior={2.33}
+        //  specular={specular} // color of shine
+        //  emissive={emissive} 
+        //  shininess={shininess} // how sharp the shine is
+        />
     </mesh>
   );
 }
@@ -130,10 +148,12 @@ export default function SolarSystemApp() {
     emissive, 
     shininess, 
     specular, 
+    color,
   } = useControls({
     shininess: 30,
     specular: "#111111",
-    emissive: "skyblue"
+    emissive: "skyblue",
+    color: "white"
   })
   
   const SpaceCubeTexture = useCubeTexture([
@@ -147,7 +167,9 @@ export default function SolarSystemApp() {
 
   const {scene} = useThree()
 
-  scene.background = SpaceCubeTexture;
+  useMemo(() => {
+    scene.background = SpaceCubeTexture;
+  }, [scene, SpaceCubeTexture]);
 
 
   return (
@@ -181,30 +203,30 @@ export default function SolarSystemApp() {
       <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={1/27} distance={30} speed={0.002} color="skyblue" image={skewedjs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
       <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={2/27} distance={30} speed={0.002} color="tomato" image={angular} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
       <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={3/27} distance={30} speed={0.002} color="steelblue" image={css} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={4/27} distance={30} speed={0.002} color="firebrick" image={digitalocean} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={5/27} distance={30} speed={0.002} color="firebrick" image={expressjs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={6/27} distance={30} speed={0.002} color="firebrick" image={github} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={7/27} distance={30} speed={0.002} color="firebrick" image={googlecloud} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={8/27} distance={30} speed={0.002} color="firebrick" image={HTML5} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={9/27} distance={30} speed={0.002} color="firebrick" image={linux} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={10/27} distance={30} speed={0.002} color="firebrick" image={magicui} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={11/27} distance={30} speed={0.002} color="firebrick" image={materialui} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={12/27} distance={30} speed={0.002} color="firebrick" image={mongodb} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={13/27} distance={30} speed={0.002} color="firebrick" image={mysql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>      
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={14/27} distance={30} speed={0.002} color="firebrick" image={nginx} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={15/27} distance={30} speed={0.002} color="firebrick" image={node} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={16/27} distance={30} speed={0.002} color="firebrick" image={npm} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={17/27} distance={30} speed={0.002} color="firebrick" image={pixi} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={18/27} distance={30} speed={0.002} color="firebrick" image={postgresql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={19/27} distance={30} speed={0.002} color="firebrick" image={prettier} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={20/27} distance={30} speed={0.002} color="firebrick" image={react} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={21/27} distance={30} speed={0.002} color="firebrick" image={shadcn} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={22/27} distance={30} speed={0.002} color="firebrick" image={sql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={23/27} distance={30} speed={0.002} color="firebrick" image={sqlite} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={24/27} distance={30} speed={0.002} color="firebrick" image={tailwind} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={25/27} distance={30} speed={0.002} color="firebrick" image={threejs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={26/27} distance={30} speed={0.002} color="firebrick" image={typescript} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
-      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={27/27} distance={30} speed={0.002} color="firebrick" image={webpack} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/> 
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={4/27} distance={30} speed={0.002} color={color} image={digitalocean} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={5/27} distance={30} speed={0.002} color={color} image={expressjs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={6/27} distance={30} speed={0.002} color={color} image={github} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={7/27} distance={30} speed={0.002} color={color} image={googlecloud} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={8/27} distance={30} speed={0.002} color={color} image={HTML5} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={9/27} distance={30} speed={0.002} color={color} image={linux} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={10/27} distance={30} speed={0.002} color={color} image={magicui} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={11/27} distance={30} speed={0.002} color={color} image={materialui} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={12/27} distance={30} speed={0.002} color={color} image={mongodb} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={13/27} distance={30} speed={0.002} color={color} image={mysql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>      
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={14/27} distance={30} speed={0.002} color={color} image={nginx} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={15/27} distance={30} speed={0.002} color={color} image={node} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={16/27} distance={30} speed={0.002} color={color} image={npm} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={17/27} distance={30} speed={0.002} color={color} image={pixi} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={18/27} distance={30} speed={0.002} color={color} image={postgresql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={19/27} distance={30} speed={0.002} color={color} image={prettier} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={20/27} distance={30} speed={0.002} color={color} image={react} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={21/27} distance={30} speed={0.002} color={color} image={shadcn} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={22/27} distance={30} speed={0.002} color={color} image={sql} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={23/27} distance={30} speed={0.002} color={color} image={sqlite} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={24/27} distance={30} speed={0.002} color={color} image={tailwind} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={25/27} distance={30} speed={0.002} color={color} image={threejs} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={26/27} distance={30} speed={0.002} color={color} image={typescript} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/>
+      <Planet size={2} shininess={shininess} specular={specular} emissive={emissive} xp={27/27} distance={30} speed={0.002} color={color} image={webpack} textDIFF={rockdiff} textDISP={rockdisp} imageDisp={skewedjsdisp} textARM={rockarm} textNOR={rocknor}/> 
      
     </>
   );
