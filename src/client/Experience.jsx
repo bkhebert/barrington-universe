@@ -10,7 +10,7 @@ const Experience = () => {
   return (
     <div>
     <ExperienceCard 
-    image={}
+    logo={}
     title={} 
     dateOrStack={} 
     lengthOrDescription={} 
