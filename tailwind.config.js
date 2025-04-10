@@ -2,6 +2,10 @@ module.exports = {
   content: [
     "./dist/index.html", // The HTML file you're serving
     "./src/**/*.{js,jsx,ts,tsx}",
+     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
+  ],
+  plugins: [
+    require('flowbite/plugin')
   ],
   theme: {
     extend: {
@@ -47,4 +51,6 @@ module.exports = {
       // },
     },
   },
+
+
 };

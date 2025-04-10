@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import { initDrawers } from 'flowbite';
 
-const Skills = () => {
+export default function Skills() {
 
-  return null;
+
+  return null
 }
-
-export default Skills;

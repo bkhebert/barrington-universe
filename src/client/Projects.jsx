@@ -2,7 +2,7 @@ import React from "react";
 
 const Projects = () => {
 
-  return null;
+  return (<div className="text-black">DAYMN</div>);
 }
 
 export default Projects;
