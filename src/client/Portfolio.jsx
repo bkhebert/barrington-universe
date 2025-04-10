@@ -35,33 +35,42 @@ const Portfolio = () => {
     { expanded === "Projects" && <Projects></Projects>}
     { expanded === "AboutMe" && <AboutMe></AboutMe>}
     </div>
-   <div className="grid grid-cols-4 gap-2">
-    <div className="relative bg-yellow-400/40 h-15/35 p-4 mb-6 rounded-xl"
+   <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+    <div className="relative bg-yellow-400/40 h-15/35 p-4 m-3 rounded-xl"
     onClick={(() => {
       handleClick("Resume")
     })}>
-      <h1 className="text-2xl font-bold">Resume</h1>
+      <h1 className="text-sm text-yellow-950 md:text-2xl font-bold">Resume</h1>
       <div className="flex justify-center items-center">
-      <IconContext.Provider value={{ size: "8em", color: "white"}}>
+      <IconContext.Provider value={{ className: "w-full h-full mt-2 max-w-[6em] text-white md:max-w-[6em] lg:max-w-[8em]"}}>
       <GiNotebook />
       </IconContext.Provider>
       </div>
     </div>
-    <div className="bg-red-600/40 h-15/35 p-4 mb-6 rounded-xl"
+    <div className="relative bg-red-600/40 h-15/35  p-4 m-3 rounded-xl"
     onClick={(() => {
       handleClick("Skills")
     })}
-    >02 Skills</div>
-    <div className="bg-cyan-400/40 h-15/35 p-4 mb-6 rounded-xl"
+    >
+      <h1 className="text-sm text-red-950 md:text-2xl font-bold">Skills</h1>
+      <div className="absolute inset-0 flex justify-center items-center pt-6">
+      <p1 className="font-bold text-[4em] text-white md:text-[6em] lg:text-[8em]">28</p1>
+      </div>
+    </div>
+    <div className="bg-cyan-400/40 h-15/35  p-4 m-3 rounded-xl"
     onClick={(() => {
       handleClick("Projects")
     })}
-    >03 Projects</div>
-    <div className="bg-green-600/40 h-15/35 p-4 mb-6 rounded-xl"
+    >
+      <h1 className="text-sm text-cyan-950 md:text-2xl font-bold">Projects</h1>
+    </div>
+    <div className="bg-green-600/40 h-15/35  p-4 m-3 rounded-xl"
     onClick={(() => {
       handleClick("AboutMe")
     })}
-    >04 About Me</div>
+    >
+      <h1 className="text-sm text-green-950 md:text-2xl font-bold">About Me</h1>
+    </div>
   </div>
   </div>
   </div>
