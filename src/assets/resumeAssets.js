@@ -5,7 +5,7 @@ export default [
     dateOrStack: "SERN", 
     lengthOrDescription: "Social-Media Event-Finding App", 
     role: "Software Engineer", 
-    techStackArray: [ "ExpressJS", "mySQL", "Sequelize", "Socket.io", "PassportJS", "ShadCN", "Tailwind", "Pixi.js", "Jest", "Sequelize", "React", "TypeScript", "Axios", "Magic UI", "Google Gemeni" ],
+    techStackArray: [ "ExpressJS", "mySQL", "Sequelize", "Socket.io", "PassportJS", "ShadCN", "Tailwind", "Pixi.js", "Jest", "React", "TypeScript", "Axios", "Magic UI", "Google Gemeni" ],
     bulletsArray: [
      "Implemented Tailwind CSS, ShadCN, and Magic UI for consistent design, reusable UI components, and realization of product vision.",
      "Used TypeScript for code organization & error detection. Tested app features with Jest, ensured error prevention with ESlint.",
@@ -73,7 +73,6 @@ export default [
       "Held a Secret Security Clearance, demonstrating trustworthiness and the ability to handle sensitive information. ",
     ],
   },
-
   {
     logo: "",
     title: "RACCOON CITY MASSACRE & NEW ORLEANS", 
@@ -88,6 +87,4 @@ export default [
      " Developed a band website & brand using Wix that sold over 600$ of band merchandise nation-wide.",
     ],
   },
-
-
 ]
