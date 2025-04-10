@@ -1,5 +1,7 @@
 
 import React, { useState } from 'react';
+import Education from './Education';
+import Experience from './Experience';
 
 const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmit }) => {
 
@@ -126,7 +128,8 @@ const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmi
         education
         </button>
         </div>
-        
+        {educationClicked && <Education/>}
+        {experienceClicked && <Experience/>}
         {/* Command output */}
         {output.map((item, index) => (
           <div key={index} className="mb-2">
