@@ -2,9 +2,22 @@ import React from "react";
 import ExperienceCard from "./ExperienceCard";
 
 const Experience = () => {
+
+
+
+
+
   return (
     <div>
-    <ExperienceCard/>
+    <ExperienceCard 
+    image={}
+    title={} 
+    dateOrStack={} 
+    lengthOrDescription={} 
+    role={} 
+    techStackArray={}
+    bulletsArray={}
+     />
   </div>
   )
 }
