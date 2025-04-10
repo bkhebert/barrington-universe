@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
 import Resume from "./Resume";
@@ -9,7 +9,10 @@ import { GiNotebook } from "react-icons/gi";
 
 const Portfolio = () => {
   const [expanded, setExpanded] = useState(null);
-
+  const [ progressBar, setProgressBar] = useState("0");
+  const [ progressReached, setProgressReached] = useState(false);
+  const progIntervalRef = useRef(null);
+  const progRef = useRef({ value: 0});
   const handleClick = (componentName) => {
     setExpanded(componentName === expanded ? null : componentName);
   };
@@ -22,6 +25,37 @@ const Portfolio = () => {
     }, 100); // delay ensures transition is detected
     return () => clearTimeout(timeout);
   }, []);
+
+  useEffect(() => {
+
+    if(!progressReached){
+    progIntervalRef.current = setInterval(() => {
+      let p = progRef.current;
+      console.log('progress is running', progressBar, p.value)
+     
+      if(p.value < 75) {
+        console.log('adding to p')
+        p.value += 1
+        
+      }
+      setProgressBar(p.value)
+      if(p.value === 75){
+        console.log('progress is at 75!!');
+        setProgressReached(true);
+      }
+    }, 50);
+  }
+
+    if(progressReached){
+      clearInterval(progIntervalRef.current);
+      console.log('progress interval interval cleared')
+    }
+
+    return (() => {
+      clearInterval(progIntervalRef.current);
+    });
+
+  }, [progressReached])
 
   return (
     <div className={`transition-opacity duration-[3000ms] ease-in ${
@@ -70,11 +104,11 @@ const Portfolio = () => {
     <circle cx="18" cy="18" r="16" fill="none" class="stroke-current text-white" stroke-width="1" stroke-dasharray="75 100"></circle>
 
 
-    <circle cx="18" cy="18" r="16" fill="none" class="stroke-current text-white" stroke-width="2" stroke-dasharray="75 100"></circle>
+    <circle cx="18" cy="18" r="16" fill="none" class="stroke-current text-white" stroke-width="2" stroke-dasharray={`${Math.floor(progRef.current.value)} 100`}></circle>
   </svg>
 
   <div class="absolute top-1/2 start-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-    <span class="text-4xl font-bold text-blue-50">100%</span>
+    <span class="text-2xl font-semibold text-blue-50">{Math.floor(progRef.current.value / .75)} %</span>
     <span class="text-cyan-50 font-bold block">completed</span>
   </div>
 </div>
