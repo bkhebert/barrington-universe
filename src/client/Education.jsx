@@ -1,7 +1,11 @@
 import React from "react";
 
 const Education = () => {
-  return null
+  return (
+    <div>
+      Education display
+    </div>
+  )
 }
 
 export default Education
