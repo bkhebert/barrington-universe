@@ -1,6 +1,13 @@
+import flare from "./resume_icons/phoenix.png"
+import digicry from "./resume_icons/digicry.png"
+import demlogo from "./resume_icons/demlogo.png"
+import doglogo from "./resume_icons/doglogo.png"
+import nola from "./resume_icons/nola.png"
+import usmc from "./resume_icons/usmc.png"
+
 export default [
   {
-    logo: "",
+    logo: flare,
     title: "FLARE", 
     dateOrStack: "SERN", 
     lengthOrDescription: "Social-Media Event-Finding App", 
@@ -19,7 +26,7 @@ export default [
     ],
   },
   {
-    logo: "",
+    logo: demlogo,
     title: "DEMOCRACY ONLINE", 
     dateOrStack: "SERN", 
     lengthOrDescription: "AI Logic & Reasonability Checking Debate App!", 
@@ -32,7 +39,7 @@ export default [
     ],
   },
   {
-    logo: "",
+    logo: doglogo,
     title: "DOGAGATCHI", 
     dateOrStack: "MERN", 
     lengthOrDescription: "Similar to Tamagotchi, but with a dog!", 
@@ -48,7 +55,7 @@ export default [
     ],
   },
   {
-    logo: "",
+    logo: digicry,
     title: "DIGI-CRY", 
     dateOrStack: "MERN", 
     lengthOrDescription: "Mental health App", 
@@ -61,29 +68,31 @@ export default [
     ],
   },
   {
-    logo: "",
+    logo: usmc,
     title: "UNITED STATES MARINE CORPS ", 
-    dateOrStack: "April-2011 – April-2015 ", 
-    lengthOrDescription: "4 years", 
+    dateOrStack: "Apr2011–Apr2015 ", 
+    lengthOrDescription: "MOS-1812 Semper Fidelis", 
     role: "Corporal", 
-    techStackArray: [ "Honor", "Courage", "Commitment", "Discipline", "Tact", "Integrity", "Bearing", "Decisiveness", "Endurance", "Knowledge", "Initiative", "Justice"  ],
+    techStackArray: [ "Honor", "Courage", "Commitment", "Discipline", "Tact", "Integrity", "Bearing", "Decisiveness", "Initiative"  ],
     bulletsArray: [
-      "Served as a leader and mentor, training new Marines in operations and usage of over $70,000,000 of government equipment, discipline, and tactical readiness in high-pressure environments that required adaptability and strategic decision-making.", 
+      "Trained new Marines in operations and usage of over $70,000,000 of government equipment",
+      "Discipline, and tactical readiness, adaptability and strategic decision-making in high-pressure environments.", 
       "Progressed through the ranks up to Corporal due to leadership, technical expertise, and commitment to excellence. " ,
       "Held a Secret Security Clearance, demonstrating trustworthiness and the ability to handle sensitive information. ",
     ],
   },
   {
-    logo: "",
+    logo: nola,
     title: "RACCOON CITY MASSACRE & NEW ORLEANS", 
-    dateOrStack: "January 2017 – August 2025 ", 
-    lengthOrDescription: "8 years", 
+    dateOrStack: "Jan2017–Aug2025 ", 
+    lengthOrDescription: "Arts, Culture, Entertainment", 
     role: "Bartender / Musician", 
     techStackArray: ["Wix", "Cubase 9", "Avid Pro", "Filmora", "Streamlabs OBS"],
     bulletsArray: [
-      "Oversaw the production of a series of short-films & music videos which were involved in local film festivals, as well as running post-production using various video-editing software, including Avid Pro, Filmora, & Streamlabs OBS.",
+      "Oversaw the production of a series of short-films & music videos which were involved in local film festivals",
+       "Film Post-production using various video-editing software, including Avid Pro, Filmora, & Streamlabs OBS.",
      "Wrote, recorded, &  produced over 50+ full-length songs using Cubase 9. Taught a team of musicians structure & layout of music.",
-     "Booked, managed, & promoted a nationwide tour across 10 states along with connecting with businesses.",
+     "Booked, managed, & promoted a nationwide music tour across 10 states along with connecting with businesses.",
      " Developed a band website & brand using Wix that sold over 600$ of band merchandise nation-wide.",
     ],
   },

@@ -15,11 +15,11 @@ const ExperienceCard = ({
       {/* Left: Logo + Line */}
       <div className="flex flex-col items-center">
         <img
-          src="/logo.png" // Replace with your logo path
+          src={logo} 
           alt="Company Logo"
-          className="w-10 h-10 rounded-md"
+          className="w-[120px] h-[120px] rounded-md"
         />
-        <div className="w-px h-full bg-gray-700 mt-2"></div>
+        <div className="w-px h-full bg-purple-300 mt-2"></div>
       </div>
 
       {/* Right: Content */}

@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Education from './Education';
 import Experience from './Experience';
 import DownloadResumeButton from './DownloadResumeButton';
-const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmit }) => {
+const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandSubmit }) => {
 
   const [command, setCommand] = useState(initialCommand);
   const [output, setOutput] = useState([]);

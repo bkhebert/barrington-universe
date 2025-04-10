@@ -1,7 +1,10 @@
+import uno from "./resume_icons/uno.png"
+import opSpark from "./resume_icons/opSpark.png"
+
 export default [
   
     {
-      logo: "",
+      logo: uno,
       title: "University Of New Orleans", 
       dateOrStack: "August-2015 – Jan 2019 ", 
       lengthOrDescription: "4 years", 
@@ -13,7 +16,7 @@ export default [
       ],
     },
     {
-      logo: "",
+      logo: opSpark,
       title: "Operation Spark", 
       dateOrStack: "July-2024 – March 2025", 
       lengthOrDescription: "9 months", 
