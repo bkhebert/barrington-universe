@@ -6,7 +6,7 @@ export default function Skills({handleClick}) {
 
   return (
 
-<div id="default-modal" tabindex="-1" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+<div class="overflow-y-auto overflow-x-hidden z-10 fixed top-0 right-0 left-0 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
        
         <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
