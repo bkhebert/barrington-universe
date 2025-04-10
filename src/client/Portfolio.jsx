@@ -63,6 +63,28 @@ const Portfolio = () => {
     })}
     >
       <h1 className="text-sm text-cyan-950 md:text-2xl font-bold">Projects</h1>
+      <div className="flex justify-center items-center align">
+<div class="relative size-40" >
+  <svg class="rotate-[135deg] size-full" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+  
+    <circle cx="18" cy="18" r="16" fill="none" class="stroke-current text-white" stroke-width="1" stroke-dasharray="75 100"></circle>
+
+
+    <circle cx="18" cy="18" r="16" fill="none" class="stroke-current text-white" stroke-width="2" stroke-dasharray="75 100"></circle>
+  </svg>
+
+  <div class="absolute top-1/2 start-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+    <span class="text-4xl font-bold text-blue-50">100%</span>
+    <span class="text-cyan-50 font-bold block">completed</span>
+  </div>
+</div>
+</div>
+
+  {/* Text below circle
+  <div className="mt-2 text-center">
+    <p className="text-xl font-bold">58+</p>
+    <p className="text-sm text-gray-200">Completed 58+ Projects</p>
+  </div> */}
     </div>
     <div className="bg-green-600/40 h-15/35  p-4 m-3 rounded-xl"
     onClick={(() => {
