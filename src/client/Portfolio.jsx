@@ -5,11 +5,12 @@ import Resume from "./Resume";
 import ContactMe from "./ContactMe";
 import Projects from "./Projects";
 import { IconContext } from "react-icons";
-import { GiNotebook } from "react-icons/gi";
+import { GiNotebook, GiRaccoonHead } from "react-icons/gi";
 
 const Portfolio = () => {
   const [expanded, setExpanded] = useState(null);
   const [ progressBar, setProgressBar] = useState("0");
+  const [ progressBarColor, setProgressBarColor] = useState("text-red-500");
   const [ progressReached, setProgressReached] = useState(false);
   const progIntervalRef = useRef(null);
   const progRef = useRef({ value: 0});
@@ -33,15 +34,25 @@ const Portfolio = () => {
       let p = progRef.current;
       console.log('progress is running', progressBar, p.value)
      
+      if(p.value === 25){
+        setProgressBarColor('text-yellow-500')
+      }
+      if(p.value === 60){
+        setProgressBarColor('text-green-500')
+      }
+
+
       if(p.value < 75) {
         console.log('adding to p')
         p.value += 1
         
       }
+
       setProgressBar(p.value)
       if(p.value === 75){
         console.log('progress is at 75!!');
         setProgressReached(true);
+        setProgressBarColor('text-cyan-500')
       }
     }, 50);
   }
@@ -104,7 +115,7 @@ const Portfolio = () => {
     <circle cx="18" cy="18" r="16" fill="none" class="stroke-current text-white" stroke-width="1" stroke-dasharray="75 100"></circle>
 
 
-    <circle cx="18" cy="18" r="16" fill="none" class="stroke-current text-white" stroke-width="2" stroke-dasharray={`${Math.floor(progRef.current.value)} 100`}></circle>
+    <circle cx="18" cy="18" r="16" fill="none" class={`stroke-current ${progressBarColor}`} stroke-width="2" stroke-dasharray={`${Math.floor(progRef.current.value)} 100`}></circle>
   </svg>
 
   <div class="absolute top-1/2 start-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
@@ -126,6 +137,11 @@ const Portfolio = () => {
     })}
     >
       <h1 className="text-sm text-green-950 md:text-2xl font-bold">About Me</h1>
+      <div className="flex justify-center items-center">
+      <IconContext.Provider value={{ className: "w-full h-full mt-6 max-w-[6em] text-white md:max-w-[6em] lg:max-w-[8em]"}}>
+      <GiRaccoonHead />
+      </IconContext.Provider>
+      </div>
     </div>
   </div>
   </div>
