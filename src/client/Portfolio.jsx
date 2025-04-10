@@ -4,7 +4,8 @@ import Skills from "./Skills";
 import Resume from "./Resume";
 import ContactMe from "./ContactMe";
 import Projects from "./Projects";
-
+import { IconContext } from "react-icons";
+import { GiNotebook } from "react-icons/gi";
 
 const Portfolio = () => {
   const [expanded, setExpanded] = useState(null);
@@ -26,7 +27,7 @@ const Portfolio = () => {
     <div className={`transition-opacity duration-[3000ms] ease-in ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}>
-    <div className="min-w-full h-[70rem] flex flex-col">
+    <div className="min-w-full h-screen flex flex-col">
     <div className="flex-grow">
       {expanded}
     { expanded === "Resume" && <Resume></Resume>}
@@ -35,21 +36,28 @@ const Portfolio = () => {
     { expanded === "AboutMe" && <AboutMe></AboutMe>}
     </div>
    <div className="grid grid-cols-4 gap-2">
-    <div className="bg-yellow-400/40 h-[26rem] p-4 mb-6 rounded-xl"
+    <div className="relative bg-yellow-400/40 h-15/35 p-4 mb-6 rounded-xl"
     onClick={(() => {
       handleClick("Resume")
-    })}>01 Resume</div>
-    <div className="bg-red-600/40 h-[26rem] p-4 mb-6 rounded-xl"
+    })}>
+      <h1 className="text-2xl font-bold">Resume</h1>
+      <div className="flex justify-center items-center">
+      <IconContext.Provider value={{ size: "8em", color: "white"}}>
+      <GiNotebook />
+      </IconContext.Provider>
+      </div>
+    </div>
+    <div className="bg-red-600/40 h-15/35 p-4 mb-6 rounded-xl"
     onClick={(() => {
       handleClick("Skills")
     })}
     >02 Skills</div>
-    <div className="bg-cyan-400/40 h-[26rem] p-4 mb-6 rounded-xl"
+    <div className="bg-cyan-400/40 h-15/35 p-4 mb-6 rounded-xl"
     onClick={(() => {
       handleClick("Projects")
     })}
     >03 Projects</div>
-    <div className="bg-green-600/40 h-[26rem] p-4 mb-6 rounded-xl"
+    <div className="bg-green-600/40 h-15/35 p-4 mb-6 rounded-xl"
     onClick={(() => {
       handleClick("AboutMe")
     })}
