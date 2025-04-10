@@ -73,9 +73,8 @@ const Portfolio = () => {
         isVisible ? "opacity-100" : "opacity-0"
       }`}>
     <div className="min-w-full h-screen flex flex-col">
-    <div className="flex-grow">
-      {expanded}
-    { expanded === "Resume" && <Resume></Resume>}
+    <div className="flex-grow overflow-hidden flex flex-col min-h-0">
+    { expanded === "Resume" && <div className="flex-1 min-h-0 overflow-hidden"> <Resume></Resume> </div>}
     { expanded === "Skills" && <Skills></Skills>}
     { expanded === "Projects" && <Projects></Projects>}
     { expanded === "AboutMe" && <AboutMe></AboutMe>}
