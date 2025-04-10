@@ -8,7 +8,7 @@ const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmi
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [educationClicked, setEducationClicked] = useState(false);
-  const [experienceClicked, setexperienceClicked] = useState(true);
+  const [experienceClicked, setExperienceClicked] = useState(true);
 
 
 
@@ -85,11 +85,13 @@ const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmi
   };
 
   const showEducation = () => {
-
+    setEducationClicked(true);
+    setExperienceClicked(false);
   }
 
   const showExperience = () => {
-    
+    setExperienceClicked(true);
+    setEducationClicked(false);
   }
 
   return (
