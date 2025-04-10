@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Education from './Education';
 import Experience from './Experience';
 
@@ -11,7 +11,7 @@ const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmi
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [educationClicked, setEducationClicked] = useState(false);
   const [experienceClicked, setExperienceClicked] = useState(true);
-
+  const terminalContentRef = useRef(null);
 
 
   // Fun fake directory contents
@@ -28,6 +28,18 @@ const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmi
     "vim_skills         (DIR - just .swp files)"
   ];
 
+
+
+  const scrollToTop = () => {
+    terminalContentRef.current.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  useEffect(() =>{
+    scrollToTop()
+  }, [])
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!command.trim()) return;
@@ -110,7 +122,9 @@ const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmi
       </div>
       
       {/* Terminal content */}
-      <div className="p-4 overflow-y-auto flex-1">
+      <div 
+       ref={terminalContentRef}
+      className="p-4 overflow-y-auto flex-1">
         {/* Welcome message */}
         <div className="mb-4">
           <p>Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.11.0-43-generic x86_64)</p>
@@ -140,7 +154,7 @@ const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmi
             <div className="mt-1 text-gray-300">{item.response}</div>
           </div>
         ))}
-        
+
         {/* Command input */}
         <form onSubmit={handleSubmit} className="flex items-center">
           <span className="text-purple-400">{prompt}</span>
