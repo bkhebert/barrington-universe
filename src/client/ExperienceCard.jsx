@@ -26,15 +26,15 @@ const ExperienceCard = ({
       <div className="pb-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:space-x-2">
-          <h3 className="text-lg font-semibold text-white">{title}</h3>
+          <h3 className="text-lg font-semibold text-purple-400">{title}</h3>
           <span className="text-sm text-gray-400">
             {lengthOrDescription}
           </span>
         </div>
 
         {/* Role & Location */}
-        <div className="text-sm text-gray-300 mb-2">
-          <span className="font-semibold text-white">{role}</span>{" "}
+        <div className="text-sm text-lime-600 mb-2">
+          <span className="font-semibold text-lime-300">{role}</span>{" "}
           {dateOrStack}
         </div>
 
@@ -43,7 +43,7 @@ const ExperienceCard = ({
           {techStackArray.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 bg-gray-800 text-xs text-white rounded-full border border-gray-600"
+              className="px-3 py-1 bg-gray-800 text-xs text-white rounded-full border border-gray-600 hover:bg-raccoon-primary"
             >
               {tech}
             </span>
