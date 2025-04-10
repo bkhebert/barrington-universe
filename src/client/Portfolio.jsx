@@ -81,7 +81,7 @@ const Portfolio = () => {
     { expanded === "AboutMe" && <AboutMe></AboutMe>}
     </div>
    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-    <div className="relative bg-yellow-400/40 h-15/35 p-4 m-3 rounded-xl"
+    <div className="relative bg-yellow-400/40 h-15/35 p-4 m-3 rounded-xl hover:outline outline-white"
     onClick={(() => {
       handleClick("Resume")
     })}>
@@ -92,7 +92,7 @@ const Portfolio = () => {
       </IconContext.Provider>
       </div>
     </div>
-    <div className="relative bg-red-600/40 h-15/35  p-4 m-3 rounded-xl"
+    <div className="relative bg-red-600/40 h-15/35  p-4 m-3 rounded-xl hover:outline outline-white"
     onClick={(() => {
       handleClick("Skills")
     })}
@@ -102,7 +102,7 @@ const Portfolio = () => {
       <p1 className="font-bold text-[4em] text-white md:text-[6em] lg:text-[8em]">28</p1>
       </div>
     </div>
-    <div className="bg-cyan-400/40 h-15/35  p-4 m-3 rounded-xl"
+    <div className="bg-cyan-400/40 h-15/35  p-4 m-3 rounded-xl hover:outline outline-white"
     onClick={(() => {
       handleClick("Projects")
     })}
@@ -131,7 +131,7 @@ const Portfolio = () => {
     <p className="text-sm text-gray-200">Completed 58+ Projects</p>
   </div> */}
     </div>
-    <div className="bg-green-600/40 h-15/35  p-4 m-3 rounded-xl"
+    <div className="bg-green-600/40 h-15/35  p-4 m-3 rounded-xl hover:outline outline-white"
     onClick={(() => {
       handleClick("AboutMe")
     })}
