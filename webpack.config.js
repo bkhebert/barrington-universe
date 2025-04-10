@@ -37,7 +37,18 @@ module.exports = {
                   fullySpecified: false,
                 }
             },
-            
+            {
+                test: /\.(pdf)$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {
+                      name: '[name].[ext]',
+                      outputPath: 'documents/'
+                    }
+                  }
+                ]
+              },
             {
                 test: /\.(png|jpg|gif|mp3|aac|ogg|ico|hdr)$/,
                 type: 'asset/resource',

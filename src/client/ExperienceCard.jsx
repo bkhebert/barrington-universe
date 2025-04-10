@@ -43,7 +43,7 @@ const ExperienceCard = ({
           {techStackArray.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 bg-gray-800 text-sm text-white rounded-full border border-gray-600"
+              className="px-3 py-1 bg-gray-800 text-xs text-white rounded-full border border-gray-600"
             >
               {tech}
             </span>
@@ -51,7 +51,7 @@ const ExperienceCard = ({
         </div>
 
         {/* Responsibilities */}
-        <ul className="list-disc list-inside text-sm text-gray-300 space-y-1">
+        <ul className="list-disc list-inside text-xs text-gray-300 space-y-1">
          {
          bulletsArray.map((bullet) => ( <li>{bullet}</li> ))
           }
