@@ -7,6 +7,10 @@ const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmi
   const [output, setOutput] = useState([]);
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [educationClicked, setEducationClicked] = useState(false);
+  const [experienceClicked, setexperienceClicked] = useState(true);
+
+
 
   // Fun fake directory contents
   const directoryContents = [
@@ -79,6 +83,14 @@ const Resume = ({ initialCommand = '', prompt = "user@ubuntu:~$", onCommandSubmi
       setCommand(newIndex === commandHistory.length ? '' : commandHistory[newIndex]);
     }
   };
+
+  const showEducation = () => {
+
+  }
+
+  const showExperience = () => {
+    
+  }
 
   return (
     <div className="flex justify-center h-full">
