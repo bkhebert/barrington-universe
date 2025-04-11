@@ -172,7 +172,7 @@ const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, sho
           enableRotate={true}
            /> */}
         { finished && (<SolarSystemApp itemExpanded={itemExpanded}></SolarSystemApp>)}
-        <Perf />
+       
 
       {!finished &&  <Ripple animation={animation} finishAnimation={finishAnimation} finished={finished}></Ripple> }
       </Canvas> 
