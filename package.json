@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --watch",
+    "build": "webpack --mode production",
     "server": "nodemon ./src/server/index.js",
-    "start": "webpack serve --config webpack.config.js --mode development --open",
+    "start": "NODE_ENV=production node src/server/index.js",
+    "start:dev": "nodemon src/server/index.js",
     "update": "rm -rf node_modules package-lock.json"
   },
   "keywords": [],

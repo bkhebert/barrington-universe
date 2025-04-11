@@ -16,9 +16,10 @@ module.exports = {
     mode: 'production', // or 'production'
     entry: path.resolve(CLIENT_DIR, 'index.jsx'), // where to begin bundling
     output: {
-        path: path.resolve(__dirname, 'dist'), // bundled output file location
+        path: path.resolve(DIST_DIR), // bundled output file location
         publicPath: '/', // specifies the base path for all assets within your application
         filename: 'bundle.js', // bundled output file name
+        clean: true,
     },
 
     resolve: {
@@ -75,12 +76,10 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: path.resolve(CLIENT_DIR, 'index.html'), // Custom template
+            template: path.resolve(SRC_DIR, 'index.html'), // Custom template
             filename: 'index.html',
-            minify: {
-                collapseWhitespace: true,
-                removeComments: true
-            }
+            inject: true
+           
         }),
     ],
 

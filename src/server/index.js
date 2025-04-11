@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const distPath = path.resolve(__dirname, '..', 'dist');
+const distPath = path.resolve(__dirname, '..', '..', 'dist');
 
 // CORS Configuration Options
 // CORS (only allow your domain in production)
