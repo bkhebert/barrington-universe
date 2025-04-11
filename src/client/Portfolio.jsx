@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import AboutMe from "./AboutMe";
 import Skills from "./Skills";
 import Resume from "./Resume";
-import ContactMe from "./ContactMe";
+
 import Projects from "./Projects";
 import { IconContext } from "react-icons";
 import { GiNotebook, GiRaccoonHead } from "react-icons/gi";

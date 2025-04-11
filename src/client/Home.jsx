@@ -3,6 +3,7 @@ import Time from "./Time";
 import Scene from "./Scene";
 import selfie from "../assets/selfie.jpg"
 import Portfolio from "./Portfolio";
+import Contact from "./Contact";
 
 const Home = () => {
 
@@ -103,7 +104,7 @@ const Home = () => {
       <div className="relative inset-0">
       <Portfolio></Portfolio>
       </div>
-      <div className="bg-raccoon-primary h-[26rem] p-4 mb-6">05 Contact</div>
+      <div className="bg-raccoon-primary h-[26rem] p-4 mb-6"><Contact/></div>
       </div>
     }
     </div>
