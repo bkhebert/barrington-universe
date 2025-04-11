@@ -15,7 +15,7 @@ const Projects = ({ handleClick }) => {
       <svg className="w-4 h-4 me-2.5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
       </svg>
-      Info
+      My Projects
     </h5>
     <button
       type="button"
@@ -33,7 +33,7 @@ const Projects = ({ handleClick }) => {
     </button>
     <section className="py-12 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8 dark:text-white">My Projects</h2>
+
         <ProjectsCarousel projects={projectsData} />
       </div>
     </section>

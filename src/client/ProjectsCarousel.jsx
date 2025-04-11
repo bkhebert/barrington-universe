@@ -16,16 +16,16 @@ const ProjectsCarousel = ({ projects }) => {
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto h-[500px] overflow-hidden">
+    <div className="relative w-full mx-auto h-[400px] overflow-hidden"> {/* Reduced height */}
       {/* Project Slides */}
       <div 
-        className="flex transition-transform duration-300 ease-in-out"
+        className="flex transition-transform duration-300 ease-in-out h-full"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {projects.map((project, index) => (
-          <div key={index} className="w-full flex-shrink-0 h-full flex flex-col md:flex-row gap-6 p-4">
-            {/* Media */}
-            <div className="md:w-1/2 h-full rounded-lg overflow-hidden border-2 border-gray-200">
+          <div key={index} className="w-full flex-shrink-0 h-full flex flex-col gap-2 p-2"> {/* Reduced padding */}
+            {/* Media - Now above text on all screens */}
+            <div className="h-2/3 rounded-lg overflow-hidden border border-gray-200"> {/* Smaller media area */}
               <img 
                 src={project.gif} 
                 alt={project.name}
@@ -33,36 +33,36 @@ const ProjectsCarousel = ({ projects }) => {
               />
             </div>
             
-            {/* Content */}
-            <div className="md:w-1/2 flex flex-col justify-center">
-              <h3 className="text-2xl font-bold mb-3">{project.name}</h3>
-              <p className="text-gray-700">{project.description}</p>
+            {/* Content - Compact text */}
+            <div className="h-1/3 overflow-y-auto"> {/* Scrollable description */}
+              <h3 className="text-sm font-bold line-clamp-1">{project.name}</h3> {/* Single line title */}
+              <p className="text-xs text-gray-600 ">{project.description}</p> {/* Two line description */}
             </div>
           </div>
         ))}
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Compact Navigation Arrows */}
       <button 
         onClick={prevSlide}
-        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full z-10"
+        className="absolute left-1 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full z-10 text-xs"
       >
         ←
       </button>
       <button 
         onClick={nextSlide}
-        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full z-10"
+        className="absolute right-1 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full z-10 text-xs"
       >
         →
       </button>
 
-      {/* Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      {/* Tiny Indicators */}
+      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-1">
         {projects.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-black' : 'bg-gray-400'}`}
+            className={`w-2 h-2 rounded-full ${currentIndex === index ? 'bg-black' : 'bg-gray-400'}`}
           />
         ))}
       </div>
