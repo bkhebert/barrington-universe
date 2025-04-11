@@ -88,8 +88,8 @@ const Portfolio = ({itemExpanded}) => {
         isVisible ? "opacity-100" : "opacity-0"
       }`}>
     <div className="">
-    <div className="flex-grow overflow-hidden flex flex-col min-h-0">
-    { expanded === "Resume" && <div className="flex-1 min-h-0 overflow-hidden"> <Resume handleClick={handleClick}></Resume> </div>}
+    <div className="">
+    { expanded === "Resume" &&  <Resume handleClick={handleClick}></Resume> }
     { expanded === "Skills" && <Skills handleClick={handleClick}></Skills>}
     { expanded === "Projects" && <Projects handleClick={handleClick}></Projects>}
     
@@ -99,12 +99,14 @@ const Portfolio = ({itemExpanded}) => {
         tabIndex="-1"
         aria-labelledby="drawer-label"
       >
+        <a href="https://raccooncitymassacre.bandcamp.com/">
         <h5 id="drawer-label" className="inline-flex items-center mb-4 text-base font-semibold text-gray-200 dark:text-gray-400">
           <svg className="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
           </svg>
           Info
         </h5>
+        </a>
         <button
           type="button"
           data-drawer-hide="drawer-example"
@@ -169,10 +171,7 @@ const Portfolio = ({itemExpanded}) => {
 </div>
 
   
-  <div className="mt-2 text-center">
-    <p className="text-xl font-bold text-cyan-100">4+</p>
-    <p className="text-sm text-cyan-200">Projects</p>
-  </div>
+
     </div>
     <div className="bg-green-600/40 h-15/35  p-4 m-3 rounded-xl hover:outline outline-white"
     type="button"

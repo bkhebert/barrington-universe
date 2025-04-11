@@ -109,8 +109,8 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
   }
 
   return (
-    <div className="flex justify-center h-full">
-    <div className="font-mono bg-gray-900 text-green-400 rounded-lg overflow-hidden shadow-lg w-full max-w-2xl  h-full flex flex-col">
+    <div className="fixed inset-0 z-20 flex justify-center items-start pt-6 bg-black/60 backdrop-blur-sm ">
+    <div className="max-h-[90vh] font-mono bg-gray-900 text-green-400 rounded-lg overflow-hidden shadow-lg w-full max-w-2xl flex flex-col mx:6">
       {/* Terminal header */}
       <div className="flex items-center bg-gray-800 px-4 py-2">
         <div className="flex space-x-2">
@@ -121,8 +121,8 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
           ></div>
           <div className="w-3 h-3 rounded-full bg-yellow-500"
           onClick={(() => {
-            handleClick("Resume")
-          })}
+      handleClick("Resume")
+    })}
           ></div>
           <div className="w-3 h-3 rounded-full bg-green-500"></div>
         </div>

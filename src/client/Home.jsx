@@ -104,11 +104,18 @@ const Home = () => {
   )}
     {
       portfolioVisibility && 
-      <div>
-      <div className="relative inset-0">
-      <Portfolio itemExpanded={makeItemExpanded} ></Portfolio>
+      <div className="mb-2">
+      <div className="absolute inset-x-0 bottom-0">
+        <div className="md:hidden flex justify-center items-center  mt-0">
+      <img 
+        class=" w-[180px] h-[172px] p-1 rounded-full ring-2 mb-[10px] ring-raccoon-primary opacity-90 animate-fade-in"
+        src={selfie} 
+        alt="Bordered avatar"
+      />
       </div>
+      <Portfolio itemExpanded={makeItemExpanded} ></Portfolio>
       <Contact/>
+      </div>
       </div>
     }
     </div>
