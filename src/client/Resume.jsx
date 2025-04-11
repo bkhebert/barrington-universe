@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Education from './Education';
 import Experience from './Experience';
 import DownloadResumeButton from './DownloadResumeButton';
-const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandSubmit }) => {
+const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandSubmit, handleClick }) => {
 
   const [command, setCommand] = useState(initialCommand);
   const [output, setOutput] = useState([]);
@@ -114,8 +114,16 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
       {/* Terminal header */}
       <div className="flex items-center bg-gray-800 px-4 py-2">
         <div className="flex space-x-2">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+          <div className="w-3 h-3 rounded-full bg-red-500"
+          onClick={(() => {
+            handleClick("Resume")
+          })}
+          ></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-500"
+          onClick={(() => {
+            handleClick("Resume")
+          })}
+          ></div>
           <div className="w-3 h-3 rounded-full bg-green-500"></div>
         </div>
         <div className="ml-2 text-gray-300 text-sm">Ubuntu Terminal</div>

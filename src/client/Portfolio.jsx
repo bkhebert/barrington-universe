@@ -81,7 +81,7 @@ const Portfolio = () => {
       }`}>
     <div className="min-w-full h-screen flex flex-col">
     <div className="flex-grow overflow-hidden flex flex-col min-h-0">
-    { expanded === "Resume" && <div className="flex-1 min-h-0 overflow-hidden"> <Resume></Resume> </div>}
+    { expanded === "Resume" && <div className="flex-1 min-h-0 overflow-hidden"> <Resume handleClick={handleClick}></Resume> </div>}
     { expanded === "Skills" && <Skills handleClick={handleClick}></Skills>}
     { expanded === "Projects" && <Projects handleClick={handleClick}></Projects>}
         
