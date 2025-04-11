@@ -1,4 +1,6 @@
 import React from "react";
+import ProjectsCarousel from './ProjectsCarousel';
+import projectsData from '../assets/projects';
 
 const Projects = ({ handleClick }) => {
 
@@ -29,7 +31,12 @@ const Projects = ({ handleClick }) => {
    
       >Close menu</span>
     </button>
-    
+    <section className="py-12 bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-8 dark:text-white">My Projects</h2>
+        <ProjectsCarousel projects={projectsData} />
+      </div>
+    </section>
   </div>
 
 );
