@@ -36,7 +36,7 @@ const Contact = () => {
         <FaEnvelope className="text-7xl text-red-500 hover:scale-110 transition-transform" />
       </button>
 
-      <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+      <a href="https://github.com/bkhebert" target="_blank" rel="noopener noreferrer">
         <FaGithub className="text-7xl text-gray-800 hover:scale-110 transition-transform" />
       </a>
 
@@ -47,7 +47,7 @@ const Contact = () => {
       {showForm && (
         <form 
           onSubmit={handleSubmit}
-          className="absolute top-full mt-2 bg-white shadow-xl rounded p-4 w-72 z-10 flex flex-col gap-2"
+          className="absolute top-full mt-2 bg-neutral-300 shadow-xl rounded p-4 w-72 z-10 flex flex-col gap-2 md:w-1/2"
         >
           <input 
             type="text"
@@ -72,7 +72,7 @@ const Contact = () => {
           />
           <button 
             type="submit"
-            className="w-full bg-indigo-500 text-white py-1 rounded hover:bg-indigo-600 text-sm"
+            className="w-full bg-raccoon-primary text-white py-1 rounded hover:bg-indigo-600 text-sm"
           >
             Send
           </button>
