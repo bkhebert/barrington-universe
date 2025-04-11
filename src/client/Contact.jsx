@@ -10,10 +10,10 @@ const Contact = () => {
     e.preventDefault();
 
     emailjs.sendForm(
-      'service_97tsql9',               // ✅ Your EmailJS Service ID
-      'template_1xlad7e',             // ❗ Replace with your actual template ID from EmailJS
+      'service_97tsql9',               
+      'template_1xlad7e',             
       e.target,
-      'xAqbTZ4pl87gY-dxJ'             // ✅ Your EmailJS Public Key
+      'xAqbTZ4pl87gY-dxJ'             
     ).then(() => {
       setFormStatus('success');
       e.target.reset();
@@ -29,19 +29,19 @@ const Contact = () => {
   return (
     <div className="flex gap-4 items-center justify-center relative">
       <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
-        <FaLinkedin className="text-2xl text-blue-600 hover:scale-110 transition-transform" />
+        <FaLinkedin className="text-7xl text-blue-600 hover:scale-110 transition-transform" />
       </a>
 
       <button onClick={() => setShowForm(!showForm)}>
-        <FaEnvelope className="text-2xl text-red-500 hover:scale-110 transition-transform" />
+        <FaEnvelope className="text-7xl text-red-500 hover:scale-110 transition-transform" />
       </button>
 
       <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
-        <FaGithub className="text-2xl text-gray-800 hover:scale-110 transition-transform" />
+        <FaGithub className="text-7xl text-gray-800 hover:scale-110 transition-transform" />
       </a>
 
       <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-        <FaFileAlt className="text-2xl text-green-600 hover:scale-110 transition-transform" />
+        <FaFileAlt className="text-7xl text-green-600 hover:scale-110 transition-transform" />
       </a>
 
       {showForm && (

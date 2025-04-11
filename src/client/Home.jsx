@@ -104,7 +104,7 @@ const Home = () => {
       <div className="relative inset-0">
       <Portfolio></Portfolio>
       </div>
-      <div className="bg-raccoon-primary h-[26rem] p-4 mb-6"><Contact/></div>
+      <div className="bg-raccoon-primary/50 p-4 mb-6"><Contact/></div>
       </div>
     }
     </div>
