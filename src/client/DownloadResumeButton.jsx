@@ -16,7 +16,7 @@ const DownloadResumeButton = () => {
   return (
     <button
       onClick={handleDownload}
-      className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 hover:from-green-500 hover:to-blue-600 text-white font-bold rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"
+      className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 font-medium rounded-lg text-xs px-3 py-2.5 text-center mb-2 hover:from-green-500 hover:to-blue-600 text-white font-bold rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"
     >
       <div className="flex items-center text-black">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
