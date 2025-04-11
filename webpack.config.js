@@ -13,18 +13,14 @@ const CLIENT_DIR = path.resolve(__dirname, 'src', 'client');
 // ex. src & client bring us to the client directory
 
 module.exports = {
-    mode: 'development', // or 'production'
+    mode: 'production', // or 'production'
     entry: path.resolve(CLIENT_DIR, 'index.jsx'), // where to begin bundling
     output: {
         path: path.resolve(__dirname, 'dist'), // bundled output file location
         publicPath: '/', // specifies the base path for all assets within your application
         filename: 'bundle.js', // bundled output file name
     },
-    devServer: {
-        static: path.join(__dirname, 'dist'),
-        port: 3000,
-        open: true,
-    },
+
     resolve: {
         extensions: [".js", ".jsx"],
       },
@@ -77,9 +73,14 @@ module.exports = {
         ],
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(CLIENT_DIR, 'index.html'), // Custom template
             filename: 'index.html',
+            minify: {
+                collapseWhitespace: true,
+                removeComments: true
+            }
         }),
     ],
 
