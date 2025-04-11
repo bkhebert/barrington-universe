@@ -4,8 +4,8 @@ import dockernoskew from "./UnskewedLogos/dockernoskew.png"
 import dotnetnoskew from "./UnskewedLogos/dotnetnoskew.png"
 
 export default [
-  { color: "#FFFFFF",  image: Csharpnoskew, },
-  { color: "#FFFFFF",  image: vimnoskew, },
-  { color: "#FFFFFF",  image: dockernoskew, },
-  { color: "#FFFFFF",  image: dotnetnoskew, },
+  { color: "#FFFFFF",  image: Csharpnoskew,  name: "C-sharp", },
+  { color: "#FFFFFF",  image: vimnoskew, name: "vim" },
+  { color: "#FFFFFF",  image: dockernoskew, name: "Docker" },
+  { color: "#FFFFFF",  image: dotnetnoskew, name: ".Net" },
 ]
