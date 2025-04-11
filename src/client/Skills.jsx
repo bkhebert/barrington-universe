@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { initDrawers } from 'flowbite';
-import planetAssets from '../assets/planetAssets';
+import skillAssets from '../assets/skillAssets';
 
 export default function Skills({handleClick}) {
 
@@ -28,9 +28,9 @@ export default function Skills({handleClick}) {
                 </button>
             </div>
           
-            <div class="p-4 md:p-5 space-y-4">
-                { planetAssets.map((skill) => (
-                  <img class={`w-[100px] h-[60px] rounded-lg overflow-hidden`} style={{backgroundColor: `${skill.color}`}} src={skill.image} alt="Default avatar"></img>
+            <div class="grid grid-cols-4 p-4  md:grid-cols-7 md:p-5 gap-4">
+                { skillAssets.map((skill) => (
+                  <img class={`w-[45px] h-[45px] border-2 border-black rounded-lg overflow-hidden md:w-[60px] md:h-[60px]`} style={{backgroundColor: `${skill.color}`}} src={skill.image} alt="Default avatar"></img>
                 ))}
             </div>
         
