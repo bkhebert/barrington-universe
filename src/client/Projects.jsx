@@ -19,7 +19,7 @@ const Projects = ({ handleClick }) => {
     </h5>
     <button
       type="button"
-      className="text-gray-200 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
+      className="text-gray-200 bg-transparent hover:bg-yellow-300 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
       onClick={() => {
         handleClick("Projects")
       }}

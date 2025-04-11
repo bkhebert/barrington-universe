@@ -28,18 +28,20 @@ const ProjectsCarousel = ({ projects }) => {
 
             <div className="flex justify-center items-center h-5/9 overflow-hidden "> {/* Smaller media area */}
               <div className="flex justify-center items-center border border-gray-200 rounded-lg  ">
+              <a href={project.link}>
               <img 
                 src={project.gif} 
                 alt={project.name}
                 className="  w-full h-full md:max-w-[600px] md:min-h-[250px] object-cover rounded-lg"
               />
+              </a>
               </div>
             </div>
 
             {/* Content - Compact text */}
             <div className="h-4/9 overflow-y-auto ml-6 mr-6"> {/* Scrollable description */}
               <h3 className="text-sm text-yellow-200 font-bold line-clamp-1 md:text-lg lg:text-3xl">{project.name}</h3> {/* Single line title */}
-              <p className="text-xs text-black md:text-s lg:text-lg ">{project.description}</p> {/* Two line description */}
+              <p className="text-xs text-black md:text-base lg:text-lg ">{project.description}</p> {/* Two line description */}
             </div>
           </div>
         ))}
@@ -65,7 +67,7 @@ const ProjectsCarousel = ({ projects }) => {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full ${currentIndex === index ? 'bg-black' : 'bg-gray-400'}`}
+            className={`w-2 h-2 rounded-full ${currentIndex === index ? 'bg-yellow-500' : 'bg-gray-400'}`}
           />
         ))}
       </div>
