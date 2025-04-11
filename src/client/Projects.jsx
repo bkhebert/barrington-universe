@@ -7,7 +7,7 @@ const Projects = ({ handleClick }) => {
   return (
     <div
   
-    className="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform  bg-raccoon-primary/70 w-1/2 dark:bg-gray-800"
+    className="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform  bg-raccoon-primary/70 w-full md:w-1/2 dark:bg-gray-800"
     
   >
     
@@ -31,7 +31,7 @@ const Projects = ({ handleClick }) => {
    
       >Close menu</span>
     </button>
-    <section className="py-12 bg-slate-50/50 dark:bg-gray-900 border rounded-lg">
+    <section className="py-12 bg-slate-50/50 dark:bg-gray-900 border md:h-3/4 rounded-lg">
       <div className="container mx-auto px-4">
 
         <ProjectsCarousel projects={projectsData} />
