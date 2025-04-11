@@ -29,7 +29,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    console.log('finished set')
+
   }, [finished])
 
   const startAnimation = () => {
@@ -38,7 +38,7 @@ const Home = () => {
 
   const finishAnimation = (bool) => {
     if(bool){
-      console.log('animation is completed')
+   
       setFinished(true);
     }
   }

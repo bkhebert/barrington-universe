@@ -1,15 +1,13 @@
-import React, { useRef, useMemo, useState, useEffect, Suspense } from 'react';
+import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useTexture, CubeCamera, useEnvironment, Environment, Text } from '@react-three/drei';
-
-import { useControls } from 'leva';
 import qwantani_moonrise_4k from "../assets/qwantani_dawn_4k.hdr";
 import planetAssets from '../assets/planetAssets';
 
 
 
 function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, name, description}) {
-  // const font = useLoader(FontLoader, '/optimer_regular.typeface.json')
+
   const ref = useRef();
   const refspin = useRef();
   const angle = useRef(xp * Math.PI * 2);
@@ -17,7 +15,7 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
-    console.log('hovering', isHovered)
+
   }, [isHovered])
 
   useEffect(() => {
@@ -32,7 +30,7 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
       0,
       Math.sin(angle.current) * distance
     );
-    const shouldSpin = isHovered && !itemExpanded; // 👈 only spin if nothing is open
+    const shouldSpin = isHovered && !itemExpanded; // only spin if nothing is open
     const spinner = shouldSpin ? 10 : 0;
     refspin.current.rotation.y += delta * spinner;
   });
@@ -113,13 +111,6 @@ function Sun() {
 export default function SolarSystemApp({itemExpanded}) {
 
   const envMap = useEnvironment({ files: qwantani_moonrise_4k });
-
-  const { 
-    color,
-    
-  } = useControls({
-    color: "white"
-  })
 
   return (
     <>

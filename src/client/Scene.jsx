@@ -37,7 +37,6 @@ const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, sho
       // Start interval
       introIntervalRef.current = setInterval(() => {
         const c = camRef.current;
-        console.log('hello world intro')
         if (c.posX <= 0) c.posX += 0.05;
         if (c.posY <= 50) c.posY += 0.3;
         if (c.posZ >= 0) c.posZ -= 0.15;
@@ -63,10 +62,8 @@ const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, sho
     }
 
     if(finished && !skipped){
-      console.log('finished animation')
       solarSystemIntervalRef.current = setInterval(() => {
         const c = camRef.current;
-        console.log('hello world sikar')
         if (c.posX <= 16.5) c.posX += 0.03;
         if (c.posY >= 0) c.posY -= 0.5;
         if (c.posZ >= -0.3) c.posZ -= 0.001;
@@ -91,7 +88,6 @@ const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, sho
           !(c.rotY >= -4.7 ) &&
           !(c.rotZ >= 0 ) &&
           !(c.fov >= 50.2 ) ){
-          console.log('STOP')
           clearInterval(solarSystemIntervalRef.current);
           showPortfolio(true);
         }
@@ -176,7 +172,7 @@ const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, sho
           enableRotate={true}
            /> */}
         { finished && (<SolarSystemApp itemExpanded={itemExpanded}></SolarSystemApp>)}
-        {/* <Perf /> */}
+        <Perf />
 
       {!finished &&  <Ripple animation={animation} finishAnimation={finishAnimation} finished={finished}></Ripple> }
       </Canvas> 

@@ -16,7 +16,6 @@ const Portfolio = ({itemExpanded}) => {
   const progIntervalRef = useRef(null);
   const progRef = useRef({ value: 0});
   const handleClick = (componentName) => {
-    console.log('called')
     setExpanded(componentName === expanded ? null : componentName);
   };
 
@@ -47,7 +46,6 @@ const Portfolio = ({itemExpanded}) => {
     if(!progressReached){
     progIntervalRef.current = setInterval(() => {
       let p = progRef.current;
-      console.log('progress is running', progressBar, p.value)
      
       if(p.value === 25){
         setProgressBarColor('text-yellow-500')
@@ -58,14 +56,13 @@ const Portfolio = ({itemExpanded}) => {
 
 
       if(p.value < 75) {
-        console.log('adding to p')
         p.value += 1
         
       }
 
       setProgressBar(p.value)
       if(p.value === 75){
-        console.log('progress is at 75!!');
+
         setProgressReached(true);
         setProgressBarColor('text-cyan-500')
       }
@@ -74,7 +71,7 @@ const Portfolio = ({itemExpanded}) => {
 
     if(progressReached){
       clearInterval(progIntervalRef.current);
-      console.log('progress interval interval cleared')
+    
     }
 
     return (() => {
