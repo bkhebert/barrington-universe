@@ -28,20 +28,20 @@ const Contact = () => {
 
   return (
     <div className="flex gap-4 items-center justify-center relative">
-      <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
-        <FaLinkedin className="text-7xl text-blue-600 hover:scale-110 transition-transform" />
+      <a href="https://www.linkedin.com/in/bkhebert" target="_blank" rel="noopener noreferrer">
+        <FaLinkedin className="text-7xl text-blue-400 hover:scale-110 transition-transform" />
       </a>
 
       <button onClick={() => setShowForm(!showForm)}>
-        <FaEnvelope className="text-7xl text-red-500 hover:scale-110 transition-transform" />
+        <FaEnvelope className="text-7xl text-red-300 hover:scale-110 transition-transform" />
       </button>
 
       <a href="https://github.com/bkhebert" target="_blank" rel="noopener noreferrer">
-        <FaGithub className="text-7xl text-gray-800 hover:scale-110 transition-transform" />
+        <FaGithub className="text-7xl text-slate-300 hover:scale-110 transition-transform" />
       </a>
 
-      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-        <FaFileAlt className="text-7xl text-green-600 hover:scale-110 transition-transform" />
+      <a href="https://www.linkedin.com/in/bkhebert/overlay/1743177671333/single-media-viewer/?type=DOCUMENT&profileId=ACoAAC1btlMBebWcACgShEtDcSBt-HMlIWrwFVQ" target="_blank" rel="noopener noreferrer">
+        <FaFileAlt className="text-7xl text-green-500 hover:scale-110 transition-transform" />
       </a>
 
       {showForm && (
