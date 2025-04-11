@@ -87,7 +87,7 @@ const Portfolio = ({itemExpanded}) => {
     <div className={`transition-opacity duration-[3000ms] ease-in ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}>
-    <div className="min-w-full h-screen flex flex-col pointer-events-auto">
+    <div className="min-w-full h-screen flex flex-col" >
     <div className="flex-grow overflow-hidden flex flex-col min-h-0">
     { expanded === "Resume" && <div className="flex-1 min-h-0 overflow-hidden"> <Resume handleClick={handleClick}></Resume> </div>}
     { expanded === "Skills" && <Skills handleClick={handleClick}></Skills>}
@@ -95,7 +95,7 @@ const Portfolio = ({itemExpanded}) => {
     
         <div
         id="drawer-example"
-        className="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-raccoon-primary/70 w-full dark:bg-gray-800"
+        className="fixed top-0 right-0  h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-raccoon-primary/70 w-full dark:bg-gray-800"
         tabIndex="-1"
         aria-labelledby="drawer-label"
       >
@@ -171,7 +171,7 @@ const Portfolio = ({itemExpanded}) => {
   
   <div className="mt-2 text-center">
     <p className="text-xl font-bold text-cyan-100">4+</p>
-    <p className="text-sm text-cyan-100">Projects</p>
+    <p className="text-sm text-cyan-200">Projects</p>
   </div>
     </div>
     <div className="bg-green-600/40 h-15/35  p-4 m-3 rounded-xl hover:outline outline-white"

@@ -27,7 +27,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex gap-4 items-center justify-center relative">
+
+    <div className="flex gap-4 items-center justify-center relative bg-raccoon-primary/50 p-4 rounded mb-6 ml-2 mr-2">
       <a href="https://www.linkedin.com/in/bkhebert" target="_blank" rel="noopener noreferrer">
         <FaLinkedin className="text-7xl text-blue-400 hover:scale-110 transition-transform" />
       </a>
@@ -81,6 +82,7 @@ const Contact = () => {
         </form>
       )}
     </div>
+
   );
 };
 

@@ -24,8 +24,8 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded})
       0,
       Math.sin(angle.current) * distance
     );
-    const shouldSpin = isHovered && !expanded; // 👈 only spin if nothing is open
-    const spinner = shouldSpin ? 3 : 0;
+    const shouldSpin = isHovered && !itemExpanded; // 👈 only spin if nothing is open
+    const spinner = shouldSpin ? 7 : 0;
     refspin.current.rotation.y += delta * spinner;
   });
 
