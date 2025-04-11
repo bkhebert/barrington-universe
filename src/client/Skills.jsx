@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { initDrawers } from 'flowbite';
 import skillAssets from '../assets/skillAssets';
+import learningAssets from '../assets/learningAssets';
 
 export default function Skills({handleClick}) {
 
