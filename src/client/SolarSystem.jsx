@@ -1,13 +1,15 @@
-import React, { useRef, useMemo, useState, useEffect } from 'react';
-import { Canvas, useFrame,  useThree } from '@react-three/fiber';
-import { OrbitControls, Html, useTexture, useCubeTexture, CubeCamera, useEnvironment, Environment } from '@react-three/drei';
-import * as THREE from 'three';
+import React, { useRef, useMemo, useState, useEffect, Suspense } from 'react';
+import { useFrame } from '@react-three/fiber';
+import { useTexture, CubeCamera, useEnvironment, Environment, Text } from '@react-three/drei';
+
 import { useControls } from 'leva';
 import qwantani_moonrise_4k from "../assets/qwantani_dawn_4k.hdr";
 import planetAssets from '../assets/planetAssets';
 
-function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded}) {
 
+
+function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, name, description}) {
+  // const font = useLoader(FontLoader, '/optimer_regular.typeface.json')
   const ref = useRef();
   const refspin = useRef();
   const angle = useRef(xp * Math.PI * 2);
@@ -17,6 +19,12 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded})
   useEffect(() => {
     console.log('hovering', isHovered)
   }, [isHovered])
+
+  useEffect(() => {
+    isClicked ? setTimeout(() => {
+      setIsClicked(false);
+    }, 5000) : null
+  }, [isClicked])
   useFrame((state, delta) => {
     angle.current += speed;
     ref.current.position.set(
@@ -25,7 +33,7 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded})
       Math.sin(angle.current) * distance
     );
     const shouldSpin = isHovered && !itemExpanded; // 👈 only spin if nothing is open
-    const spinner = shouldSpin ? 7 : 0;
+    const spinner = shouldSpin ? 10 : 0;
     refspin.current.rotation.y += delta * spinner;
   });
 
@@ -38,14 +46,12 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded})
     onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
     onPointerOut={() => setIsHovered(false) }
     onClick={() => setIsClicked(!isClicked)}
-    scale={isClicked ? 1.5: 1 }
     >
       {/* Base Sphere */}
       <mesh
             onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
             onPointerOut={() => setIsHovered(false) }
             onClick={() => setIsClicked(!isClicked)}
-            scale={isClicked ? 1.5: 1 }
       >
         <sphereGeometry args={solid ? [size, 16, 16]: [size, 32, 32]} />
         <meshStandardMaterial  
@@ -60,7 +66,7 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded})
       onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
       onPointerOut={() => setIsHovered(false) }
       onClick={() => setIsClicked(!isClicked)}
-      scale={isClicked ? 1.5: 1 }
+      
       >
         <sphereGeometry args={[size * 1.005, 32, 32]} />
         <meshPhysicalMaterial 
@@ -70,6 +76,19 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded})
           roughness={0}
         />
       </mesh>
+           {/* Floating Text */}
+           <Suspense useFallback={null}>
+        <Text
+          position={[0, size + 1, 0]} // above the planet
+          rotation={[0, -5, 0]}
+          fontSize={0.2}
+          color="black"
+          anchorX="center"
+          anchorY="bottom"
+        >
+       {isClicked ? `${name}\n${description}` : ''}
+        </Text> 
+        </Suspense>
     </group>
   );
 }
@@ -131,7 +150,8 @@ export default function SolarSystemApp({itemExpanded}) {
           image={planet.image} 
           solid={planet.solid}
           itemExpanded={itemExpanded}
-          
+          name={planet.name}
+          description={planet.description}
           />
         ))}
       
