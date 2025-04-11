@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame,  useThree } from '@react-three/fiber';
 import { OrbitControls, Html, useTexture, useCubeTexture, CubeCamera, useEnvironment, Environment } from '@react-three/drei';
 import * as THREE from 'three';
@@ -6,27 +6,47 @@ import { useControls } from 'leva';
 import qwantani_moonrise_4k from "../assets/qwantani_dawn_4k.hdr";
 import planetAssets from '../assets/planetAssets';
 
-function Planet({ size, distance, speed, color, image, xp, solid}) {
+function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded}) {
 
   const ref = useRef();
+  const refspin = useRef();
   const angle = useRef(xp * Math.PI * 2);
+  const [isHovered, setIsHovered ] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
-  useFrame(() => {
+  useEffect(() => {
+    console.log('hovering', isHovered)
+  }, [isHovered])
+  useFrame((state, delta) => {
     angle.current += speed;
     ref.current.position.set(
       Math.cos(angle.current) * distance,
       0,
       Math.sin(angle.current) * distance
     );
+    const shouldSpin = isHovered && !expanded; // 👈 only spin if nothing is open
+    const spinner = shouldSpin ? 3 : 0;
+    refspin.current.rotation.y += delta * spinner;
   });
 
   const overlayTextures = useTexture({
     map: image,
   })
   return (
-    <group ref={ref}>
+    <group ref={ref}
+    
+    onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
+    onPointerOut={() => setIsHovered(false) }
+    onClick={() => setIsClicked(!isClicked)}
+    scale={isClicked ? 1.5: 1 }
+    >
       {/* Base Sphere */}
-      <mesh>
+      <mesh
+            onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
+            onPointerOut={() => setIsHovered(false) }
+            onClick={() => setIsClicked(!isClicked)}
+            scale={isClicked ? 1.5: 1 }
+      >
         <sphereGeometry args={solid ? [size, 16, 16]: [size, 32, 32]} />
         <meshStandardMaterial  
         color={color}
@@ -35,7 +55,13 @@ function Planet({ size, distance, speed, color, image, xp, solid}) {
         />
       </mesh>
       {/* Overlay Sphere (slightly larger) */}
-      <mesh>
+      <mesh
+      ref={refspin}
+      onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
+      onPointerOut={() => setIsHovered(false) }
+      onClick={() => setIsClicked(!isClicked)}
+      scale={isClicked ? 1.5: 1 }
+      >
         <sphereGeometry args={[size * 1.005, 32, 32]} />
         <meshPhysicalMaterial 
           {...overlayTextures} 
@@ -65,7 +91,7 @@ function Sun() {
   );
 }
 
-export default function SolarSystemApp() {
+export default function SolarSystemApp({itemExpanded}) {
 
   const envMap = useEnvironment({ files: qwantani_moonrise_4k });
 
@@ -103,7 +129,10 @@ export default function SolarSystemApp() {
           speed={planet.speed} 
           color={planet.color} 
           image={planet.image} 
-          solid={planet.solid}/>
+          solid={planet.solid}
+          itemExpanded={itemExpanded}
+          
+          />
         ))}
       
     </>

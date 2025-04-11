@@ -13,7 +13,7 @@ export default function Skills({handleClick}) {
     <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
       <div className="relative w-full max-w-2xl max-h-full ">
        
-        <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700  bg-neutral-900">
+        <div class="relative bg-neutral-900 rounded-lg shadow-sm dark:bg-gray-700  ">
           
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-neutral-200">
                 <h3 class="text-xl font-semibold text-neutral-200 dark:text-white">

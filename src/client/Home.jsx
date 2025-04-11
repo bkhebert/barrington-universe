@@ -13,6 +13,7 @@ const Home = () => {
   const [finished, setFinished] = useState(false);
   const [skipped, setSkipped] = useState(false);
   const [portfolioVisibility, setPortfolioVisibility] = useState(false);
+  const [ itemExpanded, setItemExpanded ] = useState(false);
 
   const showPortfolio = (bool) => {
     setPortfolioVisibility(bool);
@@ -47,11 +48,14 @@ const Home = () => {
     setSkipped(true);
   }
 
+  const makeItemExpanded = (bool) => {
+    setItemExpanded(bool);
+  }
   return (
     <div className="relative min-h-screen">
 
       <div className="fixed inset-0 w-screen h-screen -z-10">
-      <Scene skipped={skipped} animation={animation} showPortfolio={showPortfolio} finishAnimation={finishAnimation} finished={finished}></Scene>
+      <Scene itemExpanded={itemExpanded} skipped={skipped} animation={animation} showPortfolio={showPortfolio} finishAnimation={finishAnimation} finished={finished}></Scene>
       </div>
   
     {
@@ -102,7 +106,7 @@ const Home = () => {
       portfolioVisibility && 
       <div>
       <div className="relative inset-0">
-      <Portfolio></Portfolio>
+      <Portfolio itemExpanded={makeItemExpanded} ></Portfolio>
       </div>
       <div className="bg-raccoon-primary/50 p-4 mb-6"><Contact/></div>
       </div>

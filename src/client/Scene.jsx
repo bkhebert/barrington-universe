@@ -8,7 +8,7 @@ import Ripple from './Ripple';
 import { useControls } from 'leva';
 import SolarSystemApp from './SolarSystem';
 
-const Scene = ({animation, finishAnimation, finished, skipped, showPortfolio}) => {
+const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, showPortfolio}) => {
 
   const [ camPosX, setCamPosX] = useState(-3.9);
   const [ camPosY, setCamPosY] = useState(16.7);
@@ -171,21 +171,14 @@ const Scene = ({animation, finishAnimation, finished, skipped, showPortfolio}) =
         fov={camFOV} // Real Cam
         position={[ camPosX, camPosY, camPosZ]} 
         rotation={[ camRotX, camRotY, camRotZ]}
-        // position={[ posX, posY, posZ]} //  Leva Control
-        // rotation={[ rotX, rotY, rotZ]} //
-        // fov={fov} //
-        // fov={75} // Orbit controls
-        // position={[10, 0, 50]}
-        // rotation={[0, 0, 0]}
         /> 
      {/* <OrbitControls enableZoom={true} enablePan={true}
           enableRotate={true}
            /> */}
-        { finished && (<SolarSystemApp></SolarSystemApp>)}
+        { finished && (<SolarSystemApp itemExpanded={itemExpanded}></SolarSystemApp>)}
         {/* <Perf /> */}
-      {/* <SolarSystemApp></SolarSystemApp> */}
+
       {!finished &&  <Ripple animation={animation} finishAnimation={finishAnimation} finished={finished}></Ripple> }
-     {/*  <ThreeJSTest></ThreeJSTest>*/}
       </Canvas> 
       </Suspense>
     )

@@ -8,7 +8,7 @@ import { IconContext } from "react-icons";
 import { GiNotebook, GiRaccoonHead } from "react-icons/gi";
 import { initDrawers } from 'flowbite';
 
-const Portfolio = () => {
+const Portfolio = ({itemExpanded}) => {
   const [expanded, setExpanded] = useState(null);
   const [ progressBar, setProgressBar] = useState("0");
   const [ progressBarColor, setProgressBarColor] = useState("text-red-500");
@@ -28,6 +28,14 @@ const Portfolio = () => {
     }, 100); // delay ensures transition is detected
     return () => clearTimeout(timeout);
   }, []);
+
+  useEffect(() => {
+    if(expanded !== null){
+      itemExpanded(true)
+    } else {
+      itemExpanded(false)
+    }
+  }, [expanded])
 
     useEffect(() => {
       // Manually initialize drawers
@@ -79,7 +87,7 @@ const Portfolio = () => {
     <div className={`transition-opacity duration-[3000ms] ease-in ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}>
-    <div className="min-w-full h-screen flex flex-col">
+    <div className="min-w-full h-screen flex flex-col pointer-events-auto">
     <div className="flex-grow overflow-hidden flex flex-col min-h-0">
     { expanded === "Resume" && <div className="flex-1 min-h-0 overflow-hidden"> <Resume handleClick={handleClick}></Resume> </div>}
     { expanded === "Skills" && <Skills handleClick={handleClick}></Skills>}
@@ -160,11 +168,11 @@ const Portfolio = () => {
 </div>
 </div>
 
-  {/* Text below circle
+  
   <div className="mt-2 text-center">
-    <p className="text-xl font-bold">58+</p>
-    <p className="text-sm text-gray-200">Completed 58+ Projects</p>
-  </div> */}
+    <p className="text-xl font-bold text-cyan-100">4+</p>
+    <p className="text-sm text-cyan-100">Projects</p>
+  </div>
     </div>
     <div className="bg-green-600/40 h-15/35  p-4 m-3 rounded-xl hover:outline outline-white"
     type="button"
