@@ -13,13 +13,13 @@ export default function Skills({handleClick}) {
     <div className="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
       <div className="relative w-full max-w-2xl max-h-full ">
        
-        <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700  bg-neutral-300">
+        <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700  bg-neutral-900">
           
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-neutral-200">
+                <h3 class="text-xl font-semibold text-neutral-200 dark:text-white">
                     Skills
                 </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                <button type="button" class="text-neutral-200 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                  onClick={(() => {
                   handleClick("Skills")
                 })}
@@ -64,7 +64,7 @@ export default function Skills({handleClick}) {
             </div>
         
             <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-            <div class="grid grid-cols-4 p-4  md:grid-cols-7 md:p-5 gap-4">
+            <div class="grid grid-cols-4 p-4  md:grid-cols-7 md:p-5 gap-4 text-neutral-200 font-semibold">
 Learning:
             {learningAssets.map((learning, index) => {
   const popoverIdLearning = `popover-learning-${index}`;
