@@ -84,7 +84,7 @@ const Portfolio = () => {
     { expanded === "Resume" && <div className="flex-1 min-h-0 overflow-hidden"> <Resume handleClick={handleClick}></Resume> </div>}
     { expanded === "Skills" && <Skills handleClick={handleClick}></Skills>}
     { expanded === "Projects" && <Projects handleClick={handleClick}></Projects>}
-        
+    
         <div
         id="drawer-example"
         className="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-raccoon-primary/70 w-full dark:bg-gray-800"
@@ -109,10 +109,11 @@ const Portfolio = () => {
           <span className="sr-only">Close menu</span>
         </button>
         
-        
+        <AboutMe></AboutMe>
       </div>
+      
         
-    <AboutMe></AboutMe>
+   
     </div>
    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
     <div className="relative bg-yellow-400/40 h-15/35 p-4 m-3 rounded-xl hover:outline outline-white"
