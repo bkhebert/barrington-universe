@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 import { initDrawers } from 'flowbite';
 import skillAssets from '../assets/skillAssets';
 import learningAssets from '../assets/learningAssets';
+import { initPopovers } from 'flowbite';
 
 export default function Skills({handleClick}) {
-
+  useEffect(() => {
+    initPopovers();
+  }, []);
 
   return (
 
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-25 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
       <div className="relative w-full max-w-2xl max-h-full overflow-y-auto">
        
         <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700  bg-neutral-300">
@@ -30,12 +33,39 @@ export default function Skills({handleClick}) {
             </div>
           
             <div class="grid grid-cols-4 p-4  md:grid-cols-7 md:p-5 gap-4">
-                { skillAssets.map((skill) => (
-                  <img class={`w-[45px] h-[45px] border-2 border-black rounded-lg overflow-hidden md:w-[60px] md:h-[60px]`} style={{backgroundColor: `${skill.color}`}} src={skill.image} alt="Default avatar"></img>
-                ))}
+            {skillAssets.map((skill, index) => {
+  const popoverId = `popover-${index}`;
+
+  return (
+    <div key={index} className="relative">
+      <img
+        data-popover-target={popoverId}
+        className="w-[45px] h-[45px] border-2 border-black rounded-lg overflow-hidden md:w-[60px] md:h-[60px]"
+        style={{ backgroundColor: `${skill.color}` }}
+        src={skill.image}
+        alt="Skill icon"
+      />
+      <div
+        data-popover
+        id={popoverId}
+        role="tooltip"
+        className="absolute z-50 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800"
+      >
+        <div className="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+          <h3 className="font-semibold text-gray-900 dark:text-white">Popover title</h3>
+        </div>
+        <div className="px-3 py-2">
+          <p>Some engaging content for this skill!</p>
+        </div>
+        <div data-popper-arrow></div>
+      </div>
+    </div>
+  );
+})}
             </div>
         
             <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+
             </div>
         </div>
     </div>
