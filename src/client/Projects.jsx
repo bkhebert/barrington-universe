@@ -31,7 +31,7 @@ const Projects = ({ handleClick }) => {
    
       >Close menu</span>
     </button>
-    <section className="py-12 bg-gray-50 dark:bg-gray-900">
+    <section className="py-12 bg-slate-50/50 dark:bg-gray-900 border rounded-lg">
       <div className="container mx-auto px-4">
 
         <ProjectsCarousel projects={projectsData} />

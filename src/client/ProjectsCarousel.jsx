@@ -16,7 +16,7 @@ const ProjectsCarousel = ({ projects }) => {
   };
 
   return (
-    <div className="relative w-full mx-auto h-[400px] overflow-hidden"> {/* Reduced height */}
+    <div className="relative w-full mx-auto h-[400px] overflow-hidden bg-slate-100"> {/* Reduced height */}
       {/* Project Slides */}
       <div 
         className="flex transition-transform duration-300 ease-in-out h-full"
