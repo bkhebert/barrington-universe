@@ -16,17 +16,17 @@ const ProjectsCarousel = ({ projects }) => {
   };
 
   return (
-    <div className="relative w-full mx-auto h-[400px] md:h-[600px] overflow-hidden  bg-indigo-500/50  rounded"> {/* Reduced height */}
+    <div className="relative w-full mx-auto h-[400px] md:h-[600px] overflow-hidden  bg-indigo-700/50  rounded"> {/* Reduced height */}
       {/* Project Slides */}
       <div 
         className="flex transition-transform duration-300 ease-in-out h-full rounded"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {projects.map((project, index) => (
-          <div key={index} className="w-full h-full flex-shrink-0 flex-col gap-2 p-2 "> {/* Reduced padding */}
+          <div key={index} className="w-full h-full flex-shrink-0 flex-col gap-2 p-1 "> {/* Reduced padding */}
             {/* Media - Now above text on all screens */}
 
-            <div className="flex justify-center items-center h-2/3 overflow-hidden "> {/* Smaller media area */}
+            <div className="flex justify-center items-center h-5/9 overflow-hidden "> {/* Smaller media area */}
               <div className="flex justify-center items-center border border-gray-200 rounded-lg  ">
               <img 
                 src={project.gif} 
@@ -37,9 +37,9 @@ const ProjectsCarousel = ({ projects }) => {
             </div>
 
             {/* Content - Compact text */}
-            <div className="h-1/3 overflow-y-auto"> {/* Scrollable description */}
-              <h3 className="text-sm font-bold line-clamp-1">{project.name}</h3> {/* Single line title */}
-              <p className="text-xs text-gray-600 ">{project.description}</p> {/* Two line description */}
+            <div className="h-4/9 overflow-y-auto ml-6 mr-6"> {/* Scrollable description */}
+              <h3 className="text-sm text-yellow-200 font-bold line-clamp-1 md:text-lg lg:text-3xl">{project.name}</h3> {/* Single line title */}
+              <p className="text-xs text-black md:text-s lg:text-lg ">{project.description}</p> {/* Two line description */}
             </div>
           </div>
         ))}
