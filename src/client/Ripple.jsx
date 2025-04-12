@@ -2,7 +2,7 @@ import * as THREE from "three";
 import transparentstar from "../assets/transparentstar.png";
 import React, { useMemo, useCallback, useRef, useEffect, useState } from "react";
 import { useLoader, useFrame } from "@react-three/fiber";
-import { useControls } from "leva";
+
 
 function Ripple({animation, finishAnimation}){
 
@@ -39,7 +39,6 @@ function Ripple({animation, finishAnimation}){
   useEffect(() => {
     let hue = 0;
     const colorInterval = setInterval(() => {
-      console.log('color animation running')
       hue = (hue + 1) % 360 
     
       setColor(new THREE.Color().setHSL(hue / 360, saturation, lightness)); // Smooth HSL rotation
@@ -49,7 +48,6 @@ function Ripple({animation, finishAnimation}){
     }, 50);
 
     const startanimate = animation ? setInterval(() => {
-      console.log('animation running')
       
       freq >= 0 ? ( 
         setSep(s <= 1 ? s += 0.01 : s <= 5 ? s += 0.007 : s += 0.004 ), 

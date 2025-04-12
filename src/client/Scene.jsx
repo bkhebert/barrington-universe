@@ -1,11 +1,7 @@
 import React, { Suspense, useState, useEffect, useRef } from 'react';
-// import ThreeJSTest from './ThreeJSTest'
 import { Canvas } from '@react-three/fiber';
-import { Perf } from 'r3f-perf'
-// import SolarSystemApp from './SolarSystem';
-import { PerspectiveCamera, OrbitControls } from '@react-three/drei';
+import { PerspectiveCamera } from '@react-three/drei';
 import Ripple from './Ripple';
-import { useControls } from 'leva';
 import SolarSystemApp from './SolarSystem';
 
 const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, showPortfolio}) => {

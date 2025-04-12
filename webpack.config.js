@@ -2,10 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // simplifies creation of HTML files to serve your webpack bundles
 // does this by creating HTML files automatically in your output directory
-//
+
 const {CleanWebpackPlugin} = require('clean-webpack-plugin'); 
 // CleanWebpackPlugin removes all files inside webpack's output.path directory, as well as all unused webpack assets after every successful rebuild.
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const SRC_DIR = path.resolve(__dirname, 'src');
 const CLIENT_DIR = path.resolve(__dirname, 'src', 'client');
@@ -21,6 +22,10 @@ module.exports = {
         filename: 'bundle.js', // bundled output file name
         clean: true,
     },
+    optimization: {
+      minimize: false,
+    },
+    
 
     resolve: {
         extensions: [".js", ".jsx"],
@@ -35,19 +40,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.(pdf)$/,
-                use: [
-                  {
-                    loader: 'file-loader',
-                    options: {
-                      name: '[name].[ext]',
-                      outputPath: 'documents/'
-                    }
-                  }
-                ]
-              },
-            {
-                test: /\.(png|jpg|gif|mp3|aac|ogg|ico|hdr)$/,
+                test: /\.(png|jpg|gif|mp3|aac|ogg|ico|hdr|pdf)$/,
                 type: 'asset/resource',
                 generator: {
                   filename: 'assets/[name][ext]'
@@ -80,6 +73,15 @@ module.exports = {
             filename: 'index.html',
             inject: true
            
+        }),
+        new BundleAnalyzerPlugin(), 
+        new CopyWebpackPlugin({
+          patterns: [
+            {
+              from: path.resolve(__dirname, 'public'),
+              to: path.resolve(__dirname, 'dist'),
+            },
+          ],
         }),
     ],
 
