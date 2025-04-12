@@ -19,7 +19,7 @@ export default [
   {
     name: "Democracy Online",
     gif: DemocracyOnlinetrailer,
-    description: "An innovative platform designed to foster constructive political discussions and improve public discourse. The app leverages Gemini AI to analyze users' arguments, checking for logical consistency, biases, and factual accuracy—helping users refine their reasoning before sharing.",
+    description: "Built in just 2 days using as part of the UNO 2025 hackathon event! A socio-political innovation platform designed to foster constructive political discussions and improve public discourse. The app leverages Gemini AI to analyze users' arguments, checking for logical consistency, biases, and factual accuracy—helping users refine their reasoning before sharing.",
     link: "https://github.com/SoftChairWingineers/DemocracyOnline"
   },
   {

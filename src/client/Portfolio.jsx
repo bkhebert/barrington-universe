@@ -120,6 +120,13 @@ const Portfolio = ({itemExpanded}) => {
         </button>
         
         <Suspense useFallback={null}> <AboutMe></AboutMe> </Suspense>
+        <div className="flex justify-center items-center">
+        <button
+        data-drawer-hide="drawer-example"
+        aria-controls="drawer-example"
+        className="text-gray-200 bg-transparent border border-black hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-12 h-8 mb-2 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white mt-4"
+        >TL;DR</button>
+        </div>
       </div>
       
         

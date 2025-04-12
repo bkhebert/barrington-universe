@@ -16,7 +16,7 @@ const ProjectsCarousel = ({ projects }) => {
   };
 
   return (
-    <div className="relative w-full mx-auto h-[400px] md:h-[600px] overflow-hidden  bg-indigo-700/50  rounded"> {/* Reduced height */}
+    <div className="relative w-full mx-auto h-[400px] md:h-[600px] overflow-y-auto overflow-x-hidden bg-indigo-700/50  rounded"> {/* Reduced height */}
       {/* Project Slides */}
       <div 
         className="flex transition-transform duration-300 ease-in-out h-full rounded"
@@ -62,7 +62,7 @@ const ProjectsCarousel = ({ projects }) => {
       </button>
 
       {/* Tiny Indicators */}
-      <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-1">
+      <div className="fixed bottom-1 left-0 ml-6 -translate-x-1/2 flex gap-1 z-50">
         {projects.map((_, index) => (
           <button
             key={index}

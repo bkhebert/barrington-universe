@@ -108,7 +108,7 @@ const Home = () => {
       <div className="absolute inset-x-0 bottom-0">
         <div className="md:hidden flex justify-center items-center  mt-0">
       <img 
-        class=" w-[180px] h-[172px] p-1 rounded-full ring-2 mb-[10px] ring-raccoon-primary opacity-90 animate-fade-in"
+        class=" w-[70x] h-[65px] p-1 rounded-full ring-2 mb-[10px] ring-raccoon-primary opacity-90 animate-fade-in"
         src={selfie} 
         alt="Bordered avatar"
       />
