@@ -6,6 +6,7 @@ import selfie2 from "../assets/PersonalImages/selfie2.jpg"
 import rcmpic3 from "../assets/PersonalImages/rcmpic3.jpg"
 import coding from "../assets/PersonalImages/coding.jpg"
 import foundfootage from "../assets/PersonalImages/foundfootage.gif"
+
 const AboutMe = () => {
 
   return (
@@ -109,6 +110,7 @@ const AboutMe = () => {
         <p>
         This About Me section isn't intended to be a résumé. It's a chronicle of growth—a path carved through challenge, curiosity, and an unshakable will to create something meaningful.
         </p>
+        
       </div>
     </div>
   );

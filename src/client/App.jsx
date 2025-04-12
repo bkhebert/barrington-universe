@@ -5,6 +5,7 @@ const Home = lazy(() => import('./Home'));
 import RaccoonCityMassacreBeat from "../assets/sounds/RaccoonCityMassacreBeat.mp3"
 import { FaVolumeUp } from '@react-icons/all-files/fa/FaVolumeUp';
 import { FaVolumeMute } from '@react-icons/all-files/fa/FaVolumeMute';
+
 const App = () => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
