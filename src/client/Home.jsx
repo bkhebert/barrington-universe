@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import Time from "./Time";
-import Scene from "./Scene";
+const Scene =  lazy(() => import("./Scene"));
 import selfie from "../assets/selfie.jpg"
-import Portfolio from "./Portfolio";
-import Contact from "./Contact";
+const Portfolio = lazy(() => import("./Portfolio"));
+const Contact = lazy(() => import("./Contact"));
 
 const Home = () => {
 
@@ -55,7 +55,7 @@ const Home = () => {
     <div className="relative min-h-screen">
 
       <div className={`fixed inset-0 w-screen h-screen ${portfolioVisibility ? '' : '-z-10'}`}>
-      <Scene itemExpanded={itemExpanded} skipped={skipped} animation={animation} showPortfolio={showPortfolio} finishAnimation={finishAnimation} finished={finished}></Scene>
+      <Suspense useFallback={null}><Scene itemExpanded={itemExpanded} skipped={skipped} animation={animation} showPortfolio={showPortfolio} finishAnimation={finishAnimation} finished={finished}></Scene></Suspense> 
       </div>
   
     {
@@ -113,8 +113,8 @@ const Home = () => {
         alt="Bordered avatar"
       />
       </div>
-      <Portfolio itemExpanded={makeItemExpanded} ></Portfolio>
-      <Contact/>
+      <Suspense useFallback={null}><Portfolio itemExpanded={makeItemExpanded} ></Portfolio></Suspense>
+      <Suspense useFallback={null}><Contact/></Suspense>
       </div>
       </div>
     }

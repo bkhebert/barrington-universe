@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { FaLinkedin, FaEnvelope, FaGithub, FaFileAlt } from 'react-icons/fa';
+import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin';
+import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope';
+import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
+import { FaFileAlt } from '@react-icons/all-files/fa/FaFileAlt';
 import emailjs from 'emailjs-com';
 
 const Contact = () => {

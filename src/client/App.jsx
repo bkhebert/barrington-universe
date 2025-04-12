@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState,  lazy,
+  Suspense } from 'react';
 // import Scene from './Scene';
-import Home from './Home';
+const Home = lazy(() => import('./Home'));
 import RaccoonCityMassacreBeat from "../assets/sounds/RaccoonCityMassacreBeat.mp3"
-import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa'; // for the icon
-
+import { FaVolumeUp } from '@react-icons/all-files/fa/FaVolumeUp';
+import { FaVolumeMute } from '@react-icons/all-files/fa/FaVolumeMute';
 const App = () => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -21,7 +22,7 @@ const App = () => {
 
     return ( 
         <div className="relative">
-      <Home/>
+        <Suspense fallback={null}><Home/></Suspense>
       <button
         onClick={toggleAudio}
         className="fixed bottom-6 right-6 z-50 text-white text-3xl hover:scale-110 transition"

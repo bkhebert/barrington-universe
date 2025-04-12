@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useTexture, CubeCamera, useEnvironment, Environment, Text } from '@react-three/drei';
-import qwantani_moonrise_4k from "../assets/qwantani_dawn_4k.hdr";
+
 import planetAssets from '../assets/planetAssets';
 
 
@@ -110,7 +110,7 @@ function Sun() {
 
 export default function SolarSystemApp({itemExpanded}) {
 
-  const envMap = useEnvironment({ files: qwantani_moonrise_4k });
+  const envMap = useEnvironment({ files:  "/assets/qwantani_dawn_4k.hdr" });
 
   return (
     <>

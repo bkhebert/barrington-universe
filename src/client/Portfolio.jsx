@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import AboutMe from "./AboutMe";
-import Skills from "./Skills";
-import Resume from "./Resume";
+import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
+const AboutMe = lazy(() => import("./AboutMe"));
+const Skills = lazy(() => import("./Skills"));
+const Resume = lazy(() => import("./Resume"));
 
-import Projects from "./Projects";
+const Projects = lazy(() => import("./Projects"));
 import { IconContext } from "react-icons";
-import { GiNotebook, GiRaccoonHead } from "react-icons/gi";
+import { FaBook } from '@react-icons/all-files/fa/FaBook';
+import { GiRaccoonHead } from '@react-icons/all-files/gi/GiRaccoonHead';
 import { initDrawers } from 'flowbite';
 
 const Portfolio = ({itemExpanded}) => {
@@ -86,9 +87,11 @@ const Portfolio = ({itemExpanded}) => {
       }`}>
     <div className="">
     <div className="">
-    { expanded === "Resume" &&  <Resume handleClick={handleClick}></Resume> }
-    { expanded === "Skills" && <Skills handleClick={handleClick}></Skills>}
-    { expanded === "Projects" && <Projects handleClick={handleClick}></Projects>}
+    { expanded === "Resume" &&  
+       <Suspense useFallback={null}>
+    <Resume handleClick={handleClick}></Resume></Suspense> }
+    { expanded === "Skills" && <Suspense useFallback={null}><Skills handleClick={handleClick}></Skills></Suspense>}
+    { expanded === "Projects" && <Suspense useFallback={null}><Projects handleClick={handleClick}></Projects></Suspense>}
     
         <div
         id="drawer-example"
@@ -116,7 +119,7 @@ const Portfolio = ({itemExpanded}) => {
           <span className="sr-only">Close menu</span>
         </button>
         
-        <AboutMe></AboutMe>
+        <Suspense useFallback={null}> <AboutMe></AboutMe> </Suspense>
       </div>
       
         
@@ -129,9 +132,9 @@ const Portfolio = ({itemExpanded}) => {
     })}>
       <h1 className="text-sm text-yellow-950 md:text-2xl font-bold">Resume</h1>
       <div className="flex justify-center items-center">
-      <IconContext.Provider value={{ className: "w-full h-full mt-2 max-w-[6em] text-white md:max-w-[6em] lg:max-w-[8em]"}}>
-      <GiNotebook />
-      </IconContext.Provider>
+
+      <FaBook className="w-full h-full mt-6 max-w-[6em] text-white md:max-w-[6em] lg:max-w-[8em]" />
+
       </div>
     </div>
     <div className="relative bg-red-600/40 h-15/35  p-4 m-3 rounded-xl hover:outline outline-white"
@@ -178,9 +181,9 @@ const Portfolio = ({itemExpanded}) => {
     >
       <h1 className="text-sm text-green-950 md:text-2xl font-bold">About Me</h1>
       <div className="flex justify-center items-center">
-      <IconContext.Provider value={{ className: "w-full h-full mt-6 max-w-[6em] text-white md:max-w-[6em] lg:max-w-[8em]"}}>
-      <GiRaccoonHead />
-      </IconContext.Provider>
+
+      <GiRaccoonHead className="w-full h-full mt-6 max-w-[6em] text-white md:max-w-[6em] lg:max-w-[8em]" />
+
       </div>
     </div>
   </div>

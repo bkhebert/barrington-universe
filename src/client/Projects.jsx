@@ -1,5 +1,5 @@
-import React from "react";
-import ProjectsCarousel from './ProjectsCarousel';
+import React, {lazy, Suspense} from "react";
+const ProjectsCarousel = lazy(() => import('./ProjectsCarousel'));
 import projectsData from '../assets/projects';
 
 const Projects = ({ handleClick }) => {
@@ -34,8 +34,15 @@ const Projects = ({ handleClick }) => {
     </button>
     <section className="py-12 bg-slate-50/50 dark:bg-gray-900 border md:h-3/4 rounded-lg">
       <div className="container mx-auto px-4">
-
+      <Suspense
+              fallback={
+                <div className="flex justify-center align-center">
+                  <div>lazily loading</div>
+                </div>
+              }
+            >
         <ProjectsCarousel projects={projectsData} />
+        </Suspense>
       </div>
     </section>
   </div>

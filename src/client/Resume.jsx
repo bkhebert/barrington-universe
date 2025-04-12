@@ -1,8 +1,9 @@
 
-import React, { useState, useRef, useEffect } from 'react';
-import Education from './Education';
+import React, { useState, useRef, useEffect, lazy, Suspense } from 'react';
+const Education = lazy(() => import('./Education'));
 import Experience from './Experience';
 import DownloadResumeButton from './DownloadResumeButton';
+
 const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandSubmit, handleClick }) => {
 
   const [command, setCommand] = useState(initialCommand);
@@ -151,7 +152,15 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
         </button>
         <DownloadResumeButton />
         </div>
-        {educationClicked && <Education/>}
+        {educationClicked &&       <Suspense
+                      fallback={
+                        <div className="flex justify-center align-center">
+                          <div>lazily loading</div>
+                        </div>
+                      }
+                    ><Education/></Suspense>
+                    
+                    }
         {experienceClicked && <Experience/>}
         {/* Command output */}
         {output.map((item, index) => (
