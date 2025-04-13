@@ -50,13 +50,13 @@ const ProjectsCarousel = ({ projects }) => {
       {/* Compact Navigation Arrows */}
       <button 
         onClick={prevSlide}
-        className="absolute left-1 top-1/2 -translate-y-1/2 bg-yellow-600/50 hover:bg-yellow-300/70 text-white p-1 rounded-full z-10 text-xs"
+        className="absolute left-1 top-1/2 -translate-y-1/2 bg-yellow-600/50 hover:bg-yellow-300/70 text-white p-1 rounded-full z-10 text-xs w-[30px] h-[40px]"
       >
         ←
       </button>
       <button 
         onClick={nextSlide}
-        className="absolute right-1 top-1/2 -translate-y-1/2 bg-yellow-600/50 hover:bg-yellow-300/70 text-white p-1 rounded-full z-10 text-xs"
+        className="absolute right-1 top-1/2 -translate-y-1/2 bg-yellow-600/50 hover:bg-yellow-300/70 text-white p-1 rounded-full z-10 text-xs w-[30px] h-[40px]"
       >
         →
       </button>
