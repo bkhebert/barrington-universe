@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect, lazy, Suspense } from 'react';
 const Education = lazy(() => import('./Education'));
 import Experience from './Experience';
 import DownloadResumeButton from './DownloadResumeButton';
+import { initPopovers } from 'flowbite';
 
 const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandSubmit, handleClick }) => {
 
@@ -29,6 +30,9 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
     "vim_skills         (DIR - just .swp files)"
   ];
 
+  useEffect(() => {
+    initPopovers();
+  }, []);
 
 
   const scrollToTop = () => {
@@ -115,11 +119,28 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
       {/* Terminal header */}
       <div className="flex items-center bg-gray-800 px-4 py-2">
         <div className="flex space-x-2">
-          <div className="w-3 h-3 rounded-full bg-red-500"
+          <div className="w-10 h-3 rounded-full bg-red-500 text-[10px] text-black"
+          data-popover-target={'exitResume'}
           onClick={(() => {
             handleClick("Resume")
           })}
-          ></div>
+          >
+            Go Back
+        <div
+        data-popover
+        id={"exitResume"}
+        role="tooltip"
+        className="absolute z-50 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800"
+      >
+        <div className="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+          <h3 className="font-semibold text-gray-900 dark:text-white">{"Back"}</h3>
+        </div>
+        <div className="px-3 py-2">
+          <p>{"Takes you back to the site... did you try typing 'ls' into the terrminal? ;)"}</p>
+        </div>
+        <div data-popper-arrow></div>
+        </div>
+          </div>
           <div className="w-3 h-3 rounded-full bg-yellow-500"
           onClick={(() => {
       handleClick("Resume")
