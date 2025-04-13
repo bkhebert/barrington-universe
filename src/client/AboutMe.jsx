@@ -10,7 +10,7 @@ import foundfootage from "../assets/PersonalImages/foundfootage.gif"
 const AboutMe = () => {
 
   return (
-<div className="max-w-5xl mx-auto mt-10 text-neutral-100 px-4">
+<div className="max-w-5xl mx-auto mt-10 text-neutral-100 font-semibold px-4">
       {/* Header */}
       <div className="flex justify-center items-center mb-10">
         <h1 className="text-5xl font-bold">Barrington K Hebert</h1>
