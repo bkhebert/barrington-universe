@@ -40,8 +40,8 @@ const ProjectsCarousel = ({ projects }) => {
 
             {/* Content - Compact text */}
             <div className="h-4/9 overflow-y-auto ml-6 mr-6"> {/* Scrollable description */}
-              <h3 className="text-sm text-yellow-200 font-bold line-clamp-1 md:text-lg lg:text-3xl">{project.name}</h3> {/* Single line title */}
-              <p className="text-xs text-black md:text-base lg:text-lg ">{project.description}</p> {/* Two line description */}
+              <h3 className="text-base text-yellow-200 font-bold line-clamp-1 md:text-lg lg:text-4xl">{project.name}</h3> {/* Single line title */}
+              <p className="text-sm text-black md:text-base lg:text-lg font-semibold">{project.description}</p> {/* Two line description */}
             </div>
           </div>
         ))}
