@@ -119,7 +119,7 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
       {/* Terminal header */}
       <div className="flex items-center bg-gray-800 px-4 py-2">
         <div className="flex space-x-2">
-          <div className="w-10 h-3 rounded-full bg-red-500 text-[10px] text-black"
+          <div className="w-10 h-3 rounded-full bg-red-500 text-[10px] text-black flex justify-center items-center"
           data-popover-target={'exitResume'}
           onClick={(() => {
             handleClick("Resume")
