@@ -125,7 +125,7 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
             handleClick("Resume")
           })}
           >
-            Go Back
+            Back
         <div
         data-popover
         id={"exitResume"}
