@@ -111,7 +111,7 @@ const Portfolio = ({itemExpanded}) => {
           type="button"
           data-drawer-hide="drawer-example"
           aria-controls="drawer-example"
-         className="text-gray-200 bg-transparent hover:bg-yellow-300 hover:text-gray-900 rounded-lg text-sm w-16 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white border border-2 border-black"
+         className="text-gray-200 bg-raccoon-primary hover:bg-yellow-300 hover:text-gray-900 rounded-lg text-sm w-16 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white border border-2 border-white"
         >
           Back
           {/* <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
