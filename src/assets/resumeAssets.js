@@ -17,11 +17,11 @@ export default [
      "Implemented Tailwind CSS, ShadCN, and Magic UI for consistent design, reusable UI components, and realization of product vision.",
      "Used TypeScript for code organization & error detection. Tested app features with Jest, ensured error prevention with ESlint.",
      "Used Webpack for bundling & reduced load time & memory-heap usage by 30% using bundle-analyzer, lazy-loading, & code-splitting.",
-     "Built chatroom feature with real-time multiplayer gaming experience with Socket.io for real-time client to client communication.",
-     "Used Pixi-React beta with React 19 (pre-release), adapting to evolving frameworks still in development w/ little documentation.",
-     "Created seed funcs to seed database with information needed during account creation & signup prior to deployment via AWS.",
-     "Utilized Sequelize ORM for CRUD operations in mySQL, along with Axios for server-to-client communication & RESTful API’s.",
-     "Utilized day.js to provide accurate count-downs and timestamps where necessary, along with async functions for game timers.",
+     "Built real-time multiplayer gaming experience with Socket.io for client to client communication in chatroom feature .",
+     "Used Pixi-React beta with React 19 (pre-release) for game graphics, adapting to evolving frameworks still in development.",
+     "Created seed funcs to seed database with information & tested functionality using Jest during development.",
+     "Utilized Sequelize ORM for CRUD operations in mySQL database, along with Axios for server-to-client communication & RESTful API’s.",
+     "Handled all logic for 2 mini-games: pixijs for graphics, Gemeni AI for prompts, Magic UI & ShadCN for styling & dayjs for timers.",
      "Worked within a team of 5 for a cohesive development process using wireframes, architecture mapping, SCRUM, db diagram & trello."
     ],
   },
@@ -36,6 +36,7 @@ export default [
      "Created debate forum UI utilizing Tailwind & implemented logic for sending information to database for AI reasonability checks",
      "Implemented Google API's to get current local politician information based on the users location ",
      "Made UI & logic for a survey the user would take on signup & used Postgres & Sequelize for storing information on the user",
+     "Updated proper user information in postgres database based on survey styled with tailwind UI & flowtbite"
     ],
   },
   {
@@ -62,7 +63,7 @@ export default [
     role: "Software Engineer", 
     techStackArray: [ "MongoDB", "Express", "React", "Node", "Google Gemeni API", "Material UI", "Axios", "PassportJS", "Google Cloud"  ],
     bulletsArray: [
-     "Utilized Google OAuth/Passport.js for seamless authentication and login; tracking user sessions & cookies via Express.",
+     "Utilized Google OAuth/Passport.js for authentication and login; tracking user sessions & cookies via Express.",
      "Implemented Google Gemini API’s Artificial Intelligence, for interactive community forum experience. ",
      "Used Axios & Node Express for efficient routing & updates within NoSQL database: MongoDB accessed via Mongoose ORM ",
     ],
