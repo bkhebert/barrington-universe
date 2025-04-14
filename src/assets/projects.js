@@ -7,7 +7,7 @@ export default [
   {
     name: "Flare",
     gif: Flaretrailer, // or .png
-    description: "Flare is your go-to for discovering local events, tackling small life missions, and boosting your social confidence. Whether you’re shy, dealing with jitters, or just want more adventures, Flare is here to help you level up your social life. I designed a multiplayer chatroom game which would load your character, as well as the creation of 2 mini-games, where you can create music for the club that could be remixed for other players, as well as the multiplayer game Flamiliar, which used AI to create prompts for players to submit & vote on who had the best prompts! ",
+    description: "Flare is your go-to for discovering local events, tackling small life missions, and boosting your social confidence. Whether you’re shy, dealing with jitters, or just want more adventures, Flare is here to help you level up your social life. I designed a multiplayer chatroom game which would load your character, as well as the creation of 2 mini-games, where you can create music for the club that could be remixed by other players, as well as the multiplayer game Flamiliar, which used AI to create prompts for players to submit & vote on who had the best prompts! ",
     link: "https://github.com/the-full-stack-attack/flare"
   },
   {
