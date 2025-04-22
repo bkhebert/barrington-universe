@@ -14,6 +14,10 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
   const [educationClicked, setEducationClicked] = useState(false);
   const [experienceClicked, setExperienceClicked] = useState(true);
   const terminalContentRef = useRef(null);
+  const [maxH, setMaxH] = useState("max-h-[90vh]");
+  const [maxW, setMaxW] = useState("max-w-2xl");
+  
+
 
 
   // Fun fake directory contents
@@ -113,9 +117,18 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
     setEducationClicked(false);
   }
 
+  const handleResize = (size) => {
+    if(size === "Enlarge" && maxW.length > 0){
+      setMaxW("");
+      setMaxH("max-h-[100vh]");
+    } else {
+      setMaxW("max-w-2xl");
+      setMaxH("max-h-[90vh]");
+    }
+  }
   return (
     <div className="fixed inset-0 z-20 flex justify-center items-start pt-6 bg-black/60 backdrop-blur-sm ">
-    <div className="max-h-[90vh] font-mono bg-gray-900 text-green-400 rounded-lg overflow-hidden shadow-lg w-full max-w-2xl flex flex-col mx:6">
+    <div className={`${maxH} font-mono bg-gray-900 text-green-400 rounded-lg overflow-hidden shadow-lg w-full ${maxW} flex flex-col mx:6`}>
       {/* Terminal header */}
       <div className="flex items-center bg-gray-800 px-4 py-2">
         <div className="flex space-x-2">
@@ -146,7 +159,11 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
       handleClick("Resume")
     })}
           ></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500"
+          onClick={(() => {
+            handleResize("Enlarge")
+          })}
+          ></div>
         </div>
         <div className="ml-2 text-gray-300 text-sm">Ubuntu Terminal</div>
       </div>
