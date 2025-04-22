@@ -1,6 +1,6 @@
 import React, { Suspense, useState, useEffect, useRef, lazy } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { PerspectiveCamera } from '@react-three/drei';
+import { PerspectiveCamera, Preload } from '@react-three/drei';
 const Ripple =  lazy(() => import('./Ripple'));
 const SolarSystemApp =  lazy(() => import('./SolarSystem'));
 
@@ -166,14 +166,21 @@ const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, sho
         /> 
      {/* <OrbitControls enableZoom={true} enablePan={true}
           enableRotate={true}
-           /> */}
+           /> */}<Suspense fallback={null}>
+      <group visible={false}>
+        <SolarSystemApp itemExpanded={itemExpanded} preloadOnly={true} />
+      </group>
+      <Preload all />
+    </Suspense>
+
         { finished && ( 
            <Suspense
            fallback={
              null
            }
          >
-          <SolarSystemApp itemExpanded={itemExpanded}></SolarSystemApp>
+         
+          <SolarSystemApp itemExpanded={itemExpanded} preloadOnly={false}></SolarSystemApp>
           </Suspense>
           )}
        

@@ -108,7 +108,7 @@ function Sun() {
   );
 }
 
-export default function SolarSystemApp({itemExpanded}) {
+export default function SolarSystemApp({itemExpanded, preloadOnly}) {
 
   const envMap = useEnvironment({ files:  "/assets/qwantani_dawn_4k.hdr" });
 
@@ -121,8 +121,8 @@ export default function SolarSystemApp({itemExpanded}) {
         color={"white"}
         />
       <pointLight position={[0, 0, 0]} intensity={1} />
-      <Environment map={envMap} background></Environment>
-
+     {!preloadOnly && (<Environment map={envMap} background></Environment>
+     )}
       <CubeCamera>
         {(texture) => 
           <>
