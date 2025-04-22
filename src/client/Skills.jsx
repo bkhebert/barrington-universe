@@ -64,8 +64,8 @@ export default function Skills({handleClick}) {
             </div>
         
             <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-            <div class="grid grid-cols-4 p-4  md:grid-cols-7 md:p-5 gap-4 text-neutral-200 font-semibold">
-Learning:
+            <div class="grid grid-cols-4 sm:p-2 sm:text-xs md:text-base md:grid-cols-7 md:p-5 sm: gap-2 md:gap-4 text-neutral-200 font-semibold">
+Currently Learning:
             {learningAssets.map((learning, index) => {
   const popoverIdLearning = `popover-learning-${index}`;
 
