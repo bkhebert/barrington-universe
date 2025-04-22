@@ -5,6 +5,16 @@ import selfie from "../assets/selfie.jpg"
 const Portfolio = lazy(() => import("./Portfolio"));
 const Contact = lazy(() => import("./Contact"));
 
+let arrayOfSayings = [
+  "Silence hums. Light bends. I design in the in-between.",
+  "Darkness fades. A line is drawn. Creation begins.",
+  "Code so slick, it’s borderline scary — Built with love by yours truly, Barry.",
+  "Booting up... Welcome to Barry OS v1.0.",
+  "Best viewed on Netscape. Built by Barry.",
+  "The wave moves. Time ticks. I make things.",
+  "I am the Ray Arnold to your Dennis Nedry (Jurassic Park anyone?... no? ok)"
+]
+let quote = Math.floor(Math.random() * 6);
 const Home = () => {
 
   const [isHovered, setIsHovered] = useState(false);
@@ -14,7 +24,11 @@ const Home = () => {
   const [skipped, setSkipped] = useState(false);
   const [portfolioVisibility, setPortfolioVisibility] = useState(false);
   const [ itemExpanded, setItemExpanded ] = useState(false);
-
+  
+  const [ cornySaying, setCornySaying ] = useState(arrayOfSayings[quote]);
+  
+  useEffect(() => {
+  }, [])
   const showPortfolio = (bool) => {
     setPortfolioVisibility(bool);
   }
@@ -63,7 +77,11 @@ const Home = () => {
     <>
       <div className="fixed inset-0 flex flex-col items-center justify-center mb-40">
       <div className="h-[267px] flex items-center"> {/* Reserved space */}
-      
+    { !isHovered && (
+      <div className="p-16 flex justify-center items-center">
+        <h1 className="z-10 text-white text-[40px] font-bold text-shadow-md text-shadow-black">
+       {cornySaying} 
+        </h1></div>)}
    { 
     isHovered && (
       <div className="grid grid-cols-1">
@@ -100,7 +118,7 @@ const Home = () => {
   { animation && !finished && (
      <div className="fixed inset-0 flex flex-col items-center justify-center mb-40">
             <button 
-            className={`w-16 h-8 bg-gray-200/5 border-4 border-double rounded-xl text-white/30 font-bold animate-[moveToBottom_1s_ease-in-out_forwards] hover:text-white`}
+            className={`w-40 h-8 bg-gray-200/5 border-4 border-double rounded-xl text-white/30 font-bold animate-[moveToBottom_1s_ease-in-out_forwards] hover:text-white`}
             onPointerEnter={showProfile}
             onPointerLeave={showProfile}
             onClick={skippedAnimation}

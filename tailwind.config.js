@@ -5,7 +5,8 @@ module.exports = {
      'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('tailwindcss-textshadow'),
   ],
   theme: {
     extend: {
@@ -28,6 +29,13 @@ module.exports = {
       //     secondary: "#888888",
       //   },
        },
+       textShadow: {
+        sm: '1px 1px 2px rgba(0, 0, 0, 0.5)',
+        DEFAULT: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+        md: '5px 5px 7px rgba(0, 0, 0, 0.5)',
+        lg: '7px 7px 10px rgba(0, 0, 0, 0.5)',
+        black: '4px 4px 5px black',
+      },
        animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'moveToBottom': 'moveToBottom 1s ease-in-out forwards',
