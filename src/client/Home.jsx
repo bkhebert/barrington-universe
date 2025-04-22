@@ -62,25 +62,32 @@ const Home = () => {
       !animation && 
     <>
       <div className="fixed inset-0 flex flex-col items-center justify-center mb-40">
-      <div className="h-[200px] flex items-center"> {/* Reserved space */}
+      <div className="h-[267px] flex items-center"> {/* Reserved space */}
+      
    { 
     isHovered && (
-      <img 
-        class="w-[200px] h-[190px] p-1 rounded-full ring-2 mb-[10px] ring-raccoon-primary opacity-90 animate-fade-in"
+      <div className="grid grid-cols-1">
+      <div className="flex justify-center items-center"><img 
+        class="w-[200px] h-[190px] p-1 rounded-full ring-2 mb-[7px] ring-raccoon-primary opacity-90 animate-fade-in"
         src={selfie} 
         alt="Bordered avatar"
-      />)
+    /></div>
+        <div className="flex justify-center items-center"><h1 className="text-white text-[30px] font-semibold">Barrington Hebert</h1></div>
+        <div className="flex justify-center items-center"><h3 className="text-white text-[16px] mb-[10px]">FullStack Engineer</h3></div>
+     </div> )
    }
     </div>
         <button 
-        className={`w-32 h-16 bg-raccoon-primary/50 border-4 border-double rounded-xl text-white font-bold`}
+        className={`w-60 h-16 bg-raccoon-primary/50 border-4 border-double rounded-xl text-white font-bold`}
         style={{ filter: glow }}
         onPointerEnter={showProfile}
         onPointerLeave={showProfile}
         onClick={startAnimation}
         >
-          Enter Site
+          View My Portfolio Site
         </button>
+           { 
+   }
       </div>
     
       <div className="absolute bottom-0 left-0 ">
@@ -98,7 +105,7 @@ const Home = () => {
             onPointerLeave={showProfile}
             onClick={skippedAnimation}
             >
-              Skip
+              Skip Animation
             </button>
             </div>
   )}
