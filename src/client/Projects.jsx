@@ -33,7 +33,7 @@ const Projects = ({ handleClick }) => {
    
       >Close menu</span> */}
     </button>
-    <section className="py-12 bg-slate-50/50 dark:bg-gray-900 border md:h-3/4 rounded-lg ">
+    <section className="py-12 bg-slate-50/50 dark:bg-gray-900 border h-10/11 rounded-lg ">
       <div className="container mx-auto px-4 overflow-auto">
       <Suspense
               fallback={

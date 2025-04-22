@@ -16,7 +16,7 @@ const ProjectsCarousel = ({ projects }) => {
   };
 
   return (
-    <div className="relative w-full mx-auto h-[400px] md:h-[600px] overflow-y-auto overflow-x-hidden bg-indigo-700/50  rounded"> {/* Reduced height */}
+    <div className="relative w-full mx-auto h-full overflow-y-auto overflow-x-hidden bg-indigo-700/50  rounded"> {/* Reduced height */}
       {/* Project Slides */}
       <div 
         className="flex transition-transform duration-300 ease-in-out h-full rounded"
@@ -39,8 +39,8 @@ const ProjectsCarousel = ({ projects }) => {
             </div>
 
             {/* Content - Compact text */}
-            <div className="h-4/9 overflow-y-auto ml-6 mr-6"> {/* Scrollable description */}
-              <h3 className="text-base text-yellow-200 font-bold line-clamp-1 md:text-lg lg:text-4xl sm:p-10 md:p-4 lg:p-0">{project.name}</h3> {/* Single line title */}
+            <div className="h-full overflow-y-auto ml-6 mr-6"> {/* Scrollable description */}
+              <h3 className="text-base text-yellow-200 font-bold line-clamp-1 md:text-lg lg:text-4xl">{project.name}</h3> {/* Single line title */}
               <p className="text-sm text-black md:text-base lg:text-lg font-semibold">{project.description}</p> {/* Two line description */}
             </div>
           </div>
@@ -50,13 +50,13 @@ const ProjectsCarousel = ({ projects }) => {
       {/* Compact Navigation Arrows */}
       <button 
         onClick={prevSlide}
-        className="absolute left-1 sm:top-1/4 md:top-1/2 -translate-y-1/2 bg-yellow-300/70 hover:bg-yellow-300 text-black p-1 rounded-full z-10 text-xs w-[30px] h-[40px] border border-slate-900"
+        className="absolute left-1 top-1/4 -translate-y-1/2 bg-yellow-300/70 hover:bg-yellow-300 text-black p-1 rounded-full z-10 text-xs w-[30px] h-[40px] border border-slate-900"
       >
         ←
       </button>
       <button 
         onClick={nextSlide}
-        className="absolute right-1 sm:top-1/4 md:top-1/2 -translate-y-1/2 bg-yellow-300/70 hover:bg-yellow-300 text-black p-1 rounded-full z-10 text-xs w-[30px] h-[40px] border border-slate-900"
+        className="absolute right-1 top-1/4 -translate-y-1/2 bg-yellow-300/70 hover:bg-yellow-300 text-black p-1 rounded-full z-10 text-xs w-[30px] h-[40px] border border-slate-900"
       >
         →
       </button>
