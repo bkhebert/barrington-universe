@@ -1,6 +1,8 @@
 import React, { Suspense, useState, useEffect, useRef, lazy } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera, Preload } from '@react-three/drei';
+import Loader from './Loader';
+
 const Ripple =  lazy(() => import('./Ripple'));
 const SolarSystemApp =  lazy(() => import('./SolarSystem'));
 
@@ -155,9 +157,10 @@ const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, sho
 
 
     return ( 
-      <Suspense fallback={<div>Loading</div>}> 
-      
+      <>
       <Canvas className="mx-auto">
+        <Suspense fallback={<Loader/>}>
+        <Preload all /> 
         <PerspectiveCamera
         makeDefault
         fov={camFOV} // Real Cam
@@ -166,35 +169,25 @@ const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, sho
         /> 
      {/* <OrbitControls enableZoom={true} enablePan={true}
           enableRotate={true}
-           /> */}<Suspense fallback={null}>
+           /> */}
       <group visible={false}>
         <SolarSystemApp itemExpanded={itemExpanded} preloadOnly={true} />
       </group>
       <Preload all />
-    </Suspense>
+   
 
         { finished && ( 
-           <Suspense
-           fallback={
-             null
-           }
-         >
-         
           <SolarSystemApp itemExpanded={itemExpanded} preloadOnly={false}></SolarSystemApp>
-          </Suspense>
           )}
        
 
-      {!finished &&   <Suspense
-                      fallback={
-                        null
-                      }
-                    >
-      
+      {!finished &&
       <Ripple animation={animation} finishAnimation={finishAnimation} finished={finished}></Ripple>
-      </Suspense> }
-      </Canvas> 
+      }
       </Suspense>
+      </Canvas> 
+
+     </>
     )
 };
 
