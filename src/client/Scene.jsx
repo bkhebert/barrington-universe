@@ -1,7 +1,7 @@
 import React, { Suspense, useState, useEffect, useRef, lazy } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { PerspectiveCamera, Preload } from '@react-three/drei';
-import Loader from './Loader';
+import { PerspectiveCamera, Preload,  } from '@react-three/drei';
+ import Loader from './Loader';
 
 const Ripple =  lazy(() => import('./Ripple'));
 const SolarSystemApp =  lazy(() => import('./SolarSystem'));
@@ -173,7 +173,7 @@ const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, sho
       <group visible={false}>
         <SolarSystemApp itemExpanded={itemExpanded} preloadOnly={true} />
       </group>
-      <Preload all />
+
    
 
         { finished && ( 
@@ -186,7 +186,7 @@ const Scene = ({itemExpanded, animation, finishAnimation, finished, skipped, sho
       }
       </Suspense>
       </Canvas> 
-
+      
      </>
     )
 };
