@@ -25,7 +25,7 @@ const Home = () => {
   const [portfolioVisibility, setPortfolioVisibility] = useState(false);
   const [ itemExpanded, setItemExpanded ] = useState(false);
   
-  const [ cornySaying, setCornySaying ] = useState(arrayOfSayings[quote]);
+  const [ cornySaying ] = useState(arrayOfSayings[quote]);
   
   useEffect(() => {
   }, [])
@@ -79,7 +79,7 @@ const Home = () => {
       <div className="h-[267px] flex items-center"> {/* Reserved space */}
     { !isHovered && (
       <div className="p-16 flex justify-center items-center">
-        <h1 className="z-10 text-white text-[40px] font-bold text-shadow-md text-shadow-black">
+        <h1 className="z-10 text-white sm:text-[20px] md:text-[35px] lg:text-[40px] font-bold text-shadow-md text-shadow-black">
        {cornySaying} 
         </h1></div>)}
    { 

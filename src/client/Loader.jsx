@@ -33,7 +33,7 @@ export default function Loader() {
     gap: '10px',
     width: '300px'
   }}>
-    <div style={{ color: 'white', fontSize: '1.5rem' }}>
+    <div style={{ color: 'white', fontSize: '1.0rem' }}>
       {fakeProgressStats}
     </div>
     
