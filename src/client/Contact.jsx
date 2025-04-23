@@ -3,7 +3,7 @@ import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin';
 import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope';
 import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
 import { FaFileAlt } from '@react-icons/all-files/fa/FaFileAlt';
-const Contact = (toggleFormView) => {
+const Contact = ({toggleFormView}) => {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {

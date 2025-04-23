@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 const AboutMe = lazy(() => import("./AboutMe"));
 const Skills = lazy(() => import("./Skills"));
 const Resume = lazy(() => import("./Resume"));
-
+const ContactForm = lazy(() => import("./ContactForm"));
 const Projects = lazy(() => import("./Projects"));
+const Contact = lazy(() => import("./Contact"));
 import { IconContext } from "react-icons";
 import { FaBook } from '@react-icons/all-files/fa/FaBook';
 import { GiRaccoonHead } from '@react-icons/all-files/gi/GiRaccoonHead';
@@ -87,6 +88,7 @@ const Portfolio = ({itemExpanded}) => {
   }, [progressReached])
 
   return (
+    <>
     <div className={`transition-opacity duration-[3000ms] ease-in ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}>
@@ -97,7 +99,7 @@ const Portfolio = ({itemExpanded}) => {
     <Resume handleClick={handleClick}></Resume></Suspense> }
     { expanded === "Skills" && <Suspense useFallback={null}><Skills handleClick={handleClick}></Skills></Suspense>}
     { expanded === "Projects" && <Suspense useFallback={null}><Projects handleClick={handleClick}></Projects></Suspense>}
-    
+    { formView && <Suspense useFallback={null}><ContactForm toggleFormView={toggleFormView}></ContactForm></Suspense>}
         <div
         id="drawer-example"
         className="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-raccoon-primary/70 w-full dark:bg-gray-800"
@@ -202,6 +204,8 @@ const Portfolio = ({itemExpanded}) => {
   </div>
   </div>
   </div>
+  <Suspense useFallback={null}><Contact toggleFormView={toggleFormView}/></Suspense>
+  </>
   )
 }
 

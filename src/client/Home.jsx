@@ -139,7 +139,7 @@ const Home = () => {
       />
       </div>
       <Suspense useFallback={null}><Portfolio itemExpanded={makeItemExpanded} ></Portfolio></Suspense>
-      <Suspense useFallback={null}><Contact/></Suspense>
+      
       </div>
       </div>
     }

@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 
 import emailjs from 'emailjs-com';
 
-const ContactForm = (toggleFormView) => {
+const ContactForm = ({toggleFormView}) => {
 
   const [formStatus, setFormStatus] = useState(null);
 
@@ -26,13 +26,23 @@ const ContactForm = (toggleFormView) => {
     });
   };
 
+  const exitForm = () => {
+    toggleFormView(false);
+  }
   return (
 
-      <div className="flex md:justify-center md:contents-center mb-[300px] z-25">
+      <div className="fixed inset-0 z-20 flex justify-center mt-[200px] bg-black/10 backdrop-blur-sm w-full h-[300px] max-w-[600px] mx-auto ">
       <form 
         onSubmit={handleSubmit}
-        className="absolute top-1/2 mb-6 bg-neutral-300 shadow-xl rounded p-4 w-full z-10 flex flex-col gap-2 md:w-3/4"
-      >
+        className=" mb-2  bg-neutral-300 shadow-xl rounded p-4 w-full z-50 flex justify-center flex-col gap-2"
+      ><div className="flex">
+        <button 
+        onClick={exitForm}
+          type="button"
+          className="w-[30px] bg-red-500 text-white py-1 rounded hover:bg-red-700 text-sm"
+        >X</button>
+        <h1 className="text-center text-black font-semibold text-lg mx-auto">Get in touch with me directly!</h1>
+        </div>
         <input 
           type="text"
           name="name"
@@ -66,3 +76,5 @@ const ContactForm = (toggleFormView) => {
       </div>
   )
 }
+
+export default ContactForm;
