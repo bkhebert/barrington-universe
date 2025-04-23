@@ -86,7 +86,75 @@ const Resume = ({ initialCommand = '', prompt = "bkhebert@ubuntu:~$", onCommandS
       // Fun responses for trying to read files
       const file = command.split(' ')[1];
       response = `cat: ${file}: No such file or directory (but nice try!)`;
-    }
+    } else if (command.trim() === 'sudo rm -rf') {
+      response = (
+        <div className="text-red-300 font-mono">
+          <p>🔥 BOOM! 🔥</p>
+          <p>📛 Warning: Resume about to go Ultra Instinct</p>
+          <p>🫠 Files leaving like Naruto on a swing set. But it's cool, I backed 'em up in the cloud... right next to Tupac.</p>
+        </div>
+    ) 
+    } else if (command.trim().startsWith('sudo rm -rf')) {
+      response = (
+        <div className="text-yellow-300 font-mono">
+          <p>⚠️ Danger Zone Detected</p>
+          <p>Attempting to remove *everything*... (jk, this resume is indestructible 😎)</p>
+        </div>
+      ) 
+    } else if (command.trim() === 'sudo') {
+        response = (
+          <div className="text-red-300 font-mono">
+            <p>📢 *BZZZT* Permission denied!</p>
+            <p>Listen, I'd love to give you root access, but...</p>
+            <p>1) You're not in the sudoers file</p>
+            <p>2) This incident has been reported</p>
+            <p>3) My mom said not to trust strangers on the internet</p>
+            <p className="text-green-400">(Try 'please' next time? 🥺)</p>
+          </div>
+        );
+      } else if (command.trim() === 'vim') {
+        response = (
+          <div className="text-green-300 font-mono">
+            <p>✏️ Opening Vim...</p>
+            <p>...but how do you exit? 😈</p>
+            <p className="text-xs">(Hint: The answer is always :q! ...or crying.)</p>
+          </div>
+        );
+      } else if (command.trim() === 'exit') {
+        response = (
+          <div className="text-red-300 font-mono">
+            <p>🚪 No.</p>
+            <p>You can check out any time you like, but you can never leave. 🎵</p>
+            <p className="text-xs">(Hotel California rules apply here.)</p>
+          </div>
+        );
+      } else if (command.trim() === 'help') {
+        response = (
+          <div className="text-green-300 font-mono">
+            <p>🆘 <span className="underline">Available Commands:</span></p>
+            <ul className="list-disc pl-5">
+              <li><span className="font-bold">ls</span> - See my cool stuff</li>
+              <li><span className="font-bold">cd ..</span> - Try it. I dare you.</li>
+              <li><span className="font-bold">sudo</span> - (lol no)</li>
+              <li><span className="font-bold">vim</span> - Enter the abyss</li>
+              <li><span className="font-bold">exit</span> - Nice try</li>
+              <li><span className="font-bold">rm -rf</span> - 😏</li>
+            </ul>
+            <p className="mt-2 text-xs">(Disclaimer: No real terminals were harmed in the making of this resume.)</p>
+          </div>
+        ); 
+      } else if (command.trim() === 'cd ..') {
+        response = (
+          <div className="text-green-300 font-mono">
+            <p>💫 *whoosh* </p>
+            <p>You step back into the void...</p>
+            <p>Wait, where are you going? The party's here! �</p>
+            <p className="text-xs">(Seriously, there's nothing behind you. Turn around.)</p>
+          </div>
+        );
+      } else {
+        response = `'${command}': command not found. (But I respect your curiosity 👀)`;
+      }
 
     setOutput([...output, { command, response }]);
     setCommand('');
