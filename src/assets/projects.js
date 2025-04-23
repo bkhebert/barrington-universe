@@ -13,7 +13,7 @@ export default [
   {
     name: "Dogagatchi",
     gif: dogtrailer,
-    description: "Dogagatchi+ a caretaking game with an immersive dog-owning experience. I personally held the responsibility of SCRUM master, logic % UI for XP points & dog leveling, & the design / UI of the interactive 2D 32bit map where you can take your dog for a walk & possibly encounter a dog catcher who will try to fight you! The logic would also include collision detection, sound effects, & multiple map layouts.",
+    description: "Dogagatchi+ a caretaking game with an immersive dog-owning experience. I personally held the responsibility of SCRUM master, logic UI for XP points & dog leveling, & the design / UI of the interactive 2D 32bit map where you can take your dog for a walk & possibly encounter a dog catcher who will try to fight you! The logic would also include collision detection, sound effects, & multiple map layouts.",
     link: "https://github.com/The-404s-Org/Dogagatchi"
   },
   {
