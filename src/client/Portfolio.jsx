@@ -5,7 +5,6 @@ const Resume = lazy(() => import("./Resume"));
 const ContactForm = lazy(() => import("./ContactForm"));
 const Projects = lazy(() => import("./Projects"));
 const Contact = lazy(() => import("./Contact"));
-import { IconContext } from "react-icons";
 import { FaBook } from '@react-icons/all-files/fa/FaBook';
 import { GiRaccoonHead } from '@react-icons/all-files/gi/GiRaccoonHead';
 import { initDrawers } from 'flowbite';
@@ -126,7 +125,6 @@ const Portfolio = ({itemExpanded}) => {
           </svg>
           <span className="sr-only">Close menu</span> */}
         </button>
-        
         <Suspense useFallback={null}> <AboutMe></AboutMe> </Suspense>
         <div className="flex justify-center items-center">
         <button
@@ -135,11 +133,10 @@ const Portfolio = ({itemExpanded}) => {
         className="text-gray-200 bg-transparent border border-black hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-12 h-8 mb-2 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white mt-4"
         >TL;DR</button>
         </div>
-      </div>
-      
-        
-   
+      </div>   
     </div>
+
+
    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
     <div className="relative bg-yellow-400/40 h-15/35 p-4 m-3 rounded-xl hover:outline outline-white"
     onClick={(() => {
@@ -147,9 +144,7 @@ const Portfolio = ({itemExpanded}) => {
     })}>
       <h1 className="text-sm text-yellow-950 md:text-2xl font-bold">Resume</h1>
       <div className="flex justify-center items-center">
-
       <FaBook className="w-full h-full mt-6 max-w-[6em] text-white md:max-w-[6em] lg:max-w-[8em]" />
-
       </div>
     </div>
     <div className="relative bg-red-600/40 h-15/35  p-4 m-3 rounded-xl hover:outline outline-white"
@@ -171,10 +166,7 @@ const Portfolio = ({itemExpanded}) => {
       <div className="flex justify-center items-center align">
 <div class="relative size-40" >
   <svg class="rotate-[135deg] size-full" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-  
     <circle cx="18" cy="18" r="16" fill="none" class="stroke-current text-white" stroke-width="1" stroke-dasharray="75 100"></circle>
-
-
     <circle cx="18" cy="18" r="16" fill="none" class={`stroke-current ${progressBarColor}`} stroke-width="2" stroke-dasharray={`${Math.floor(progRef.current.value)} 100`}></circle>
   </svg>
 
@@ -182,12 +174,10 @@ const Portfolio = ({itemExpanded}) => {
     <span class="text-2xl font-semibold text-blue-50">{Math.floor(progRef.current.value / .75)} %</span>
     <span class="text-cyan-50 font-bold block">completed</span>
   </div>
-</div>
-</div>
+  </div>
+  </div>
+  </div>
 
-  
-
-    </div>
     <div className="bg-green-600/40 h-15/35  p-4 m-3 rounded-xl hover:outline outline-white"
     type="button"
     data-drawer-target="drawer-example"
