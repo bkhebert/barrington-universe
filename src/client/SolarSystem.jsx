@@ -1,19 +1,19 @@
 import React, { useRef, useState, useEffect, Suspense } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { useTexture, CubeCamera, useEnvironment, Environment, Text } from '@react-three/drei';
 import * as THREE from "three"
 import planetAssets from '../assets/planetAssets';
 
 
 
-function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, name, description, selectedPlanetName, setSelectedPlanetName}) {
+function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, name, description, selectedPlanetName, setSelectedPlanetName, isSun = false}) {
 
   const ref = useRef();
   const refspin = useRef();
   const angle = useRef(xp * Math.PI * 2);
   const [isHovered, setIsHovered ] = useState(false);
   const isClicked = selectedPlanetName === name;
-  const [planetSelected, setPlanetSelected] = useState(false);
+  // const [planetSelected, setPlanetSelected] = useState(false);
 
   useEffect(() => {
 
@@ -22,16 +22,16 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
 
 
   useFrame((state, delta) => {
-    const cameraOffset = new THREE.Vector3(0, 0, 0.0000001); // Planet comes 5 units closer on Z
-    const currentPosition = ref.current.position;
   
     angle.current += speed; // Always update the orbit angle
 
-    if (isClicked) {
+    if (isClicked && !isSun) {
+      
       const cameraDirection = new THREE.Vector3();
       state.camera.getWorldDirection(cameraDirection);
       const target = state.camera.position.clone().add(cameraDirection.multiplyScalar(5));
       ref.current.position.lerp(target, 0.1);
+      
       // setPlanetSelected(true);
     } else {
       const target = new THREE.Vector3(
@@ -58,7 +58,10 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
     onPointerOut={() => setIsHovered(false) }
     onClick={(e) => {
       e.stopPropagation();
-      setSelectedPlanetName(isClicked ? null : name);
+      console.log(e)
+      
+        setSelectedPlanetName(isClicked ? null : name);
+      
     }}
     >
       {/* Base Sphere */}
@@ -66,8 +69,11 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
             onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
             onPointerOut={() => setIsHovered(false) }
             onClick={(e) => {
+              console.log(e, 'base triggered')
               e.stopPropagation();
-              setSelectedPlanetName(isClicked ? null : name);
+              
+                setSelectedPlanetName(isClicked ? null : name);
+              
             }}
       >
         <sphereGeometry args={solid ? [size, 16, 16]: [size, 32, 32]} />
@@ -75,6 +81,7 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
         color={color}
         roughness={ solid ? 1 : 0}
         metalness={ solid ? 0 : 1} 
+        envMapMapping={THREE.CubeReflectionMapping}
         />
       </mesh>
       {/* Overlay Sphere (slightly larger) */}
@@ -83,8 +90,13 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
       onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
       onPointerOut={() => setIsHovered(false) }
       onClick={(e) => {
+        console.log(e, 'triggered')
+        console.log(name)
+        console.log(ref.current)
         e.stopPropagation();
-        setSelectedPlanetName(isClicked ? null : name);
+        
+          setSelectedPlanetName(isClicked ? null : name);
+        
       }}
       
       >
@@ -94,13 +106,14 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
           transparent
           metalness={0.3}
           roughness={0}
+          envMapMapping={THREE.CubeReflectionMapping}
         />
       </mesh>
            {/* Floating Text */}
            <Suspense useFallback={null}>
         <Text
           position={[0, size + 1, 0]} // above the planet
-          rotation={[0, -5, 0]}
+          rotation={[0, 1.5, 0]}
           fontSize={0.2}
           color="black"
           anchorX="center"
@@ -116,8 +129,21 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
 
 function Sun() {
 
+  const sunRef = useRef();
+
+  useEffect(() => {
+    if (sunRef.current) {
+      sunRef.current.layers.set(1); // Assign layer 1
+    }
+  }, []);
+
   return (
-    <mesh>
+    <mesh 
+      ref={sunRef}
+    onPointerDown={(e) => e.stopPropagation()}
+    onPointerMove={(e) => e.stopPropagation()}
+    onPointerOver={(e) => e.stopPropagation()}
+    onPointerOut={(e) => e.stopPropagation()}>
       <sphereGeometry args={[5, 64, 64]} />
         <meshPhysicalMaterial  
          color={"white"} 
@@ -131,9 +157,21 @@ function Sun() {
 }
 
 export default function SolarSystemApp({itemExpanded, preloadOnly}) {
-
+  const cubeCameraRef = useRef();
+  const { camera } = useThree();
+  useEffect(() => {
+    if (cubeCameraRef.current) {
+      // Exclude layer 1 (Sun's layer)
+      cubeCameraRef.current.layers.enableAll();
+      cubeCameraRef.current.layers.disable(1);
+    }
+  }, []);
+  useEffect(() => {
+    // Let the main camera see both default layer (0) and the Sun layer (1)
+    camera.layers.enable(1);
+  }, [camera]);
   const envMap = useEnvironment({ files:  "/assets/qwantani_dawn_4k.hdr" });
-  const [selectedPlanetName, setSelectedPlanetName] = useState(null);
+   const [selectedPlanetName, setSelectedPlanetName] = useState(null);
   return (
     <>
       <ambientLight color={"white"}intensity={2} />
@@ -143,16 +181,19 @@ export default function SolarSystemApp({itemExpanded, preloadOnly}) {
         color={"white"}
         />
       <pointLight position={[0, 0, 0]} intensity={1} />
-     {!preloadOnly && (<Environment map={envMap} background></Environment>
+     {!preloadOnly && (<Environment map={envMap} background ></Environment>
      )}
-      <CubeCamera>
-        {(texture) => 
-          <>
-            <Sun />
-            <Environment map={texture} />
-          </>
-        }
+      <CubeCamera ref={cubeCameraRef} near={1} far={1000} resolution={512} position={[0, 0, 0]} rotation={[0, 0, 0]}>
+      {(texture) => {
+    
+    return (
+      <>
+        <Environment map={texture} />
+      </>
+    );
+  }}
       </CubeCamera>
+        <Sun></Sun>
         {planetAssets.map((planet) => (
           <Planet 
           size={planet.size} 
