@@ -1,36 +1,49 @@
 import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useTexture, CubeCamera, useEnvironment, Environment, Text } from '@react-three/drei';
-
+import * as THREE from "three"
 import planetAssets from '../assets/planetAssets';
 
 
 
-function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, name, description}) {
+function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, name, description, selectedPlanetName, setSelectedPlanetName}) {
 
   const ref = useRef();
   const refspin = useRef();
   const angle = useRef(xp * Math.PI * 2);
   const [isHovered, setIsHovered ] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
+  const isClicked = selectedPlanetName === name;
+  const [planetSelected, setPlanetSelected] = useState(false);
 
   useEffect(() => {
 
   }, [isHovered])
 
-  useEffect(() => {
-    isClicked ? setTimeout(() => {
-      setIsClicked(false);
-    }, 5000) : null
-  }, [isClicked])
+
+
   useFrame((state, delta) => {
-    angle.current += speed;
-    ref.current.position.set(
-      Math.cos(angle.current) * distance,
-      0,
-      Math.sin(angle.current) * distance
-    );
-    const shouldSpin = isHovered && !itemExpanded; // only spin if nothing is open
+    const cameraOffset = new THREE.Vector3(0, 0, 0.0000001); // Planet comes 5 units closer on Z
+    const currentPosition = ref.current.position;
+  
+    angle.current += speed; // Always update the orbit angle
+
+    if (isClicked) {
+      const cameraDirection = new THREE.Vector3();
+      state.camera.getWorldDirection(cameraDirection);
+      const target = state.camera.position.clone().add(cameraDirection.multiplyScalar(5));
+      ref.current.position.lerp(target, 0.1);
+      // setPlanetSelected(true);
+    } else {
+      const target = new THREE.Vector3(
+        Math.cos(angle.current) * distance,
+        0,
+        Math.sin(angle.current) * distance
+      );
+      ref.current.position.lerp(target, 0.05);
+      // setPlanetSelected(false);
+    }
+  
+    const shouldSpin = isHovered && !itemExpanded;
     const spinner = shouldSpin ? 10 : 0;
     refspin.current.rotation.y += delta * spinner;
   });
@@ -43,13 +56,19 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
     
     onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
     onPointerOut={() => setIsHovered(false) }
-    onClick={() => setIsClicked(!isClicked)}
+    onClick={(e) => {
+      e.stopPropagation();
+      setSelectedPlanetName(isClicked ? null : name);
+    }}
     >
       {/* Base Sphere */}
       <mesh
             onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
             onPointerOut={() => setIsHovered(false) }
-            onClick={() => setIsClicked(!isClicked)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedPlanetName(isClicked ? null : name);
+            }}
       >
         <sphereGeometry args={solid ? [size, 16, 16]: [size, 32, 32]} />
         <meshStandardMaterial  
@@ -63,7 +82,10 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
       ref={refspin}
       onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
       onPointerOut={() => setIsHovered(false) }
-      onClick={() => setIsClicked(!isClicked)}
+      onClick={(e) => {
+        e.stopPropagation();
+        setSelectedPlanetName(isClicked ? null : name);
+      }}
       
       >
         <sphereGeometry args={[size * 1.005, 32, 32]} />
@@ -111,7 +133,7 @@ function Sun() {
 export default function SolarSystemApp({itemExpanded, preloadOnly}) {
 
   const envMap = useEnvironment({ files:  "/assets/qwantani_dawn_4k.hdr" });
-
+  const [selectedPlanetName, setSelectedPlanetName] = useState(null);
   return (
     <>
       <ambientLight color={"white"}intensity={2} />
@@ -143,6 +165,8 @@ export default function SolarSystemApp({itemExpanded, preloadOnly}) {
           itemExpanded={itemExpanded}
           name={planet.name}
           description={planet.description}
+          selectedPlanetName={selectedPlanetName}
+          setSelectedPlanetName={setSelectedPlanetName}
           />
         ))}
       
