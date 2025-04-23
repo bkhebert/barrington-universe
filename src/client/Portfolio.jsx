@@ -16,11 +16,16 @@ const Portfolio = ({itemExpanded}) => {
   const [ progressReached, setProgressReached] = useState(false);
   const progIntervalRef = useRef(null);
   const progRef = useRef({ value: 0});
+  const [formView, setFormView] = useState(false);
   const handleClick = (componentName) => {
     setExpanded(componentName === expanded ? null : componentName);
   };
 
   const [isVisible, setIsVisible] = useState(false); // for fade-in
+
+  const toggleFormView = (bool) => {
+    setFormView(bool);
+  }
 
   useEffect(() => {
     const timeout = setTimeout(() => {
