@@ -58,10 +58,7 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
     onPointerOut={() => setIsHovered(false) }
     onClick={(e) => {
       e.stopPropagation();
-      console.log(e)
-      
         setSelectedPlanetName(isClicked ? null : name);
-      
     }}
     >
       {/* Base Sphere */}
@@ -69,11 +66,8 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
             onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
             onPointerOut={() => setIsHovered(false) }
             onClick={(e) => {
-              console.log(e, 'base triggered')
               e.stopPropagation();
-              
                 setSelectedPlanetName(isClicked ? null : name);
-              
             }}
       >
         <sphereGeometry args={solid ? [size, 16, 16]: [size, 32, 32]} />
@@ -90,13 +84,8 @@ function Planet({ size, distance, speed, color, image, xp, solid, itemExpanded, 
       onPointerOver={(event) => (event.stopPropagation(), setIsHovered(true))}
       onPointerOut={() => setIsHovered(false) }
       onClick={(e) => {
-        console.log(e, 'triggered')
-        console.log(name)
-        console.log(ref.current)
         e.stopPropagation();
-        
           setSelectedPlanetName(isClicked ? null : name);
-        
       }}
       
       >
