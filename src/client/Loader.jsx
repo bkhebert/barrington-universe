@@ -25,37 +25,40 @@ export default function Loader() {
   }, [progress, displayProgress]);
 
   return (
-<Html center>
-  <div style={{
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '10px',
-    width: '300px'
-  }}>
-    <div style={{ color: 'white', fontSize: '1.0rem' }}>
-      {fakeProgressStats}
-    </div>
-    
-    {/* Progress Bar Container */}
+<Html fullscreen>
+  <div className="absolute top-4 left-1/2 -translate-x-1/2">
     <div style={{
-      width: '100%',
-      height: '6px',
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-      borderRadius: '3px',
-      overflow: 'hidden'
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '10px',
+      width: '300px'
     }}>
-      {/* Animated Progress Bar */}
+      <div style={{ color: 'white', fontSize: '1rem' }}>
+        {fakeProgressStats}
+      </div>
+
+      {/* Progress Bar Container */}
       <div style={{
-        width: `${displayProgress}%`,
-        height: '100%',
-        background: 'linear-gradient(90deg, #4facfe 0%, #00f2fe 100%)',
+        width: '100%',
+        height: '6px',
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
         borderRadius: '3px',
-        transition: 'width 0.3s ease-out',
-        boxShadow: '0 0 8px rgba(79, 172, 254, 0.6)'
-      }}/>
+        overflow: 'hidden'
+      }}>
+        {/* Animated Progress Bar */}
+        <div style={{
+          width: `${displayProgress}%`,
+          height: '100%',
+          background: 'linear-gradient(90deg, #4facfe 0%, #00f2fe 100%)',
+          borderRadius: '3px',
+          transition: 'width 0.3s ease-out',
+          boxShadow: '0 0 8px rgba(79, 172, 254, 0.6)'
+        }} />
+      </div>
     </div>
   </div>
 </Html>
+
   );
 }
